@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  
+<!-- 
+    Propulsion with turbines for YASIM helicopters.
+
+    Implements property rules and a governor PID controller that is configured by the Nasal
+    propulsion.nas script.
+
+    To use this you must load propulsion.nas from the aircraft-set file. 
+    This file propulsion-rules.xml must reside in the aircrafts Systems folder and must be 
+    included via the aircraft-set file in the property tree as autopilot.
+
+-->
+
+    <!-- engine 1 freewheel -->
+    
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <reference>0</reference>
+
+        <input> <!-- if rotor running n2 diff -->
+            <condition>
+                <greater-than>
+                    <property>rotors/main/rpm-pct</property>
+                    <value>0.01</value>
+                </greater-than>
+            </condition>
+            
+            <expression>
+            <dif>
+                <property>engines/engine[0]/n2-pct</property>
+                <property>rotors/main/rpm-pct</property>
+            </dif>
+            </expression>
+        </input>
+        
+        
+        <input> <!-- if rotor not running set to 0 -->
+            <condition>
+                <less-than>
+                    <property>rotors/main/rpm-pct</property>
+                    <value>0.01</value>
+                </less-than>
+            </condition>
+            <value>0.0</value>
+        </input>
+
+        <output>
+            <property>controls/rotor/gov/n2-diff[0]</property>
+        </output>    
+        
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <reference>0</reference>
+
+        <input>
+            <expression>
+            <table>
+                <property>controls/rotor/gov/n2-diff[0]</property>
+                <entry><ind>-100.0</ind><dep>1.0</dep></entry>
+                <entry><ind>-1.0</ind><dep>1.0</dep></entry>
+                <entry><ind>0.0</ind><dep>0.0</dep></entry>
+                <entry><ind>100.0</ind><dep>0.0</dep></entry>
+            </table>
+            </expression>        
+        </input>
+
+        <output>
+            <property>engines/engine[0]/freewheel</property>
+        </output>    
+        
+    </filter>
+
+
+    <!-- engine 2 freewheel -->
+    
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <reference>0</reference>
+
+        <input> <!-- if rotor running n2 diff -->
+            <condition>
+                <greater-than>
+                    <property>rotors/main/rpm-pct</property>
+                    <value>0.01</value>
+                </greater-than>
+            </condition>
+            
+            <expression>
+            <dif>
+                <property>engines/engine[1]/n2-pct</property>
+                <property>rotors/main/rpm-pct</property>
+            </dif>
+            </expression>
+        </input>
+        
+        
+        <input> <!-- if rotor not running set to 0 -->
+            <condition>
+                <less-than>
+                    <property>rotors/main/rpm-pct</property>
+                    <value>0.01</value>
+                </less-than>
+            </condition>
+            <value>0.0</value>
+        </input>
+
+        <output>
+            <property>controls/rotor/gov/n2-diff[1]</property>
+        </output>    
+        
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <reference>0</reference>
+
+        <input>
+            <expression>
+            <table>
+                <property>controls/rotor/gov/n2-diff[1]</property>
+                <entry><ind>-100.0</ind><dep>1.0</dep></entry>
+                <entry><ind>-1.0</ind><dep>1.0</dep></entry>
+                <entry><ind>0.0</ind><dep>0.0</dep></entry>
+                <entry><ind>100.0</ind><dep>0.0</dep></entry>
+            </table>
+            </expression>        
+        </input>
+
+        <output>
+            <property>engines/engine[1]/freewheel</property>
+        </output>    
+        
+    </filter>
+    
+    <!-- governor target rpm difference -->
+    
+    <filter>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <reference>controls/rotor/gov/reltarget-internal</reference>
+        <input>
+          <expression>
+           <prod>
+                <property>rotors/main/rpm-pct</property>
+                <value>0.01</value>
+            </prod>
+          </expression>
+        </input>
+        <output>
+            <property>controls/rotor/gov/reltarget-diff</property>
+        </output>    
+    </filter>
+
+    <!--unused : alternatively to using YASIMs internal PD for a gonernor, this PID has been used 
+
+    <pid-controller>
+        <name>Rotor Governor</name>
+        <debug>false</debug>
+        <input>
+            <property>controls/rotor/gov/reltarget-diff</property>
+        </input>
+        <reference>
+            <value>0.0</value>
+        </reference>
+        <output>
+            <property>controls/rotor/gov/maxreltorque</property>
+        </output>
+        <config>
+            <Kp>40</Kp>        
+            <beta>1.0</beta>     
+            <gamma>0.0</gamma>   
+            <alpha>0.1</alpha>   
+                                
+            <Ti>1.0</Ti>        
+            <Td>0.001</Td>    
+            <u_min>0.0</u_min> 
+            <u_max>1.2</u_max>
+        </config>
+    </pid-controller>
+
+    <filter>
+        <name>Governor Power Limiter</name>
+        <type>gain</type>
+        <gain>1.0</gain>
+        <reference>0</reference>
+        <input>
+           <condition>
+            <greater-than>
+               <property>controls/rotor/gov/maxreltorque</property>
+               <property>controls/rotor/gov/maxrelpower</property>
+            </greater-than>
+           </condition>
+           <property>controls/rotor/gov/maxrelpower</property>
+        </input>
+        
+        <input>
+                <property>controls/rotor/gov/maxreltorque</property>
+        </input>
+        
+        <output>
+           <property>controls/rotor/maxreltorque</property>
+        </output>    
+        
+    </filter>
+    -->    
+    
+</PropertyList>

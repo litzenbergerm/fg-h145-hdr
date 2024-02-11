@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  
+<!-- 
+  Propulsion with turbines for YASIM helicopters.
+  
+  EC145 (BK-117C2)
+
+  To use this you must load propulsion.nas from the aircraft-set file in its "nasal" section
+  and the property rules propulsion-rules.xml.
+    
+  This file propulsion.xml must reside in the aircrafts Systems folder and must be 
+  included via the aircraft-set file in the property tree at /sim/systems.
+
+-->
+
+  <num-engines type="int">2</num-engines>
+  <refresh-rate-hz type="float">20</refresh-rate-hz>
+  
+  <!--
+  
+    Parameters common to all turbine engines,    
+    if no unit is given, normalized rpm : 1.0 == 100%
+    
+    All max. values are taken for the 2.5 min OEI condition.
+    
+    The turbine datasheets gives 877 Nm max. trq for 2.5 min OEI. 
+    Using this as 100% limit underestimates the %-torque
+    considerably compared to videos found in internet.
+  
+    In accordance with the 2E datasheet 60% of the OEI trq. 
+    limit is used as max.cont. limit ~ 530 Nm
+  
+  -->
+  
+  <turbines>
+    <model-name type="string">Safran Arriel 1E2</model-name>
+    <data-source type="string">EASA TCDS E073/Eurocopter 145 08.101.01E</data-source>
+    <starter-max type="float">0.40</starter-max>
+    <starter-time-s type="float">10.0</starter-time-s>
+    <starter-spooltime-s type="float">6.0</starter-spooltime-s>
+    
+    <n1-min type="float">0.35</n1-min>               <!-- below that n1 engine will stall -->
+    <n1-fuelpress type="float">0.02</n1-fuelpress>   <!-- engine internal fuel pump min.n1, below that primer-prop must be true to have fuelpressure -->
+    <n1-idle type="float">0.62</n1-idle>
+    <n1-rpm-max type="float">51800</n1-rpm-max>
+    
+    <n2-idle type="float">0.78</n2-idle>
+    <n2-train type="float">0.91</n2-train>       <!--reduced n2 in 'training idle' mode -->  
+    <n2-no-trq type="float">0.25</n2-no-trq>
+    <n2-rpm-max type="float">41586</n2-rpm-max>
+    <shaft-rpm-max>6000</shaft-rpm-max>
+    <trq-max-Nm type="float">530</trq-max-Nm>    <!--estimated max.cont.trq. limit wrt datasheet to get realisitc trq readings (datasheet=877 Nm)-->
+    
+    <pwr-start type="float">0.02</pwr-start>      <!-- power during starter on -->
+    <pwr-idle type="float">0.35</pwr-idle>        <!-- power from start to idle -->
+    <pwr-flight type="float">0.9</pwr-flight>    <!-- in spoolup from idle to flight. after that, governor PD controller controls power -->
+    <fuelflow-idle-kgh type="float">60</fuelflow-idle-kgh>
+    <fuelflow-max-kgh type="float">150</fuelflow-max-kgh>
+    
+    <spooltime-idle-s type="float">30.0</spooltime-idle-s>
+    <decaytime-s type="float">2</decaytime-s>
+    <tot-ignite-deg type="float">900</tot-ignite-deg>
+    <tot-timeconst-s type="float">3</tot-timeconst-s>
+    <tot-cooltime-s type="float">200</tot-cooltime-s>
+    <tot-dn1dt-factor type="float"> 0.2 </tot-dn1dt-factor>
+    
+    <oiltemp-nominal-degc type="float">95</oiltemp-nominal-degc>
+    <oiltemp-cooltime-s type="float">300</oiltemp-cooltime-s>
+    <oilpress-nominal-bar type="float">4.0</oilpress-nominal-bar>
+    
+    <!-- 
+      Parameters individual to each turbine engine
+      
+      -prop's control engine and must be > 0 to activate turbine condition
+      e.g. if starter > 0 the engine is starting to ground idle,
+      if cutoff> 0 the engine is stopping (fuel cutoff)
+      
+      supply-tank must be a YASIM tank number
+    -->
+    
+    <turbine n="0">      
+      <supply-tank type="int">1</supply-tank>
+      <primer-prop type="string">systems/electrical/outputs/fuelpump-prime[1]</primer-prop>
+      <starter-prop type="string">systems/electrical/outputs/starter[0]</starter-prop>
+      <ignition-prop type="string">controls/engines/engine[0]/ignition</ignition-prop>
+      <flight-prop type="string">controls/engines/engine[0]/flight</flight-prop>
+      <cutoff-prop type="string">controls/engines/engine[0]/cutoff</cutoff-prop>
+      <train-prop type="string">controls/engines/engine[0]/training</train-prop>
+    </turbine>
+    
+    <turbine n="1">
+      <supply-tank type="int">2</supply-tank>
+      <primer-prop  type="string">systems/electrical/outputs/fuelpump-prime[2]</primer-prop>
+      <starter-prop type="string">systems/electrical/outputs/starter[1]</starter-prop>
+      <ignition-prop type="string">controls/engines/engine[1]/ignition</ignition-prop>
+      <flight-prop type="string">controls/engines/engine[1]/flight</flight-prop>
+      <cutoff-prop type="string">controls/engines/engine[1]/cutoff</cutoff-prop>
+      <train-prop type="string">controls/engines/engine[1]/training</train-prop>
+    </turbine>
+  </turbines>
+  
+  <!-- 
+    yasim-rotor-rpm must be copied from YASIM aircraft configuration file.
+  -->
+  
+  <transmission>
+    <yasim-rotor-rpm type="float">383</yasim-rotor-rpm>
+    <mgb-oiltemp-nominal-degc type="float">95</mgb-oiltemp-nominal-degc>
+    <mgb-oiltemp-cooltime-s type="float">120</mgb-oiltemp-cooltime-s>
+    <mgb-oiltemp-trq-influence type="float">0.3</mgb-oiltemp-trq-influence>
+    <mgb-oilpress-nominal-bar type="float">4</mgb-oilpress-nominal-bar>
+    <mgb-oilpress-min-nr type="float">0.25</mgb-oilpress-min-nr>
+  </transmission>
+  
+  <!-- 
+    table data for approximation of relations. given in format x0,y0 x1,y1 x2,y2 .. xn,yn
+  -->
+  <tables>
+    <!-- nr-law -->
+    <table>
+      <name type="string">ias-vs-nr</name> 
+      <tableData type="string">0,1.01 54,1.01 55,1.01 71,0.985 120,0.965 200,0.965</tableData>
+    </table>
+    
+    <!-- n1 with power demand in flight mode. min.n1 in flight mode is at power=0 -->
+    <table>
+      <name type="string">pwr-vs-n1</name>
+      <tableData type="string">0.0,0.70 0.05,0.72 0.10,0.77 0.60,0.90 1.00,1.05</tableData>
+    </table>
+    
+    <!-- turbine outlet temp with n1-->
+    <table>
+      <name type="string">n1-vs-tot</name>
+      <tableData type="string">0,0 0.10,450 0.70,600 1.03,885</tableData>
+    </table>
+  </tables>
+
+</PropertyList>

@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Some filters for various H145 / EC145 instruments -->
+  
+<PropertyList>
+ 
+<params>
+  <rotor-rpmN>383</rotor-rpmN>
+</params>
+
+<!-- 
+  FND airspeed trend vector 
+-->
+
+<predict-simple>
+      <name>airspeed trend</name>  
+      <input>/velocities/airspeed-kt</input>
+      <seconds>8</seconds>
+      <filter-gain>0</filter-gain>
+      <output>/velocities/airspeed-lookahead</output>
+</predict-simple>
+
+<filter>
+      <name>airspeed trend delta</name> 
+      <type>gain</type>
+      <gain>1</gain>      
+      <input>/velocities/airspeed-lookahead</input>
+      <reference>/velocities/airspeed-kt</reference>
+      <output>/velocities/airspeed-delta-kt-sec</output>
+</filter>
+
+<!-- relative bearings for pointers in rose-->
+<filter>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>/instrumentation/gps/wp/wp[1]/desired-course-deg</input>
+      <reference>/orientation/heading-magnetic-deg</reference>
+      <output>/instrumentation/gps/wp/wp[1]/course-err-deg</output>
+      <period>
+	<min>-180.0</min>
+	<max>180.0</max>
+      </period>
+</filter> 
+
+<filter>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>/instrumentation/nav[0]/heading-deg</input>
+      <reference>/orientation/heading-magnetic-deg</reference>
+      <output>/instrumentation/nav[0]/rel-bearing-deg</output>
+      <period>
+	<min>-180.0</min>
+	<max>180.0</max>
+      </period>
+</filter> 
+
+<filter>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>/instrumentation/nav[1]/heading-deg</input>
+      <reference>/orientation/heading-magnetic-deg</reference>
+      <output>/instrumentation/nav[1]/rel-bearing-deg</output>
+      <period>
+        <min>-180.0</min>
+        <max>180.0</max>
+      </period>
+</filter> 
+
+<!-- EC145 percent main rotor rpm -->
+
+<filter>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>
+	<expression>
+	  <product>
+	    <value>100</value>
+	    <div>
+		<property>/rotors/main/rpm</property>
+		<value alias="../../../../../../params/rotor-rpmN"/>
+	    </div>
+	  </product>
+	</expression>
+      </input>
+      <output>/rotors/main/rpm-pct</output>
+</filter> 
+
+<!-- EC145 instrument light dimming -->
+
+<filter>
+      <type>gain</type>
+      <gain>0.020833333</gain>  <!-- 1/(24V*2) scale to 0..0.5-->
+      <input>
+        <expression>
+          <product>
+              <property>/controls/lighting/instrument-lights-norm</property>
+              <property>/systems/electrical/outputs/instrument-lights</property>
+          </product>
+        </expression>
+      </input>
+      <output>systems/electrical/outputs/instrument-lights-dimmed</output>
+</filter> 
+
+<!-- connect the Bendix KX165 nav-2 radio stack to electrical power -->
+
+<logic>
+  <inverted>false</inverted>
+  <input>
+    <and>
+      <greater-than>
+        <property>/systems/electrical/outputs/nav[1]</property>
+        <value>12</value>
+      </greater-than>
+      <greater-than>
+        <property>/instrumentation/comm[1]/volume</property>
+        <value>0.05</value>
+      </greater-than>
+    </and>
+  </input>
+  <output>/instrumentation/nav[1]/serviceable</output>
+</logic>
+
+<!-- connect the Bendix KNS80 nav-1 radio stack to electrical power -->
+
+<logic>
+  <inverted>false</inverted>
+  <input>
+      <greater-than>
+        <property>/systems/electrical/outputs/comm</property>
+        <value>12</value>
+      </greater-than>
+  </input>
+  <output>/instrumentation/comm[0]/serviceable</output>
+</logic>
+
+<logic>
+  <inverted>false</inverted>
+  <input>
+    <and>
+      <greater-than>
+        <property>/systems/electrical/outputs/KNS80</property>
+        <value>12</value>
+      </greater-than>
+      <greater-than>
+        <property>/instrumentation/nav[0]/volume</property>
+        <value>0.0</value>
+      </greater-than>
+    </and>
+  </input>
+  <output>instrumentation/kns-80/serviceable</output>
+</logic>
+
+<logic>
+  <inverted>false</inverted>
+  <input>
+      <greater-than>
+        <property>/systems/electrical/outputs/cdu</property>
+        <value>12</value>
+      </greater-than>
+  </input>
+  <output>/instrumentation/cdu/serviceable</output>
+</logic>
+
+<!-- 
+
+     warning unit (W/U) lamps 
+
+-->
+
+<!-- warning unit connected to emergency electrical bus (no.6) -->
+
+<logic>
+  <input>
+         <greater-than>
+            <property>/systems/electrical/outputs/bus[6]</property>
+            <value>10</value>
+         </greater-than>         
+  </input>
+  <output>/instrumentation/warningunit/serviceable</output>
+</logic>
+
+<!-- autopilot control panel connected to avio. bus no.1 -->
+
+<logic>
+  <input>
+         <greater-than>
+            <property>/systems/electrical/outputs/avio[0]</property>
+            <value>10</value>
+         </greater-than>         
+  </input>
+  <output>/instrumentation/apcp/serviceable</output>
+</logic>
+      
+<logic>
+  <input>
+     <property>/instrumentation/apcp/serviceable</property>
+     <not><property>/controls/flight/fcs/sas-enabled</property></not>
+  </input>
+  <output>/instrumentation/apcp/ap12-bt</output>
+</logic>
+
+<logic>
+  <input>
+     <property>/instrumentation/apcp/serviceable</property>
+     <equals>
+        <property>autopilot/locks/altitude</property>
+        <value type="string">altitude-hold</value>
+     </equals>   
+  </input>
+  <output>/instrumentation/apcp/alt-bt</output>
+</logic>
+
+
+<!-- fuel supply tank low warning at 24 kg, 48 lbs (ref. flight manual BK117-C2) -->
+
+<logic>
+  <input>
+     <and>
+         <or> 
+             <less-than>
+                    <property>consumables/fuel/tank[1]/level-lbs</property>
+                    <value>48</value>
+             </less-than>
+             <equals>
+                    <property>controls/test/p-flight</property>
+                    <value>2</value>
+           </equals>    
+         </or>
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/sys[0]/fuel</output>
+</logic>
+
+<logic>
+  <input>
+     <and>
+         <or> 
+             <less-than>
+                    <property>consumables/fuel/tank[2]/level-lbs</property>
+                    <value>48</value>
+             </less-than>
+             <equals>
+                    <property>controls/test/p-flight</property>
+                    <value>2</value>
+           </equals>    
+         </or>
+         <property>/instrumentation/warningunit/serviceable</property>         
+         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/sys[1]/fuel</output>
+</logic>
+
+<!-- engine fail warning -->
+
+<logic>
+  <input>
+     <and>
+         <or> 
+            <less-than>
+                    <property>engines/engine[0]/n1-pct</property>
+                    <value>50</value>
+            </less-than>
+            <equals>
+                    <property>controls/test/p-flight</property>
+                    <value>2</value>
+            </equals>    
+         </or>
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/sys[0]/fail</output>
+</logic>
+
+<logic>
+  <input>
+     <and>
+         <or> 
+            <less-than>
+                    <property>engines/engine[1]/n1-pct</property>
+                    <value>50</value>
+            </less-than>
+            <equals>
+                    <property>controls/test/p-flight</property>
+                    <value>2</value>
+            </equals>    
+         </or>
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/sys[1]/fail</output>
+</logic>
+
+<!-- prepared for a future engine fire failure model 
+     using /engines/engine[i]/fire
+-->
+
+<logic>
+  <input>
+     <and>
+        <or> 
+            <property>/engines/engine[0]/fire</property>
+            <equals>
+                <property>/controls/test/fire-warntest1</property>
+                <value>2</value>
+            </equals>
+        </or> 
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/sys[0]/fire</output>
+</logic>
+
+<logic>
+  <input>
+     <and>
+        <or> 
+            <property>/engines/engine[1]/fire</property>
+            <equals>
+                <property>/controls/test/fire-warntest2</property>
+                <value>2</value>
+            </equals>
+        </or> 
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/sys[1]/fire</output>
+</logic>
+
+
+
+<!-- logic to trigger the fire warning gong-sound once -->
+
+<flipflop>
+  <type>monostable</type>
+  <J>
+       <property>/instrumentation/warningunit/sys[0]/fire</property>
+  </J>
+  <clock>
+       <property>/instrumentation/warningunit/sys[0]/fire</property>
+  </clock>
+  <time><value>3</value></time>
+  <output>sim/sound/fire1</output>
+</flipflop>
+
+<flipflop>
+  <type>monostable</type>
+  <J>
+       <property>/instrumentation/warningunit/sys[1]/fire</property>
+  </J>
+  <clock>
+       <property>/instrumentation/warningunit/sys[1]/fire</property>
+  </clock>
+  <time><value>3</value></time>
+  <output>sim/sound/fire2</output>
+</flipflop>
+
+<!-- activate the ext bottle available light -->
+
+<logic>
+  <input>
+     <and>
+        <or>
+        <not-equals>
+            <property>/controls/test/fire-warntest1</property>
+            <value>0</value>
+        </not-equals>
+        <property>/instrumentation/warningunit/sys[0]/fire-bot-arm</property>
+        </or> 
+      <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/sys[0]/fire-bot</output>
+</logic>
+
+<logic>
+  <input>
+     <and>
+        <or>
+        <not-equals>
+            <property>/controls/test/fire-warntest2</property>
+            <value>0</value>
+        </not-equals>
+        <property>/instrumentation/warningunit/sys[1]/fire-bot-arm</property>
+        </or> 
+        <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/sys[1]/fire-bot</output>
+</logic>
+
+
+<!-- rotor speed warning at <95% and >110% -->
+   
+<logic>
+  <input>
+     <and>
+         <or> 
+            <less-than>
+                <property>rotors/main/rpm-pct</property>
+                <value>95</value>
+            </less-than>
+            <greater-than>
+                <property>rotors/main/rpm-pct</property>
+                <value>110</value>
+            </greater-than>
+            <equals>
+                <property>controls/test/p-flight</property>
+                <value>2</value>
+            </equals>    
+         </or>
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/rpm</output>
+</logic>
+
+<!-- transmission (main gearbox) oil pressure, limit 1 bar (ref. flight manual BK117-C2) -->
+
+<logic>
+  <input>
+     <and>
+         <or> 
+            <less-than>
+                <property>/rotors/gear/mgb-oil-pressure-bar</property>
+                <value>1.0</value>
+            </less-than>
+            <equals>
+                <property>controls/test/p-flight</property>
+                <value>2</value>
+            </equals>    
+         </or>
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/oilp</output>
+</logic>
+
+
+<!-- battery overheat warning at 500 A -->
+
+<logic>
+  <input>
+     <and>
+         <or> 
+            <greater-than>
+                <property>/systems/electrical/loads/battery</property>
+                <value>500</value>
+            </greater-than>
+            <equals>
+                <property>controls/test/p-flight</property>
+                <value>2</value>
+            </equals>    
+         </or>
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/batt</output>
+</logic>
+
+<!-- autopilot warning lamp , only for test -->
+
+<logic>
+  <input>
+     <and>
+         <or> 
+            <equals>
+                <property>controls/test/p-flight</property>
+                <value>2</value>
+            </equals>    
+         </or>
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/ap</output>
+</logic>
+
+<!-- cargo smoke warning lamp , only for test -->
+
+<logic>
+  <input>
+     <and>
+         <or> 
+            <equals>
+                <property>controls/test/p-flight</property>
+                <value>2</value>
+            </equals>    
+         </or>
+         <property>/instrumentation/warningunit/serviceable</property>         
+     </and>
+  </input>
+  <output>/instrumentation/warningunit/smoke</output>
+</logic>
+
+
+<!-- 
+
+    Helionix VMD 
+
+-->
+
+<!-- code for battery symbol color on VMD -->
+
+<filter>
+    <name>VMD battery symbol color</name> 
+    <type>gain</type>
+    <gain>1</gain>      
+    <output>/instrumentation/efis/vmd/battery-symbol-color</output>
+    <input> 
+        <value> 0 </value> 
+    </input>
+
+    <!-- overheat --> 
+    <reference>
+        <condition>
+            <greater-than>
+                <property>/systems/electrical/loads/battery</property>
+                <value>500</value>
+            </greater-than>
+        </condition>
+        <value>-2</value>
+    </reference>
+    
+    <!-- disconnected --> 
+    <reference>
+        <condition>
+            <not><property>controls/electric/battery-switch</property></not>
+        </condition>
+        <value>-1</value>
+    </reference>
+    
+    <!-- connected --> 
+    <reference>
+        <value>0</value>
+    </reference>
+</filter>
+
+<!-- code for generator 1 symbol color on VMD -->
+
+<filter>
+    <name>VMD gen 1 symbol color</name> 
+    <type>gain</type>
+    <gain>1</gain>      
+    <output>/instrumentation/efis/vmd/gen1-symbol-color</output>
+    <input> 
+        <value> 0 </value> 
+    </input>
+
+    <!-- disconnected while eng running --> 
+    <reference>
+        <condition>
+            <not><property>controls/electric/engine[0]/generator</property></not>     
+            <property>engines/engine[0]/running</property>
+        </condition>
+        <value>-2</value>
+    </reference>
+    
+    <!-- disconnected while eng off --> 
+    <reference>
+        <condition>
+            <not><property>controls/electric/engine[0]/generator</property></not>     
+            <not><property>engines/engine[0]/running</property></not>
+        </condition>
+        <value>-1</value>
+    </reference>
+    
+    <!-- connected --> 
+    <reference>
+        <value>0</value>
+    </reference>
+</filter>
+
+<!-- code for generator 2 symbol color on VMD -->
+
+<filter>
+    <name>VMD gen 2 symbol color</name> 
+    <type>gain</type>
+    <gain>1</gain>      
+    <output>/instrumentation/efis/vmd/gen2-symbol-color</output>
+    <input> 
+        <value> 0 </value> 
+    </input>
+
+    <!-- disconnected while eng running --> 
+    <reference>
+        <condition>
+            <not><property>controls/electric/engine[1]/generator</property></not>     
+            <property>engines/engine[1]/running</property>
+        </condition>
+        <value>-2</value>
+    </reference>
+    
+    <!-- disconnected while eng off --> 
+    <reference>
+        <condition>
+            <not><property>controls/electric/engine[1]/generator</property></not>     
+            <not><property>engines/engine[1]/running</property></not>
+        </condition>
+        <value>-1</value>
+    </reference>
+    
+    <!-- connected --> 
+    <reference>
+        <value>0</value>
+    </reference>
+</filter>
+
+
+<!-- code for eng. 1 status symbol color on VMD -->
+
+<filter>
+    <name>VMD eng 1 symbol color</name> 
+    <type>gain</type>
+    <gain>1</gain>      
+    <output>/instrumentation/efis/vmd/eng1-symbol-color</output>
+    <input> 
+        <value> 0 </value> 
+    </input>
+
+    <!-- fail red --> 
+    <reference>
+        <condition>
+            <less-than>
+                <property>engines/engine[0]/n1-pct</property>
+                <value>50</value>
+            </less-than>
+            <equals>
+               <property>controls/switches/ecp/pos[0]</property>
+               <value>2</value>
+            </equals>
+               
+        </condition>
+        <value>-2</value>
+    </reference>
+    
+    <!-- starting and idle, amber --> 
+    <reference>
+        <condition>
+            <or>
+              <property>controls/engines/engine[0]/starter</property>
+              <and>
+                <less-than>
+                    <property>engines/engine[0]/n1-pct</property>
+                    <value>65</value>
+                </less-than>
+                <greater-than>
+                    <property>engines/engine[0]/n1-pct</property>
+                    <value>51</value>
+                </greater-than>
+            </and>
+            </or>
+        </condition>
+        <value>-1</value>
+    </reference>
+    
+    <!-- black in normal flight cond.--> 
+    <reference>
+        <value>0</value>
+    </reference>
+</filter>
+     
+
+<filter>
+    <name>VMD eng 2 symbol color</name> 
+    <type>gain</type>
+    <gain>1</gain>      
+    <output>/instrumentation/efis/vmd/eng2-symbol-color</output>
+    <input> 
+        <value> 0 </value> 
+    </input>
+
+    <!-- fail red --> 
+    <reference>
+        <condition>
+            <less-than>
+                <property>engines/engine[1]/n1-pct</property>
+                <value>50</value>
+            </less-than>
+            <equals>
+               <property>controls/switches/ecp/pos[1]</property>
+               <value>2</value>
+            </equals>
+               
+        </condition>
+        <value>-2</value>
+    </reference>
+    
+    <!-- starting and idle, amber --> 
+    <reference>
+        <condition>
+            <or>
+              <property>controls/engines/engine[1]/starter</property>
+              <and>
+                <less-than>
+                    <property>engines/engine[1]/n1-pct</property>
+                    <value>65</value>
+                </less-than>
+                <greater-than>
+                    <property>engines/engine[1]/n1-pct</property>
+                    <value>51</value>
+                </greater-than>
+            </and>
+            </or>
+        </condition>
+        <value>-1</value>
+    </reference>
+    
+    <!-- black in normal flight cond.--> 
+    <reference>
+        <value>0</value>
+    </reference>
+</filter>
+
+
+
+
+<!-- W/U engine 1 emergency-off push button logic -->
+
+<flipflop>
+  <type>SR</type>
+  <S>
+    <and>
+       <property>engines/engine[0]/running</property>
+       <property>instrumentation/warningunit/sys[0]/emerg-off</property>
+    </and> 
+  </S>
+  <R>
+        <less-than>
+            <property>engines/engine[0]/n1-pct</property>
+            <value>5</value>
+        </less-than>      
+  </R>
+  <output>/controls/engines/engine[0]/cutoff</output>
+</flipflop>
+
+<flipflop>
+  <type>SR</type>
+  <S>
+      <equals>
+          <value>1</value>
+          <value>2</value>
+      </equals>    
+  </S>
+  <R>
+        <less-than>
+            <property>engines/engine[0]/n1-pct</property>
+            <value>5</value>
+        </less-than>      
+  </R>
+  <output>instrumentation/warningunit/sys[0]/emerg-off</output>
+</flipflop>
+
+<!-- W/U engine 1 enable bottle 1/2 button if n1 < 50 -->
+
+<flipflop>
+  <type>SR</type>
+  <S>
+       <property>engines/engine[0]/fire</property>
+       <less-than>
+            <property>engines/engine[0]/n1-pct</property>
+            <value>45</value>
+       </less-than>      
+  </S>
+  <R>
+      <not>
+       <property>engines/engine[0]/fire</property>
+   </not> 
+  </R>
+  <output>instrumentation/warningunit/sys[0]/fire-bot-arm</output>
+</flipflop>
+
+<!-- W/U engine 1 activate fire extinguisher logic -->
+
+<flipflop>
+  <type>SR</type>
+  <S>
+       <property>instrumentation/warningunit/sys[0]/fire-bot</property>
+       <property>instrumentation/warningunit/sys[0]/ext</property>
+  </S>
+  <R>
+    <not>
+       <property>engines/engine[0]/fire</property>
+   </not>
+  </R>
+  <output>engines/engine[0]/extinguisher</output>
+</flipflop>
+
+
+<!-- W/U engine 2 emergency-off push button logic -->
+
+<flipflop>
+  <type>SR</type>
+  <S>
+    <and>
+       <property>engines/engine[1]/running</property>
+       <property>instrumentation/warningunit/sys[1]/emerg-off</property>
+    </and> 
+  </S>
+  <R>
+        <less-than>
+            <property>engines/engine[1]/n1-pct</property>
+            <value>5</value>
+        </less-than>      
+  </R>
+  <output>/controls/engines/engine[1]/cutoff</output>
+</flipflop>
+
+<flipflop>
+  <type>SR</type>
+  <S>
+      <equals>
+          <value>1</value>
+          <value>2</value>
+      </equals>    
+  </S>
+  <R>
+        <less-than>
+            <property>engines/engine[1]/n1-pct</property>
+            <value>5</value>
+        </less-than>      
+  </R>
+  <output>instrumentation/warningunit/sys[1]/emerg-off</output>
+</flipflop>
+
+<!-- W/U engine 2 enable bottle 1/2 button if n1 < 50 -->
+
+<flipflop>
+  <type>SR</type>
+  <S>
+       <property>engines/engine[1]/fire</property>
+       <less-than>
+            <property>engines/engine[1]/n1-pct</property>
+            <value>45</value>
+       </less-than>      
+  </S>
+  <R>
+      <not>
+       <property>engines/engine[1]/fire</property>
+   </not> 
+  </R>
+  <output>instrumentation/warningunit/sys[1]/fire-bot-arm</output>
+</flipflop>
+
+<!-- W/U engine 2 activate fire extinguisher logic -->
+
+<flipflop>
+  <type>SR</type>
+  <S>
+       <property>instrumentation/warningunit/sys[1]/fire-bot</property>
+       <property>instrumentation/warningunit/sys[1]/ext</property>
+  </S>
+  <R>
+    <not>
+       <property>engines/engine[1]/fire</property>
+   </not>
+  </R>
+  <output>engines/engine[1]/extinguisher</output>
+</flipflop>
+
+<!-- swashplate angles-->
+
+<filter>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>rotors/main/blade[0]/incidence-deg</input>
+      <reference>rotors/main/blade[2]/incidence-deg</reference>
+      <output>rotors/main/swashplate/incidence-deg[0]</output>
+    <min>-180.0</min>
+    <max>180.0</max>
+</filter> 
+
+<filter>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>rotors/main/blade[1]/incidence-deg</input>
+      <reference>rotors/main/blade[3]/incidence-deg</reference>
+      <output>rotors/main/swashplate/incidence-deg[1]</output>
+    <min>-180.0</min>
+    <max>180.0</max>
+</filter> 
+
+
+<!-- wiper tilt-->
+
+<filter>
+      <type>gain</type>
+      <gain>1.0</gain>
+      <input>
+        <expression>
+          <table>
+            <property>sim/multiplay/generic/float[14]</property>
+            <entry><ind>-45.0</ind><dep>3.0</dep></entry>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>45</ind><dep>3.0</dep></entry>
+          </table>
+        </expression>
+      </input>      
+      
+      <output>sim/model/wipertilt</output>
+    <min>-180.0</min>
+    <max>180.0</max>
+</filter> 
+
+<!-- landing light slow tilt -->
+
+<logic>
+  <inverted>false</inverted>
+  <input>
+      <and>
+        <greater-than>  
+            <property>systems/electrical/outputs/light-ldg</property>
+            <value>5.0</value>
+        </greater-than>  
+        <not>
+            <property>sim/crashed</property>
+        </not>
+      </and>
+  </input>
+  <output>sim/model/bk117/landinglight/extended</output>
+</logic>
+
+<filter>
+      <type>gain</type>
+      <gain>1.0</gain>
+        <input> 
+            <value>0</value> 
+        </input>
+    <reference>
+        <condition>
+          <property>sim/model/bk117/landinglight/extended</property>
+        </condition>
+        <value>1</value>
+    </reference>      
+    <reference>
+        <condition>
+            <not><property>sim/model/bk117/landinglight/extended</property></not>
+        </condition>
+        <value>0</value>
+    </reference>      
+    <output>sim/model/bk117/landinglight/target-pos-norm</output>
+</filter> 
+
+<filter>
+  <type>noise-spike</type>
+  <max-rate-of-change>0.2</max-rate-of-change>
+  <input>sim/model/bk117/landinglight/target-pos-norm</input>
+  <output>sim/model/bk117/landinglight/pos-norm</output>
+</filter>
+
+<logic>
+    <inverted>false</inverted>
+    <input>
+      <and>
+        <greater-than>  
+            <property>systems/electrical/outputs/light-nav</property>
+            <value>5.0</value>
+        </greater-than>  
+        <property>lightpack/white-light-intensity</property>
+        <not><property>sim/crashed</property></not>
+      </and>
+    </input>
+    <output>lightpack/nav-light-active</output>
+</logic>
+    
+<logic>
+    <inverted>false</inverted>
+    <input>
+      <and>
+        <greater-than>  
+            <property>systems/electrical/outputs/light-strobe</property>
+            <value>5.0</value>
+        </greater-than>  
+        <property>lightpack/strobe-state/state</property>
+        <not><property>sim/crashed</property></not>
+      </and>
+    </input>
+    <output>lightpack/strobe-light-active</output>
+</logic>
+
+<logic>
+    <inverted>false</inverted>
+    <input>
+      <and>
+        <greater-than>  
+            <property>systems/electrical/outputs/light-beacon</property>
+            <value>5.0</value>
+        </greater-than>  
+        <property>lightpack/beacon-state/state</property>
+        <not><property>sim/crashed</property></not>
+      </and>
+    </input>
+    <output>lightpack/beacon-light-active</output>
+</logic>
+
+<logic>
+    <inverted>false</inverted>
+    <input>
+      <and>
+        <less-than>  
+            <property>sim/model/bk117/landinglight/pos-norm</property>
+            <value>-0.99</value>
+        </less-than>  
+        <not><property>sim/crashed</property></not>
+      </and>
+    </input>
+    <output>lightpack/landing-lights-active</output>
+</logic>
+
+</PropertyList>

@@ -1,0 +1,608 @@
+<?xml version="1.0"?>
+ 
+<!-- EC 145 electrical system, simplified
+
+
+   Gen1                                   Gen2 28v
+   |  |                                     |  |
+                    bus    bus  starter sw-|    |-gen sw
+   |  |             tie1   tie2             |  |
+   __________________-_____-____________________
+          main bus 1     |       main bus 2
+                         |
+                         |bat bus          essential bus 1
+                      ___________          _______ 
+                        |                     |     (connects to all buses
+          bat mstr sw -|                      |     main 1 & main 2 & batt)
+                        |                     |
+                        |                  _______ Emer Bus
+                        |                     |             
+                        |       stby bat sw -|     
+                        |                     |
+              dome l.   |                     |      
+     gnd pwr sw  -|     |                  Stby Bat (always fully charged!)
+                  _______ bat hot bus
+                     |
+                 Battery 24v, 40 Ah capacity
+                   
+  (essential bus 2 is not simulated)
+
+-->
+                       
+
+<!-- original by Gary "Buckaroo" Neely.
+     Made for electrical system version 1.1 
+     extended for load simulation by litzi
+     
+     use keywords 'rated-draw' and 'volts-min'
+     in outputs to define a consumer.
+-->
+
+<PropertyList>
+
+  <!-- Include the following empty path to disable the default electrical system -->
+
+  <path></path>
+  
+  <!-- dome floodlight is connected to gnd pwr bus-->
+
+  <connector>
+    <input type="string">Gndpwr Bus</input>
+    <output type="string">Floodlight</output>
+    <switch type="string">controls/electric/floodlight-switch</switch>
+  </connector>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Floodlight</name>
+    <prop type="string">/systems/electrical/outputs/floodlight</prop>
+    <volts-min type="float">10</volts-min>
+    <rated-draw type="float">1</rated-draw>
+  </component>
+
+  <!-- Bus Connectors -->
+  
+  <connector>
+    <input type="string">Battery</input>
+    <output type="string">Batt Hot Bus</output>
+  </connector>
+  
+  <connector>
+    <input type="string">Batt Hot Bus</input>
+    <output type="string">Batt Bus</output>
+    <switch type="string">controls/electric/battery-switch</switch>
+  </connector>
+
+  <connector>
+    <input type="string">Batt Hot Bus</input>
+    <output type="string">Gndpwr Bus</output>
+    <switch type="string">controls/electric/gndpwr-switch</switch>
+  </connector>
+  
+  <connector>
+    <input type="string">Alternator 1</input>
+    <output type="string">Main Bus 1</output>
+    <switch type="string">controls/electric/engine[0]/generator</switch>    
+  </connector>
+
+  <connector>
+    <input type="string">Alternator 2</input>
+    <output type="string">Main Bus 2</output>
+    <switch type="string">controls/electric/engine[1]/generator</switch>    
+  </connector>
+
+  <connector>
+    <input type="string">Batt Bus</input>
+    <output type="string">Main Bus 1</output>
+    <switch type="string">controls/electric/engine[0]/bus-tie</switch>
+  </connector>
+  
+  <!-- return flow of main 1 to batt to charge batt-->
+  <connector>
+    <input type="string">Main Bus 1</input>
+    <output type="string">Batt Bus</output>
+    <switch type="string">controls/electric/engine[0]/bus-tie</switch>
+  </connector>
+  
+  <connector>
+    <input type="string">Batt Bus</input>
+    <output type="string">Main Bus 2</output>
+    <switch type="string">controls/electric/engine[1]/bus-tie</switch>
+  </connector>
+
+  <!-- return flow of main 2 to batt to charge batt-->
+  
+  <connector>
+    <input type="string">Main Bus 2</input>
+    <output type="string">Batt Bus</output>
+    <switch type="string">controls/electric/engine[1]/bus-tie</switch>
+  </connector>
+  
+  <!-- Essential bus 1 connects to all other buses via diode box -->
+  
+  <connector>
+    <input type="string">Batt Bus</input>
+    <output type="string">Ess Bus 1</output>
+  </connector>
+
+  <connector>
+    <input type="string">Main Bus 1</input>
+    <output type="string">Ess Bus 1</output>
+  </connector>
+
+  <connector>
+    <input type="string">Main Bus 2</input>
+    <output type="string">Ess Bus 1</output>
+  </connector>
+
+<!-- Components -->
+  
+  <!-- Fake alternator simulating a battery that
+  drops in voltage with loosing charge.
+  
+  The charge property is used as 'source-prop'.
+  The charge descreases with current drain,
+  computed in electrical-loads.nas
+  
+  Only one battery can be simulated.
+  
+  initial battery charge is 35 Ah-->
+  
+  <battery>
+    <name type="string">Battery</name>
+    <charge-amph type="float">35</charge-amph>
+    <capacity-amph type="float">40</capacity-amph>
+    <draw-component type="string">Battery Charge</draw-component>
+    <source-component type="string">Battery</source-component>        
+  </battery>
+  
+  <component>
+    <kind type="string">alternator</kind>
+    <name type="string">Battery</name>
+    <volts type="float">24</volts>
+    <prop type="string">/systems/electrical/suppliers/battery[0]</prop>
+    <source-prop type="string">/sim/systems/electrical/battery/charge-amph</source-prop>
+    <source-min type="float">0.1</source-min>
+  </component>
+
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Battery Charge</name>
+    <prop type="string">/systems/electrical/outputs/battery-charge</prop>
+    <volts-min type="float">25.5</volts-min>
+    <rated-draw type="float">50</rated-draw>    
+  </component>
+  
+  
+  
+  <component>
+    <kind type="string">alternator</kind>
+    <name type="string">Alternator 1</name>
+    <volts type="float">28</volts>
+    <prop type="string">/systems/electrical/suppliers/alternator[0]</prop>
+    <source-prop type="string">/engines/engine[0]/n1-pct</source-prop>
+    <source-min type="float">30</source-min>
+  </component>
+  
+  <component>
+    <kind type="string">alternator</kind>
+    <name type="string">Alternator 2</name>
+    <volts type="float">28</volts>
+    <prop type="string">/systems/electrical/suppliers/alternator[1]</prop>
+    <source-prop type="string">/engines/engine[1]/n1-pct</source-prop>
+    <source-min type="float">30</source-min>
+  </component>
+  
+  <!-- standby battery modelled as alternator, always on -->
+  
+  <component>
+    <kind type="string">alternator</kind>
+    <name type="string">Stby Battery</name>
+    <volts type="float">24</volts>
+    <prop type="string">/systems/electrical/suppliers/battery[1]</prop>
+    <source-prop type="string">/constants/zero</source-prop>
+    <source-min type="float">-1</source-min>
+  </component>  
+
+  <!-- Busses -->
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Main Bus 1</name>
+    <prop type="string">/systems/electrical/outputs/bus[0]</prop>
+  </component>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Main Bus 2</name>
+    <prop type="string">/systems/electrical/outputs/bus[1]</prop>
+  </component>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Batt Bus</name>
+    <prop type="string">/systems/electrical/outputs/bus[2]</prop>
+  </component>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Ess Bus 1</name>
+    <prop type="string">/systems/electrical/outputs/bus[3]</prop>
+    <prop>/systems/electrical/outputs/tachimeter</prop>
+  </component>
+
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Batt Hot Bus</name>
+    <prop type="string">/systems/electrical/outputs/bus[4]</prop>
+  </component>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Gndpwr Bus</name>
+    <prop type="string">/systems/electrical/outputs/bus[5]</prop>
+  </component>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Emerg Bus</name>
+    <prop type="string">/systems/electrical/outputs/bus[6]</prop>
+  </component>
+
+
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Starter 1</name>
+    <prop type="string">/systems/electrical/outputs/starter[0]</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">250</rated-draw>    
+  </component>
+  
+  <connector>
+    <input type="string">Main Bus 1</input>
+    <output type="string">Starter 1</output>
+    <switch type="string">controls/engines/engine[0]/starter</switch>
+  </connector>
+
+
+
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Starter 2</name>
+    <prop type="string">/systems/electrical/outputs/starter[1]</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">250</rated-draw>    
+  </component>
+  
+  <connector>
+    <input type="string">Main Bus 2</input>
+    <output type="string">Starter 2</output>
+    <switch type="string">controls/engines/engine[1]/starter</switch>
+  </connector>
+
+  
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">A Fuel Pump</name>
+    <prop type="string">/systems/electrical/outputs/fuelpump-aft</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">2</rated-draw>    
+  </component>
+  
+  <connector>
+    <input type="string">Main Bus 2</input>
+    <output type="string">A Fuel Pump</output>
+    <switch type="string">/controls/switches/fuel/transfer-pump[1]</switch>
+  </connector>
+  
+  
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">F Fuel Pump</name>
+    <prop type="string">/systems/electrical/outputs/fuelpump-fwd</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">2</rated-draw>    
+  </component>
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">F Fuel Pump</output>
+    <switch type="string">/controls/switches/fuel/transfer-pump[0]</switch>
+  </connector>
+  
+  
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Prime Pump 1</name>
+    <prop type="string">/systems/electrical/outputs/fuelpump-prime[1]</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">2</rated-draw>    
+  </component>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Prime Pump 2</name>
+    <prop type="string">/systems/electrical/outputs/fuelpump-prime[2]</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">2</rated-draw>    
+  </component>
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Prime Pump 1</output>
+    <switch type="string">controls/fuel/tank[1]/prime-pump</switch>
+  </connector>
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Prime Pump 2</output>
+    <switch type="string">controls/fuel/tank[2]/prime-pump</switch>
+  </connector>
+  
+  
+  <!-- reflow to batt charge -->
+  
+  <connector>
+    <input type="string">Batt Bus</input>
+    <output type="string">Batt Hot Bus</output>
+    <switch type="string">controls/electric/battery-switch</switch>
+  </connector>
+
+  <connector>
+    <input type="string">Batt Hot Bus</input>
+    <output type="string">Battery Charge</output>
+  </connector>
+
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Strobe Lt</name>
+    <prop type="string">/systems/electrical/outputs/light-strobe</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">2</rated-draw>
+  </component>
+
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Strobe Lt</output>
+    <switch type="string">/controls/switches/strobe-switch</switch>
+  </connector>
+  
+  
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Pos Lt</name>
+    <prop type="string">/systems/electrical/outputs/light-nav</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">2</rated-draw> 
+  </component>
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Pos Lt</output>
+    <switch type="string">/controls/switches/nav-lights-switch</switch>
+  </connector>
+  
+  
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Landing Lt</name>
+    <prop type="string">/systems/electrical/outputs/light-ldg</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">10</rated-draw>
+  </component>
+  
+  <connector>
+    <input type="string">Main Bus 2</input>
+    <output type="string">Landing Lt</output>
+    <switch type="string">/controls/switches/landing-lights-switch</switch>
+  </connector>
+  
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Search Lt</name>
+    <prop type="string">/systems/electrical/outputs/light-search</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">20</rated-draw>
+  </component>
+  
+  <connector>
+    <input type="string">Main Bus 2</input>
+    <output type="string">Search Lt</output>
+    <switch type="string">/controls/switches/search-lights-switch</switch>
+    <switch type="string">/controls/switches/hisl-switch</switch>
+  </connector>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Acoll Lt</name>
+    <prop type="string">/systems/electrical/outputs/light-beacon</prop>
+    <volts-min type="float">23</volts-min>
+    <rated-draw type="float">2</rated-draw>
+  </component>
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Acoll Lt</output>
+    <switch type="string">/controls/switches/beacon-switch</switch>
+  </connector>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Instr Lt</name>
+    <prop type="string">systems/electrical/outputs/instrument-lights</prop>
+    <volts-min type="float">20</volts-min>
+    <rated-draw type="float">1</rated-draw>
+  </component>
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Instr Lt</output>
+    <switch type="string">controls/lighting/instrument-lights</switch>
+  </connector>  
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Avionics 1</name>
+    <prop type="string">/systems/electrical/outputs/avio[0]</prop>
+    <volts-min type="float">20</volts-min>
+    <rated-draw type="float">10</rated-draw>
+  </component>
+
+
+  <!-- Pitot Heaters 1 and 2 -->
+
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Pitot Ht1</name>
+    <prop type="string">/systems/electrical/outputs/pitotht1</prop>
+    <volts-min type="float">10</volts-min>
+    <rated-draw type="float">1</rated-draw>
+  </component>
+  
+  <connector>
+    <input type="string">Main Bus 1</input>
+    <output type="string">Pitot Ht1</output>
+    <switch type="string">controls/anti-ice/pitot-heat1</switch>
+  </connector>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Pitot Ht2</name>
+    <prop type="string">/systems/electrical/outputs/pitotht2</prop>
+    <volts-min type="float">10</volts-min>
+    <rated-draw type="float">1</rated-draw>
+  </component>
+  
+  <connector>
+    <input type="string">Main Bus 2</input>
+    <output type="string">Pitot Ht2</output>
+    <switch type="string">controls/anti-ice/pitot-heat2</switch>
+  </connector>
+
+  <!-- test short drawing 500 amps, to produce battery overheat warning on W/U -->
+
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Short Test</name>
+    <prop type="string">/systems/electrical/outputs/shorttest</prop>
+    <volts-min type="float">1</volts-min>
+    <rated-draw type="float">500</rated-draw>
+  </component>
+  
+  <connector>
+    <input type="string">Main Bus 2</input>
+    <output type="string">Short Test</output>
+    <switch type="string">controls/switches/cablecut-switch</switch>
+  </connector>
+
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Avionics 1</output>
+    <switch type="string">controls/electric/avionics-switch1</switch>
+  </connector>
+
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">ADF1</output>
+    <switch type="string">instrumentation/adf/func-knob</switch>
+  </connector>
+
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">ADF1</name>
+    <prop>/systems/electrical/outputs/adf</prop>
+  </component>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Avionics Misc</name>
+    <prop>/systems/electrical/outputs/avionics-fan</prop>
+    <prop>/systems/electrical/outputs/nav[0]</prop>
+    <prop>/systems/electrical/outputs/nav[1]</prop>
+    <prop>/systems/electrical/outputs/cdu</prop>
+    <prop>/systems/electrical/outputs/comm[0]</prop>
+    <prop>/systems/electrical/outputs/comm[1]</prop>
+    <prop>/systems/electrical/outputs/gps-mfd</prop>
+    <prop>/systems/electrical/outputs/gps</prop>
+    <prop>/systems/electrical/outputs/hsi</prop>
+    <prop>/systems/electrical/outputs/dme</prop>
+    <prop>/systems/electrical/outputs/audio-panel[0]</prop>
+    <prop>/systems/electrical/outputs/audio-panel[1]</prop>
+    <prop>/systems/electrical/outputs/transponder</prop>
+    <prop>/systems/electrical/outputs/autopilot</prop>
+    <prop>/systems/electrical/outputs/mk-viii</prop>
+    <prop>/systems/electrical/outputs/tacan</prop>
+    <prop>/systems/electrical/outputs/KNS80</prop>
+    <prop>/systems/electrical/outputs/GNS430</prop>    
+    <prop>/systems/electrical/outputs/GTN750</prop>    
+  </component>
+  
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Avionics Misc</output>
+    <switch type="string">controls/electric/avionics-switch1</switch>
+  </connector>
+
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Avionics 2</name>
+    <prop type="string">/systems/electrical/outputs/avio[1]</prop>
+    <volts-min type="float">20</volts-min>
+    <rated-draw type="float">10</rated-draw>
+  </component>
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Avionics 2</output>
+    <switch type="string">controls/electric/avionics-switch2</switch>
+  </connector>
+  
+  <connector>
+    <input type="string">Stby Battery</input>
+    <output type="string">Emerg Bus</output>
+    <switch type="string">controls/electric/stbyhor-switch</switch>
+  </connector>
+
+  <!-- connections and components on Emerg Bus -->
+  
+  <connector>
+    <input type="string">Ess Bus 1</input>
+    <output type="string">Emerg Bus</output>
+  </connector>
+  
+  <connector>
+    <input type="string">Emerg Bus</input>
+    <output type="string">Stby Hor</output>
+  </connector>
+  
+  <connector>
+    <input type="string">Emerg Bus</input>
+    <output type="string">Exit Sign</output>
+    <switch type="string">controls/lighting/pax-lights</switch>
+  </connector>
+  
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Stby Hor</name>
+    <prop type="string">/systems/electrical/outputs/stbyhor</prop>
+    <volts-min type="float">20</volts-min>
+    <rated-draw type="float">2</rated-draw>
+  </component>
+
+  <component>
+    <kind type="string">output</kind>
+    <name type="string">Exit Sign</name>
+    <prop type="string">/systems/electrical/outputs/exit-signs</prop>
+  </component>
+  
+</PropertyList>
