@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+  <name>tail-m-LM</name>
+  <inherits-from>Aircraft/ec145/Models/Effects/reflect-uber</inherits-from>
+  <!-- LM for the tail elements -->
+  <parameters>
+    <!-- Light Map -->
+    <lightmap-enabled type="int">1</lightmap-enabled>
+    <lightmap-multi type="int">1</lightmap-multi>
+    <lightmap-factor type="float" n="0"><use>/lightpack/beacon-light-active</use></lightmap-factor>
+    <lightmap-color type="vec3d" n="0"> 0.8 0.1 0.1 </lightmap-color>
+    <lightmap-factor type="float" n="1"><use>/lightpack/strobe-light-active</use></lightmap-factor>
+    <lightmap-color type="vec3d" n="1"> 1.0 1.0 1.0 </lightmap-color>
+    <lightmap-factor type="float" n="2"><use>lightpack/nav-light-active</use></lightmap-factor>
+    <lightmap-color type="vec3d" n="2"> 1.0 1.0 1.0 </lightmap-color>
+    <lightmap-factor type="float" n="3">0.0</lightmap-factor>
+    <lightmap-color type="vec3d" n="3">1.0 0.0 0.0 </lightmap-color>
+    <texture n="3">
+      <image>Aircraft/ec145/Models/TailM_LM.png</image>
+      <filter>linear-mipmap-linear</filter>
+      <wrap-s>clamp</wrap-s>
+      <wrap-t>clamp</wrap-t>
+      <internal-format>normalized</internal-format>
+    </texture>
+      
+  </parameters>
+</PropertyList>

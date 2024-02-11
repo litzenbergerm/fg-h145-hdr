@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+  <name>implicit-lightmap</name>
+  <inherits-from>Effects/model-interior</inherits-from>
+  <parameters>
+    <!-- the implicit lighmap needs a white cubemap defined-->
+    <opacity-cube-center type="vec3d" n="0"> 0.0 0.0 0.0</opacity-cube-center>
+    <opacity-cube-scale type="vec3d" n="0"> 1.0 1.0 1.0</opacity-cube-scale>
+    <opacity-cube-angle type="float">0.0</opacity-cube-angle>  
+        
+    <texture n="4">
+        <type>cubemap</type>
+        <images>
+            <positive-x>Aircraft/ec145/Models/Effects/whitemap.png</positive-x>
+            <negative-x>Aircraft/ec145/Models/Effects/whitemap.png</negative-x>
+            <positive-y>Aircraft/ec145/Models/Effects/whitemap.png</positive-y>
+            <negative-y>Aircraft/ec145/Models/Effects/whitemap.png</negative-y>
+            <positive-z>Aircraft/ec145/Models/Effects/whitemap.png</positive-z>
+            <negative-z>Aircraft/ec145/Models/Effects/whitemap.png</negative-z>
+        </images>
+    </texture>
+        
+    <implicit-lightmap-enabled type="int">1</implicit-lightmap-enabled>
+    <implicit-lightmap-tag-color type="vec3d">1.0 1.0 1.0</implicit-lightmap-tag-color>
+    <implicit-lightmap-emit-color type="vec3d">0.2 0.8 0.4</implicit-lightmap-emit-color>
+    <implicit-lightmap-threshold-low type="float">0.6</implicit-lightmap-threshold-low>
+    <implicit-lightmap-threshold-high type="float">1.3</implicit-lightmap-threshold-high>
+    <implicit-lightmap-intensity type="float"><use>systems/electrical/outputs/instrument-lights-dimmed</use></implicit-lightmap-intensity>
+  </parameters>
+</PropertyList>

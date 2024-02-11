@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- property rules for the engine fire and smoke simulation -->
+  
+<PropertyList>
+    
+    <!-- Engine 1 -->    
+
+<!-- show smoke if fire -->    
+<logic>
+  <input>
+       <property>/engines/engine[0]/fire</property>
+  </input>
+  <output>/engines/engine[0]/smoke</output>
+</logic>
+
+<!-- extinguisher plume with exigusher active -->
+
+<flipflop>
+  <type>monostable</type>
+  <J>
+       <property>/engines/engine[0]/fire</property>
+  </J>
+  <clock>
+       <property>/engines/engine[0]/extinguisher</property>
+  </clock>
+  <time>
+      <value>1.5</value>
+  </time>  
+  <output>/engines/engine[0]/ext-plume</output>
+</flipflop>
+
+<!-- toggle reset-fire with end of ext plume -->
+
+<flipflop>
+  <type>monostable</type>
+  <J>
+       <property>/engines/engine[0]/fire</property>
+  </J>
+  <clock>
+      <not>
+       <property>/engines/engine[0]/ext-plume</property>
+      </not> 
+  </clock>
+  <time>
+      <value>7</value>
+  </time>  
+  <output>/engines/engine[0]/fire-reset</output>
+</flipflop>
+
+<flipflop>  
+  <type>T</type>
+  <clock>
+       <property>/engines/engine[0]/fire-reset</property>
+  </clock>
+  <output>/engines/engine[0]/fire</output>
+</flipflop>
+
+
+    <!-- Engine 2 -->    
+
+
+<!-- show smoke if fire -->    
+<logic>
+  <input>
+       <property>/engines/engine[1]/fire</property>
+  </input>
+  <output>/engines/engine[1]/smoke</output>
+</logic>
+
+<!-- extinguisher plume with exigusher active -->
+
+<flipflop>
+  <type>monostable</type>
+  <J>
+       <property>/engines/engine[1]/fire</property>
+  </J>
+  <clock>
+       <property>/engines/engine[1]/extinguisher</property>
+  </clock>
+  <time>
+      <value>1.5</value>
+  </time>  
+  <output>/engines/engine[1]/ext-plume</output>
+</flipflop>
+
+<!-- toggle reset-fire with end of ext plume -->
+
+<flipflop>
+  <type>monostable</type>
+  <J>
+       <property>/engines/engine[1]/fire</property>
+  </J>
+  <clock>
+      <not>
+       <property>/engines/engine[1]/ext-plume</property>
+      </not> 
+  </clock>
+  <time>
+      <value>7</value>
+  </time>  
+  <output>/engines/engine[1]/fire-reset</output>
+</flipflop>
+
+<flipflop>  
+  <type>T</type>
+  <clock>
+       <property>/engines/engine[1]/fire-reset</property>
+  </clock>
+  <output>/engines/engine[1]/fire</output>
+</flipflop>
+
+
+
+</PropertyList> 

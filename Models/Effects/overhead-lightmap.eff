@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+  <name>overhead-lightmap</name>
+  <inherits-from>Effects/model-interior</inherits-from>
+  <parameters>
+    <texture n="3">
+       <image>Aircraft/ec145/Models/instruments/overhead/OverheadPanel_LM.png</image>
+       <type>2d</type>
+       <filter>linear-mipmap-linear</filter>
+       <wrap-s>clamp</wrap-s>
+       <wrap-t>clamp</wrap-t>
+       <internal-format>normalized</internal-format>
+    </texture>
+    <lightmap-enabled type="int">1</lightmap-enabled>
+    <lightmap-multi type="int">1</lightmap-multi>
+    
+    <!-- Red: instrument lights-->
+    <lightmap-factor type="float" n="0">
+        <use>systems/electrical/outputs/instrument-lights-dimmed</use>
+    </lightmap-factor>
+    <lightmap-color type="vec3d" n="0"> 0.9 1.0 0.7 </lightmap-color>
+    
+    <!-- Green: cockpit floodlight effect-->
+    <lightmap-factor type="float" n="1">
+        <use>/systems/electrical/outputs/floodlight</use>
+    </lightmap-factor>
+    <!-- note: compensate for 24V electrical output 0.042-->
+    <lightmap-color type="vec3d" n="1"> 0.05 0.05 0.05 </lightmap-color>
+    <!-- unused channels -->
+    <lightmap-color type="vec3d" n="2"> 0.0 0.0 0.0 </lightmap-color>
+    <lightmap-color type="vec3d" n="3"> 0.0 0.0 0.0 </lightmap-color>
+  </parameters>
+</PropertyList>

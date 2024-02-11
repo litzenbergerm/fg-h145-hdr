@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+  <name>mfd-lightmap</name> 
+  <inherits-from>Aircraft/ec145/Models/Effects/bk117panel-shadows</inherits-from>
+  
+  <parameters>
+    
+    <!-- cockpit floodlight effect-->
+    <texture n="3">
+       <image>Aircraft/ec145/Models/mainpanel/mfd_LM.png</image>
+       <type>2d</type>
+       <filter>linear-mipmap-linear</filter>
+       <wrap-s>clamp</wrap-s>
+       <wrap-t>clamp</wrap-t>
+       <internal-format>normalized</internal-format>
+    </texture>
+    <lightmap-enabled type="int">1</lightmap-enabled>
+    <lightmap-multi type="int">1</lightmap-multi>
+    
+    <!-- Red Channel: instrument backlight-->
+    <lightmap-factor type="float" n="0">
+        <use>systems/electrical/outputs/instrument-lights-dimmed</use>
+    </lightmap-factor>
+    <lightmap-color type="vec3d" n="0"> 0.8 0.9 0.6 </lightmap-color>
+    
+    <!-- Green Channel: cockpit floodlight effect-->
+    <lightmap-factor type="float" n="1">
+        <use>/systems/electrical/outputs/floodlight</use>
+    </lightmap-factor>
+    <!-- note: compensate for 24V electrical output 0.042-->
+    <lightmap-color type="vec3d" n="1"> 0.02 0.02 0.02 </lightmap-color>
+    <!-- unused channels -->
+    <lightmap-color type="vec3d" n="2"> 0.0 0.0 0.0 </lightmap-color>
+    <lightmap-color type="vec3d" n="3"> 0.0 0.0 0.0 </lightmap-color>
+
+  </parameters>  
+</PropertyList>

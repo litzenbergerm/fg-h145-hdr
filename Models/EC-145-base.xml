@@ -1,0 +1,1054 @@
+<?xml version="1.0"?>
+
+<!--EC 145 Helicopter animation set -->
+
+<PropertyList>
+
+  <path>ec145.gltf</path>
+  
+  <params>
+    <flapA>
+            <factor>0.3</factor>
+    </flapA>
+    <flapB>
+            <factor>0.25</factor>
+    </flapB>
+    <flapC>
+            <factor>0.2</factor>
+    </flapC>
+    <flapD>
+            <factor>0.2</factor>
+    </flapD>
+    <flapE>
+            <factor>0.15</factor>
+    </flapE>
+  </params>
+  
+  <!-- include models , sticks -->
+
+   <model>
+      <path>Aircraft/ec145/Models/cyclic.xml</path>
+      <offsets>
+	  <x-m>-2.462</x-m>
+	  <y-m> 0.407</y-m>
+	  <z-m> -0.26</z-m>
+          <pitch-deg>0</pitch-deg>
+      </offsets>
+  </model>
+  
+    <model>
+      <path>Aircraft/ec145/Models/cyclic.xml</path>
+      <offsets>
+	  <x-m>-2.465</x-m>
+	  <y-m> -0.394</y-m>
+	  <z-m> -0.26</z-m>
+          <pitch-deg>0</pitch-deg>
+      </offsets>
+  </model>
+  
+   <model>
+      <name>wiper</name>
+      <path>Aircraft/ec145/Models/Divers/wiper/wiper.xml</path>
+      <offsets>
+	  <x-m>-3.3</x-m>
+	  <y-m>-0.01</y-m>
+	  <z-m>0.18</z-m>
+          <pitch-deg>3</pitch-deg>
+      </offsets>
+  </model>
+
+  <!-- headset hanging on setset holder-->
+ 
+  <model>
+    <name>headset</name>
+    <path>Aircraft/ec145/Models/headset/headset.xml</path>
+    <offsets>
+      <x-m>-2.33</x-m>
+      <y-m>0.06</y-m>
+      <z-m>0.855</z-m>
+    </offsets>
+  </model> 
+  
+  <!-- model animations -->
+    
+  <animation>
+    <type>select</type>
+    <object-name>FixedGlass</object-name>
+    <object-name>WindowDBL</object-name>
+    <object-name>WindowDFL</object-name>
+    <object-name>WindowDRL</object-name>
+    <object-name>WindowDRR</object-name>
+    <object-name>WindowDBR</object-name>
+    <object-name>WindowDFR</object-name>    
+    <condition>
+      <not>
+        <equals>
+          <property>sim/current-view/internal</property>
+          <value>true</value>
+        </equals>
+      </not>
+    </condition>
+ </animation>
+ 
+ <animation>
+  <type>select</type>
+  <object-name>FixedGlassin</object-name>
+  <object-name>WindowDBLin</object-name>
+  <object-name>WindowDFLin</object-name>
+  <object-name>WindowDRLin</object-name>
+  <object-name>WindowDRRin</object-name>
+  <object-name>WindowDBRin</object-name>
+  <object-name>WindowDFRin</object-name>
+  <condition>
+    <equals>
+      <property>sim/current-view/internal</property>
+      <value>true</value>
+    </equals>
+  </condition>
+ </animation>
+
+ <!-- Exclude pilot from view 0 -->
+ 
+  <animation>
+     <type>select</type>
+     <object-name>pilot1</object-name>
+     <condition>
+        <not>
+           <equals>
+              <property>sim/current-view/view-number</property>
+              <value>0</value>
+           </equals>
+        </not>
+     </condition>
+  </animation>
+
+ <!--Doors-->
+  
+ <animation>
+  <type>pick</type>
+  <object-name>FrontdoorHandleOutR</object-name>
+  <object-name>FrontdoorHandleR</object-name>
+  <visible>true</visible>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+    <script>bk117.rightFrontDoor.toggle();</script>
+   </binding>
+  </action>
+ </animation>
+
+ <!-- RH door strut lock-track animation parts 1..3-->
+ 
+ <animation>
+    <type>locked-track</type>
+    <object-name>DoorStrutR1</object-name>
+    <object-name>DoorStrutR2</object-name>
+    <object-name>DoorStrutR3</object-name>
+    <center>
+        <x-m>-2.71022</x-m>
+        <y-m>0.710568</y-m>
+        <z-m>-0.299404</z-m>
+    </center>
+    <lock-axis>
+       <x>0</x>
+       <y>0</y>
+       <z>1</z>
+    </lock-axis>    
+    <track-axis>
+       <x>1</x>
+       <y>0</y>
+       <z>0</z>
+    </track-axis>
+    <target-name>FrontdoorR</target-name>
+    <target-center>
+        <x-m>-2.184</x-m>
+        <y-m>0.75</y-m>
+        <z-m>-0.33</z-m>
+    </target-center>
+ </animation>
+ 
+ <animation>
+    <type>locked-track</type>
+    <object-name>DoorStrutR1</object-name>
+    <object-name>DoorStrutR2</object-name>
+    <object-name>DoorStrutR3</object-name>
+    <center>
+        <x-m>-2.71022</x-m>
+        <y-m>0.710568</y-m>
+        <z-m>-0.299404</z-m>
+    </center>
+    <lock-axis>
+       <x>0</x>
+       <y>1</y>
+       <z>0</z>
+    </lock-axis>    
+    <track-axis>
+       <x>1</x>
+       <y>0</y>
+       <z>0</z>
+    </track-axis>
+    <target-name>FrontdoorR</target-name>
+    <target-center>
+        <x-m>-2.184</x-m>
+        <y-m>0.75</y-m>
+        <z-m>-0.33</z-m>
+    </target-center>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>FrontdoorR</object-name>
+  <object-name>intFrontdoorR</object-name>
+  <object-name>SlideWindowDFR</object-name>
+  <object-name>WindowDFR</object-name>
+  <object-name>WindowDFRin</object-name>
+  <object-name>FrontdoorHandleR</object-name>
+  <object-name>FrontdoorHandleOutR</object-name>
+  <object-name>ManualInDoorR</object-name>
+  <object-name>FrontdoorPlacardR</object-name>
+  
+  <property>sim/multiplay/generic/float[0]</property>
+  <min-deg>-70</min-deg>
+  <factor>-70</factor>
+  <axis>
+      <object-name>axisL.004</object-name>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>FrontdoorHandleR</object-name>
+  <property>sim/multiplay/generic/float[0]</property>
+  <factor>-800</factor>
+  <min-deg>-45</min-deg>
+  <axis>
+      <object-name>axisL</object-name>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>FrontdoorHandleOutR</object-name>
+  <property>sim/multiplay/generic/float[0]</property>
+  <factor>-800</factor>
+  <min-deg>-45</min-deg>
+  <axis>
+      <object-name>axisL.001</object-name>
+  </axis>
+ </animation>
+ 
+ <!-- RH door strut animation part 2..3, attached to door, is sim. by translation-->
+
+ <animation>
+      <type>translate</type>
+      <object-name>DoorStrutR2</object-name>
+      <object-name>DoorStrutR3</object-name>
+      <property>sim/multiplay/generic/float[0]</property>
+      <factor>0.3</factor>
+      <axis>
+           <x>1</x>
+           <y>0</y>
+           <z>0</z>
+      </axis>    
+ </animation>
+
+ <animation>
+      <type>rotate</type>
+      <object-name>DoorStrutR3</object-name>
+      <property>sim/multiplay/generic/float[0]</property>
+      <factor>25</factor>
+      <axis>
+           <x>1</x>
+           <y>0</y>
+           <z>0</z>
+      </axis>
+      <center>
+        <x-m>-2.327</x-m>
+        <y-m>0.706</y-m>
+        <z-m>-0.3</z-m>
+      </center>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+  <object-name>FrontdoorHandleL</object-name>
+  <object-name>FrontdoorHandleOutL</object-name>
+  <visible>true</visible>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+    <script>bk117.leftFrontDoor.toggle();</script>
+   </binding>
+  </action>
+ </animation>
+ 
+ <!-- LH door strut lock-track animation parts 1..3-->
+ 
+ <animation>
+    <type>locked-track</type>
+    <object-name>DoorStrutL1</object-name>
+    <object-name>DoorStrutL2</object-name>
+    <object-name>DoorStrutL3</object-name>
+    <center>
+        <x-m>-2.71022</x-m>
+        <y-m>-0.710568</y-m>
+        <z-m>-0.299404</z-m>
+    </center>
+    <lock-axis>
+       <x>0</x>
+       <y>0</y>
+       <z>1</z>
+    </lock-axis>    
+    <track-axis>
+       <x>1</x>
+       <y>0</y>
+       <z>0</z>
+    </track-axis>
+    <target-name>FrontdoorL</target-name>
+    <target-center>
+        <x-m>-2.184</x-m>
+        <y-m>-0.75</y-m>
+        <z-m>-0.33</z-m>
+    </target-center>
+ </animation>
+ 
+ <animation>
+    <type>locked-track</type>
+    <object-name>DoorStrutL1</object-name>
+    <object-name>DoorStrutL2</object-name>
+    <object-name>DoorStrutL3</object-name>
+    <center>
+        <x-m>-2.71022</x-m>
+        <y-m>-0.710568</y-m>
+        <z-m>-0.299404</z-m>
+    </center>
+    <lock-axis>
+       <x>0</x>
+       <y>1</y>
+       <z>0</z>
+    </lock-axis>    
+    <track-axis>
+       <x>1</x>
+       <y>0</y>
+       <z>0</z>
+    </track-axis>
+    <target-name>FrontdoorL</target-name>
+    <target-center>
+        <x-m>-2.184</x-m>
+        <y-m>-0.75</y-m>
+        <z-m>-0.33</z-m>
+    </target-center>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>FrontdoorL</object-name>
+  <object-name>FrontdoorHandleL</object-name>
+  <object-name>FrontdoorHandleOutL</object-name>
+  <object-name>intFrontdoorL</object-name>
+  <object-name>SlideWindowDFL</object-name>
+  <object-name>WindowDFL</object-name>
+  <object-name>WindowDFLin</object-name>
+  <object-name>ManualInDoorL</object-name>
+  <object-name>FrontdoorPlacardL</object-name>
+  
+  <property>sim/multiplay/generic/float[1]</property>
+  <min-deg>-70</min-deg>
+  <factor>70</factor>
+  <axis>
+      <object-name>axisL.003</object-name>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>FrontdoorHandleL</object-name>
+  
+  <property>sim/multiplay/generic/float[1]</property>
+  <factor>-800</factor>
+  <min-deg>-45</min-deg>
+  <axis>
+      <object-name>axisL</object-name>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>FrontdoorHandleOutL</object-name>
+  
+  <property>sim/multiplay/generic/float[1]</property>
+  <factor>-800</factor>
+  <min-deg>-45</min-deg>
+  <axis>
+      <object-name>axisL.001</object-name>
+  </axis>
+ </animation>
+ 
+ <!-- LH door strut animation part 2..3, attached to door, is sim. by translation-->
+ <animation>
+      <type>translate</type>
+      <object-name>DoorStrutL2</object-name>
+      <object-name>DoorStrutL3</object-name>
+      <property>sim/multiplay/generic/float[1]</property>
+      <factor>0.3</factor>
+      <axis>
+           <x>1</x>
+           <y>0</y>
+           <z>0</z>
+      </axis>    
+ </animation>
+
+ <animation>
+      <type>rotate</type>
+      <object-name>DoorStrutL3</object-name>
+      <property>sim/multiplay/generic/float[1]</property>
+      <factor>25</factor>
+      <axis>
+           <x>-1</x>
+           <y>0</y>
+           <z>0</z>
+      </axis>
+      <center>
+        <x-m>-2.327</x-m>
+        <y-m>-0.706</y-m>
+        <z-m>-0.3</z-m>
+      </center>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <object-name>BackdoorHandleOutR</object-name>
+  <object-name>BackdoorHandleR1</object-name>
+  <object-name>BackdoorHandleR2</object-name>
+  <object-name>intBackdoorR</object-name>
+  <visible>true</visible>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+    <script>bk117.rightBackDoor.toggle();</script>
+   </binding>
+  </action>
+ </animation>
+ 
+ <animation>
+  <type>translate</type>
+  <object-name>BackdoorR</object-name>
+  <object-name>BackdoorPlacardR</object-name>
+  <object-name>intBackdoorR</object-name>
+  <object-name>WindowDBR</object-name>
+  <object-name>WindowDBRin</object-name>
+  <object-name>BackdoorHandleOutR</object-name>
+  <object-name>BackdoorHandleR1</object-name>
+  <object-name>BackdoorHandleR2</object-name>
+ <property>sim/multiplay/generic/float[2]</property>
+  <interpolation>
+  <entry>
+   <ind>0.0</ind>
+   <dep>0.0</dep>
+  </entry>
+  <entry>
+   <ind>0.25</ind>
+   <dep>0</dep>
+  </entry>
+  <entry>
+   <ind>0.5</ind>
+   <dep>0.07</dep>
+  </entry>
+  <entry>
+   <ind>1</ind>
+   <dep>0.07</dep>
+  </entry>
+  </interpolation>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>translate</type>
+  <object-name>BackdoorR</object-name>
+  <object-name>BackdoorPlacardR</object-name>
+  <object-name>intBackdoorR</object-name>
+  <object-name>WindowDBR</object-name>
+  <object-name>WindowDBRin</object-name>
+  <object-name>BackdoorHandleOutR</object-name>
+  <object-name>BackdoorHandleR1</object-name>
+  <object-name>BackdoorHandleR2</object-name>
+  <property>sim/multiplay/generic/float[2]</property>
+  <interpolation>
+  <entry>
+   <ind>0</ind>
+   <dep>0</dep>
+  </entry>
+  <entry>
+   <ind>0.5</ind>
+   <dep>0</dep>
+  </entry>
+  <entry>
+   <ind>1</ind>
+   <dep>1.10</dep>
+  </entry>
+  </interpolation>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>-0.05</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <object-name>BackdoorHandleOutL</object-name>
+  <object-name>BackdoorHandleL1</object-name>
+  <object-name>BackdoorHandleL2</object-name>
+  <object-name>intBackdoorL</object-name>
+  <visible>true</visible>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+    <script>bk117.leftBackDoor.toggle();</script>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>BackdoorL</object-name>
+  <object-name>BackdoorPlacardL</object-name>
+  <object-name>intBackdoorL</object-name>
+  <object-name>WindowDBL</object-name>
+  <object-name>WindowDBLin</object-name>
+  <object-name>BackdoorHandleOutL</object-name>
+  <object-name>BackdoorHandleL1</object-name>
+  <object-name>BackdoorHandleL2</object-name>
+  <property>sim/multiplay/generic/float[3]</property>
+  <interpolation>
+  <entry>
+   <ind>0.0</ind>
+   <dep>0.0</dep>
+  </entry>
+  <entry>
+   <ind>0.25</ind>
+   <dep>0</dep>
+  </entry>
+  <entry>
+   <ind>0.5</ind>
+   <dep>0.07</dep>
+  </entry>
+  <entry>
+   <ind>1.0</ind>
+   <dep>0.07</dep>
+  </entry>
+  </interpolation>
+  <axis>
+   <x>0</x>
+   <y>-1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ <animation>
+  <type>translate</type>
+  <object-name>BackdoorL</object-name>
+  <object-name>BackdoorPlacardL</object-name>
+  <object-name>intBackdoorL</object-name>
+  <object-name>BackdoorHandleL1</object-name>
+  <object-name>BackdoorHandleL2</object-name>
+  <object-name>WindowDBL</object-name>
+  <object-name>WindowDBLin</object-name>
+  <object-name>BackdoorHandleOutL</object-name>
+  <property>sim/multiplay/generic/float[3]</property>
+  <interpolation>
+   <entry>
+    <ind>0</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>0.5</ind>
+    <dep>0</dep>
+   </entry>
+   <entry>
+    <ind>1</ind>
+    <dep>1.10</dep>
+   </entry>
+  </interpolation>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>-0.05</z>
+  </axis>
+ </animation> 
+ 
+
+ <animation>
+  <type>rotate</type>
+  <object-name>BackdoorHandleOutR</object-name>
+  <property>sim/multiplay/generic/float[2]</property>
+  <factor>-600</factor>
+  <min-deg>-40</min-deg>
+  <axis>
+      <object-name>axisL.002</object-name>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>BackdoorHandleOutL</object-name>
+  <property>sim/multiplay/generic/float[3]</property>
+  <factor>-600</factor>
+  <min-deg>-40</min-deg>
+  <axis>
+      <object-name>axisL.002</object-name>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>BackdoorHandleL1</object-name>
+  <property>sim/multiplay/generic/float[3]</property>
+  <factor>-600</factor>
+  <min-deg>-40</min-deg>
+  <axis>
+      <object-name>axisL.005</object-name>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>BackdoorHandleR1</object-name>
+  <property>sim/multiplay/generic/float[2]</property>
+  <factor>-600</factor>
+  <min-deg>-40</min-deg>
+  <axis>
+      <object-name>axisL.005</object-name>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>rotate</type>
+  <object-name>BackdoorHandleL2</object-name>
+  <property>sim/multiplay/generic/float[3]</property>
+  <factor>-600</factor>
+  <min-deg>-40</min-deg>
+  <axis>
+      <object-name>axisL.006</object-name>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>BackdoorHandleR2</object-name>
+  <property>sim/multiplay/generic/float[2]</property>
+  <factor>-600</factor>
+  <min-deg>-40</min-deg>
+  <axis>
+      <object-name>axisL.006</object-name>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+  <object-name>ReardoorR</object-name>
+  <object-name>WindowDRR</object-name>
+  <object-name>WindowDRRin</object-name>
+  <object-name>intReardoorR</object-name>
+  <visible>true</visible>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+    <script>bk117.rightRearDoor.toggle();</script>
+   </binding>
+  </action>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>ReardoorR</object-name>
+  <object-name>WindowDRR</object-name>
+   <object-name>WindowDRRin</object-name>
+  <object-name>intReardoorR</object-name>
+   <property>sim/multiplay/generic/float[4]</property>
+  <min-deg>-100</min-deg>
+  <factor>100</factor>
+  <axis>
+   <x1-m>0.97931</x1-m>
+   <y1-m>0.82740</y1-m>
+   <z1-m>-0.14812</z1-m>
+   <x2-m>1.25218</x2-m>
+   <y2-m>0.79455</y2-m>
+   <z2-m>0.22254</z2-m>
+  </axis>
+ </animation>
+
+ <!-- RH rear door strut lock-track animation parts 1..3-->
+ 
+ <animation>
+    <type>locked-track</type>
+    <object-name>ReardoorStrutR1</object-name>
+    <object-name>ReardoorStrutR2</object-name>
+    <object-name>ReardoorStrutR3</object-name>
+    <center>
+        <x-m>1.732</x-m>
+        <y-m>0.595</y-m>
+        <z-m>0.466</z-m>
+    </center>
+    <lock-axis>
+       <x>0</x>
+       <y>0</y>
+       <z>1</z>
+    </lock-axis>    
+    <track-axis>
+       <x>1</x>
+       <y>0</y>
+       <z>0</z>
+    </track-axis>
+    <target-name>ReardoorR</target-name>
+    <target-center>
+        <x-m>2.021</x-m>
+        <y-m>0.450</y-m>
+        <z-m>0.466</z-m>
+    </target-center>
+ </animation>
+ 
+ <animation>
+    <type>locked-track</type>
+    <object-name>ReardoorStrutR1</object-name>
+    <object-name>ReardoorStrutR2</object-name>
+    <object-name>ReardoorStrutR3</object-name>
+    <center>
+        <x-m>1.732</x-m>
+        <y-m>0.595</y-m>
+        <z-m>0.466</z-m>
+   </center>
+    <lock-axis>
+       <x>0</x>
+       <y>1</y>
+       <z>0</z>
+    </lock-axis>    
+    <track-axis>
+       <x>1</x>
+       <y>0</y>
+       <z>0</z>
+    </track-axis>
+    <target-name>ReardoorR</target-name>
+    <target-center>
+        <x-m>2.021</x-m>
+        <y-m>0.450</y-m>
+        <z-m>0.466</z-m>
+    </target-center>
+ </animation>
+ 
+ <!-- RH read door strut animation part 2..3, attached to door, is sim. by translation-->
+
+ <animation>
+      <type>translate</type>
+      <object-name>ReardoorStrutR2</object-name>
+      <object-name>ReardoorStrutR3</object-name>
+      <property>sim/multiplay/generic/float[4]</property>
+      <factor>0.30</factor>
+      <axis>
+           <x>1</x>
+           <y>0</y>
+           <z>0</z>
+      </axis>    
+ </animation> 
+ 
+ <animation>
+  <type>pick</type>
+  <object-name>ReardoorL</object-name>
+  <object-name>WindowDRL</object-name>
+   <object-name>WindowDRLin</object-name>
+  <object-name>intReardoorL</object-name>
+  <visible>true</visible>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+    <script>bk117.leftRearDoor.toggle();</script>
+   </binding>
+  </action>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>ReardoorL</object-name>
+  <object-name>WindowDRL</object-name>
+  <object-name>WindowDRLin</object-name>
+  <object-name>intReardoorL</object-name>
+  <property>sim/multiplay/generic/float[5]</property>
+  <min-deg>-100</min-deg>
+  <factor>-100</factor>
+  <axis>
+   <x1-m>0.97931</x1-m>
+   <y1-m>-0.82740</y1-m>
+   <z1-m>-0.14812</z1-m>
+   <x2-m>1.25218</x2-m>
+   <y2-m>-0.79455</y2-m>
+   <z2-m>0.22254</z2-m>
+  </axis>
+ </animation>
+ 
+ <!-- LH rear door strut lock-track animation parts 1..3-->
+ 
+ <animation>
+    <type>locked-track</type>
+    <object-name>ReardoorStrutL1</object-name>
+    <object-name>ReardoorStrutL2</object-name>
+    <object-name>ReardoorStrutL3</object-name>
+    <center>
+        <x-m>1.732</x-m>
+        <y-m>-0.595</y-m>
+        <z-m>0.466</z-m>
+    </center>
+    <lock-axis>
+       <x>0</x>
+       <y>0</y>
+       <z>1</z>
+    </lock-axis>    
+    <track-axis>
+       <x>1</x>
+       <y>0</y>
+       <z>0</z>
+    </track-axis>
+    <target-name>ReardoorL</target-name>
+    <target-center>
+        <x-m>2.021</x-m>
+        <y-m>-0.450</y-m>
+        <z-m>0.466</z-m>
+    </target-center>
+ </animation>
+ 
+ <animation>
+    <type>locked-track</type>
+    <object-name>ReardoorStrutL1</object-name>
+    <object-name>ReardoorStrutL2</object-name>
+    <object-name>ReardoorStrutL3</object-name>
+    <center>
+        <x-m>1.732</x-m>
+        <y-m>-0.595</y-m>
+        <z-m>0.466</z-m>
+   </center>
+    <lock-axis>
+       <x>0</x>
+       <y>1</y>
+       <z>0</z>
+    </lock-axis>    
+    <track-axis>
+       <x>1</x>
+       <y>0</y>
+       <z>0</z>
+    </track-axis>
+    <target-name>ReardoorL</target-name>
+    <target-center>
+        <x-m>2.021</x-m>
+        <y-m>-0.450</y-m>
+        <z-m>0.466</z-m>
+    </target-center>
+ </animation>
+ 
+ <!-- LH read door strut animation part 2..3, attached to door, is sim. by translation-->
+
+ <animation>
+      <type>translate</type>
+      <object-name>ReardoorStrutL2</object-name>
+      <object-name>ReardoorStrutL3</object-name>
+      <property>sim/multiplay/generic/float[5]</property>
+      <factor>0.30</factor>
+      <axis>
+           <x>1</x>
+           <y>0</y>
+           <z>0</z>
+      </axis>    
+ </animation> 
+ 
+ <!--Rotorbrake Lever-->
+
+ <animation>
+      <type>slider</type>
+      <object-name>RotorBrakeLever</object-name>
+      <visible>true</visible>
+      <drag-direction>horizontal</drag-direction>
+      
+      <action>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/rotor/brake</property>
+          <factor>-0.05</factor>
+          <min>0</min>
+          <max>1</max>
+          <wrap>0</wrap>
+        </binding>
+      </action>
+      
+     <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <label>RotorBrake: %3d%%</label>
+          <tooltip-id>rotorbrake</tooltip-id>
+          <mapping>percent</mapping>
+          <property>/controls/rotor/brake</property>
+        </binding>
+      </hovered>
+ </animation>
+
+ <animation>
+    <type>rotate</type>
+    <object-name>RotorBrakeLever</object-name>
+    <property>/controls/rotor/brake</property>
+    <factor>45</factor>
+    <center>
+      <x-m>-2.005</x-m>
+      <y-m>0.0</y-m>
+      <z-m>-0.355</z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+ </animation> 
+
+ <!--headset holder on center spar-->
+ 
+ <animation>
+    <type>rotate</type>
+    <object-name>headsetholder</object-name>
+    <property>sim/model/bk117/headsetholder/position-deg</property>
+    <factor>1</factor>
+    <center>
+            <x-m>-2.335</x-m>
+            <y-m>-0.005</y-m>
+            <z-m> 0.873</z-m>
+    </center>
+    <axis>
+            <x>-0.011391</x>
+            <y>0</y>
+            <z>0.021732</z>
+    </axis>
+ </animation>
+
+ <animation>
+    <type>pick</type>
+    <visible>true</visible>
+    <object-name>headsetholder</object-name>
+    <condition>
+      <equals>
+          <property>sim/model/bk117/headsetholder/position-deg</property>
+          <value>0</value>
+      </equals>
+    </condition>
+        
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+          <command>property-interpolate</command>
+          <property>sim/model/bk117/headsetholder/position-deg</property>
+          <value>90</value>
+          <rate>90</rate>
+      </binding>     
+    </action>
+ </animation>
+        
+ <animation>
+    <type>pick</type>
+    <visible>true</visible>
+    <object-name>headsetholder</object-name>
+    
+    <condition>
+      <equals>
+          <property>sim/model/bk117/headsetholder/position-deg</property>
+          <value>90</value>
+      </equals>
+    </condition>
+      
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+          <command>property-interpolate</command>
+          <property>sim/model/bk117/headsetholder/position-deg</property>
+          <value>0</value>
+          <rate>90</rate>
+      </binding>     
+    </action>
+ </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>headset</object-name>
+    <condition>
+        <equals>
+            <property>sim/model/bk117/headsetholder/position-deg</property>
+            <value>90</value>
+        </equals>
+    </condition> 
+  </animation>
+
+  <!-- rotor head cap rotation-->
+  
+  <animation>
+		<type>spin</type>
+    	<object-name>rotor</object-name>
+		<property>rotors/main/rpm</property>
+		<factor>-1.0</factor>
+		<axis>
+          <object-name>axis.MainRotor</object-name>
+		</axis>
+  </animation>
+    
+  <!-- pedals animation -->
+
+  <animation>
+    <type>rotate</type>
+    <object-name>pedalCoL</object-name>
+    <object-name>pedalPltL</object-name>
+    <property>controls/flight/rudder</property>
+    <min-deg>-20</min-deg>
+    <max-deg>20</max-deg>
+    <factor>20</factor>
+    <center>
+        <x-m>-3.0166</x-m>
+        <y-m>0</y-m>
+        <z-m>-0.2338</z-m>
+    </center>
+    <axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>pedalCoR</object-name>
+    <object-name>pedalPltR</object-name>
+    <property>controls/flight/rudder</property>
+    <min-deg>-20</min-deg>
+    <max-deg>20</max-deg>
+    <factor>-20</factor>
+    <center>
+        <x-m>-3.0166</x-m>
+        <y-m>0</y-m>
+        <z-m>-0.2338</z-m>
+    </center>
+    <axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+    </axis>
+  </animation> 
+  
+</PropertyList>
