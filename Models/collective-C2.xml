@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+    
+  <path>collective-C2.ac</path>
+
+  <effect>
+    <inherits-from>Aircraft/ec145/Models/Effects/bumpspec-collective</inherits-from>
+    <object-name>collective.grip1</object-name>
+    <object-name>collective.grip2</object-name>
+  </effect>	
+
+<!--  <effect>
+    <inherits-from>Aircraft/ec145/Models/Effects/bumpspec-glaresh</inherits-from>
+    <object-name>collective.leather</object-name>
+  </effect>   -->  
+  
+	<!-- Landing light + Searchlight switch -->	
+	<model>
+		<name>llswitch</name>
+		<path>Aircraft/ec145/Models/instruments/switches/landing-lights.xml</path>
+		<offsets>
+			<x-m>-0.465</x-m>
+			<y-m>0.037</y-m>
+			<z-m>0.308</z-m>
+			<pitch-deg>-58</pitch-deg>
+		</offsets>
+		<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1.5</x-offset>
+    <y-offset>1.5</y-offset>
+    <z-offset>1.5</z-offset>
+   </animation>
+  </overlay>
+	</model>
+	
+	
+	<model>
+		<name>slswitch</name>
+		<path>Aircraft/ec145/Models/instruments/switches/searchlight.xml</path>
+		<offsets>
+			<x-m>-0.465</x-m>
+			<y-m>0.01</y-m>
+			<z-m>0.308</z-m>
+			<pitch-deg>-58</pitch-deg>
+		</offsets>
+		<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1.5</x-offset>
+    <y-offset>1.5</y-offset>
+    <z-offset>1.5</z-offset>
+   </animation>
+  </overlay>
+	</model>
+	
+	
+	<model>
+		<name>floatwitch</name>
+		<path>Aircraft/ec145/Models/Divers/Floats/Float-switch/float.xml</path>
+		<offsets>
+			<x-m>-0.465</x-m>
+			<y-m>-0.022</y-m>
+			<z-m>0.311</z-m>
+			<pitch-deg>-60</pitch-deg>
+		</offsets>
+		<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1.5</x-offset>
+    <y-offset>1.5</y-offset>
+    <z-offset>1.5</z-offset>
+   </animation>
+  </overlay>
+	</model>
+	
+	  <animation>
+		<type>select</type>
+		<object-name>floatwitch</object-name>
+		
+			<condition>
+		<or>
+		<equals>
+    <property>sim/multiplay/generic/string[1]</property>
+    <value>SAR</value>
+	</equals>
+	
+	<equals>
+    <property>sim/multiplay/generic/string[1]</property>
+    <value>Passenger-offshore</value>
+	</equals>
+	</or>
+	</condition>
+	</animation>	
+ 
+
+    <!-- effect of overhead floodlight as material emission, 
+  'cheap trick' to simulate ambient cabin lighting 
+  -->
+  <animation> 
+    <type>material</type> 
+    <object-name>collective.head</object-name>
+    <object-name>collective.grip1</object-name>
+    <object-name>collective.grip2</object-name>
+    <object-name>slswitch</object-name>
+    <object-name>llswitch</object-name>
+    <object-name>floatwitch</object-name>
+    <emission>
+      <red>0.005</red>
+      <green>0.005</green>
+      <blue>0.005</blue>
+      <factor-prop>/systems/electrical/outputs/floodlight</factor-prop> 
+    </emission>    
+  </animation>
+    
+  <animation>
+    <type>rotate</type>
+    <object-name>collective.shaft</object-name>
+    <object-name>collective.head</object-name>
+    <object-name>collective.grip1</object-name>
+    <object-name>collective.grip2</object-name>
+    <object-name>collective.leather</object-name>
+    <object-name>slswitch</object-name>
+    <object-name>llswitch</object-name>
+    <object-name>floatwitch</object-name>
+    <property>controls/engines/engine[0]/throttle</property>
+    <factor>-20</factor>
+    <offsets>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+	
+    </offsets>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <!-- animate twist grips on collective-->
+  
+  <animation>
+   <type>textranslate</type>
+   <object-name>collective.grip1</object-name>
+   <axis>
+      <x>1</x>
+      <y>0</y>
+   </axis>
+   <factor>0.011</factor>
+   <bias>0.0001</bias>
+   <step>0.01</step>   
+   <property>controls/engines/engine[0]/twist-grip</property>
+  </animation>
+
+  <animation>
+   <type>knob</type>
+   <object-name>collective.grip1</object-name>
+   
+   <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>controls/engines/engine[0]/twist-grip</property>
+       <factor>0.6</factor>
+       <min>0</min>
+       <max>10</max>
+       <wrap>false</wrap>
+     </binding>
+    
+   </action>
+   
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>grip1</tooltip-id>      
+      <label>Eng 1 Power: %3d%%</label>
+      <mapping>percent</mapping>
+      <property>controls/engines/engine[0]/power</property>
+    </binding>
+   </hovered>
+  </animation>
+
+  
+  <animation>
+   <type>textranslate</type>
+   <object-name>collective.grip2</object-name>
+   <axis>
+      <x>1</x>
+      <y>0</y>
+   </axis>
+   <factor>0.011</factor>
+   <bias>0.0001</bias>
+   <step>0.01</step>   
+   <property>controls/engines/engine[1]/twist-grip</property>
+  </animation>
+
+  <animation>
+   <type>knob</type>
+   <object-name>collective.grip2</object-name>
+   
+   <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>controls/engines/engine[1]/twist-grip</property>
+       <factor>0.6</factor>
+       <min>0</min>
+       <max>10</max>
+       <wrap>false</wrap>
+     </binding>
+   </action>
+   
+   <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>grip2</tooltip-id>
+        <label>Eng 2 Power: %3d%%</label>
+        <mapping>percent</mapping>     
+        <property>controls/engines/engine[1]/power</property>
+      </binding>
+    </hovered>
+    
+  </animation>
+  
+</PropertyList>
+

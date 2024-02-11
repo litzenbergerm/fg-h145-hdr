@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+    
+  <path>collective.gltf</path>
+  
+	<!-- Landing light + Searchlight switch -->	
+  
+	<model>
+		<name>llswitch</name>
+		<path>Aircraft/ec145/Models/instruments/switches/landing-lights.xml</path>
+		<offsets>
+			<x-m>-0.452</x-m>
+			<y-m>0.007</y-m>
+			<z-m>0.329</z-m>
+			<pitch-deg>-48</pitch-deg>
+		</offsets>
+		<overlay>
+       <animation>
+        <type>scale</type>
+        <property>constants/zero</property>
+        <x-offset>1.5</x-offset>
+        <y-offset>1.5</y-offset>
+        <z-offset>1.5</z-offset>
+       </animation>
+      </overlay>
+	</model>
+	
+	
+	<model>
+		<name>slswitch</name>
+		<path>Aircraft/ec145/Models/instruments/switches/searchlight.xml</path>
+		<offsets>
+			<x-m>-0.452</x-m>
+			<y-m>0.028</y-m>
+			<z-m>0.329</z-m>
+			<pitch-deg>-48</pitch-deg>
+		</offsets>
+		<overlay>
+		 <animation>
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1.5</x-offset>
+    <y-offset>1.5</y-offset>
+    <z-offset>1.5</z-offset>
+   </animation>
+  </overlay>
+	</model>
+	
+	
+	<model>
+		<name>floatswitch</name>
+		<path>Aircraft/ec145/Models/Divers/Floats/Float-switch/float.xml</path>
+		<offsets>
+                        <x-m>-0.452</x-m>
+                        <y-m>-0.017</y-m>
+                        <z-m>0.329</z-m>
+                        <pitch-deg>-48</pitch-deg>
+		</offsets>
+		<overlay>
+		 <animation>
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1.5</x-offset>
+    <y-offset>1.5</y-offset>
+    <z-offset>1.5</z-offset>
+   </animation>
+  </overlay>
+	</model>
+	
+  <animation>
+     <type>select</type>
+     <object-name>floatswitch</object-name>
+     <condition>
+        <or>
+           <equals>
+              <property>sim/multiplay/generic/string[1]</property>
+              <value>SAR</value>
+           </equals>
+           <equals>
+              <property>sim/multiplay/generic/string[1]</property>
+              <value>Passenger-offshore</value>
+           </equals>
+        </or>
+     </condition>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>collective.shaft</object-name>
+    <object-name>collective.head</object-name>
+    <object-name>collective.leather</object-name>
+    <property>controls/engines/engine[0]/throttle</property>
+    <factor>-20</factor>
+    <offset-deg>10</offset-deg>
+    <axis>
+      <object-name>caxis</object-name>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>slswitch</object-name>
+    <object-name>llswitch</object-name>
+    <object-name>floatswitch</object-name>
+    <property>controls/engines/engine[0]/throttle</property>
+    <factor>-20</factor>
+    <offset-deg>10</offset-deg>
+      <axis>
+           <x>0</x>
+           <y>1</y>
+           <z>0</z>
+      </axis>
+      <center>
+        <x-m>0.118</x-m>
+        <y-m>0</y-m>
+        <z-m>-0.059</z-m>
+      </center>    
+  </animation>
+  
+</PropertyList>
+

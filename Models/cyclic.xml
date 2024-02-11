@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+    
+  <path>cyclic.ac</path>
+   
+  <animation>
+    <name>CyclicComplet</name>
+    <object-name>stick_R_glossy_gr_0</object-name>
+    <object-name>stick_head</object-name>	
+    <object-name>stick_front</object-name>    
+    <object-name>stick_guard</object-name>    
+  </animation>
+  
+  <!-- the guard clip is only present in the ec145 cyclic-->
+  
+  <animation>
+    <type>select</type>
+    <condition>
+      <equals>
+        <property>sim/aircraft</property>
+        <value>ec145</value>
+      </equals>
+    </condition>
+    <object-name>stick_guard</object-name>    
+  </animation>
+  
+   <animation>
+    <type>rotate</type>
+    <object-name>CyclicComplet</object-name>
+    <property>controls/flight/fcs/pitch</property>
+    <factor> -5 </factor>
+    <offsets>
+      <x-m>  0.0 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -0.0</z-m>
+    </offsets>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+ 
+  <animation>
+    <type>rotate</type>
+    <object-name>CyclicComplet</object-name>
+    <property>controls/flight/aileron</property>
+    <factor> -5 </factor>
+    <offsets>
+      <x-m>  0.0 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -0.0</z-m>
+    </offsets>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+</PropertyList>
