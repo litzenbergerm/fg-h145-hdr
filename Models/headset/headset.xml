@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <path>headset.ac</path>
+
+  <animation>
+      <type>rotate</type>
+      <object-name>headset</object-name>
+      <object-name>headsetcord.0</object-name>
+      <object-name>headsetcord.1</object-name>
+      <object-name>headsetcord.11</object-name>
+      <object-name>headsetcord.2</object-name>
+      <property>sim/model/bk117/headset/angle-damped-rad</property>
+      <factor>58</factor>
+      <axis>
+        <x1-m>-0.00798</x1-m>
+        <y1-m>0.02659</y1-m>
+        <z1-m>0.00954</z1-m>
+        <x2-m>0.6124</x2-m>
+        <y2-m>0.0566</y2-m>
+        <z2-m>0.1175</z2-m>
+<!--          <object-name>axis</object-name> -->
+      </axis>
+  </animation>
+
+  <animation>
+      <type>rotate</type>
+      <object-name>headset</object-name>
+      <object-name>headsetcord.0</object-name>
+      <object-name>headsetcord.1</object-name>
+      <object-name>headsetcord.11</object-name>
+      <object-name>headsetcord.2</object-name>
+      <property>sim/model/bk117/headset/oscillation-norm</property>
+      <factor>6</factor>
+      <axis>
+        <x1-m>-0.00798</x1-m>
+        <y1-m>0.02659</y1-m>
+        <z1-m>0.00954</z1-m>
+        <x2-m>0.6124</x2-m>
+        <y2-m>0.0566</y2-m>
+        <z2-m>0.1175</z2-m>
+<!--          <object-name>axis</object-name> -->
+      </axis>
+  </animation>
+  
+  <animation>
+      <type>rotate</type>
+      <object-name>headsetcord.0</object-name>
+      <object-name>headsetcord.1</object-name>
+      <object-name>headsetcord.11</object-name>
+      <property>sim/model/bk117/headset/oscillation-norm</property>
+      <factor>10</factor>
+      <axis>
+        <x1-m>0.0433</x1-m>
+        <y1-m>0.0316</y1-m>
+        <z1-m>-0.2091</z1-m>
+        <x2-m>0.5297</x2-m>
+        <y2-m>0.0539</y2-m>
+        <z2-m>-0.1716</z2-m>
+<!--          <object-name>axis</object-name> -->
+      </axis>
+  </animation>
+      
+  <animation>
+      <type>rotate</type>
+      <object-name>headsetcord.0</object-name>
+      <property>sim/model/bk117/headset/oscillation-norm</property>
+      <factor>20</factor>
+      <axis>
+        <x1-m>0.0377</x1-m>
+        <y1-m>0.0405</y1-m>
+        <z1-m>-0.3403</z1-m>
+        <x2-m>0.4011</x2-m>
+        <y2-m>0.0406</y2-m>
+        <z2-m>-0.3409</z2-m>
+<!--          <object-name>axis</object-name> -->
+      </axis>
+  </animation>
+  
+  
+      
+  
+</PropertyList>
