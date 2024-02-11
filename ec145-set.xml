@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+EC 145 simulation config. This is the BK117-C2 (EC 145) specific model file.
+
+Common parameters are loaded via the ec145-base.xml file
+
+************************************************************************
+-->
+
+<PropertyList include="ec145-base.xml">
+
+  <devel type="bool">false</devel>               <!--to display engine parameters on-screen-->
+  <quickstart type="bool">false</quickstart>     <!--to start engines immediately on sim start-->
+  
+  <sim>
+        <aero>ec145</aero>
+        <description>Eurocopter EC-145</description>
+        <author>Melchior Franz (Nasal  + config)Heiko Schulz, Maik Justus, StuartC (FDM), Melchior Franz (Nasal) Martien van der P. (3d), litzi  ( Eurocopter Screens )</author>
+        <status>1.2</status>
+        <license>GPL v2</license>
+        <aircraft-version>1.2</aircraft-version>
+        <aircraft-registration type="string">D-HECE</aircraft-registration>
+        <tags>
+          <tag>EC-145</tag>
+          <tag>BK-117 C2</tag>
+        </tags>
+        
+        <checklists include="ec145-checklists.xml"/>
+        
+        <model>
+          <path archive="y">Aircraft/ec145/Models/EC-145.xml</path>
+          <rescue-lift>0.01</rescue-lift>
+          <rescue type="bool">false</rescue>
+          <bk117>
+            <particles>
+              <enabled type="bool">true</enabled>
+            </particles>
+          </bk117>
+        </model>
+
+        <systems>
+                <propulsion include="Systems/ec145-propulsion.xml"/>
+        </systems>
+        
+        <startup>
+                <splash-texture>Aircraft/ec145/splash.jpg</splash-texture>
+        </startup>
+
+        <previews>
+          <preview>
+                <type>interior</type>
+                <splash type="bool">true</splash>
+                <path>Splash/splash7.png</path>
+          </preview>
+          <preview>
+                <type>exterior</type>
+                <splash type="bool">true</splash>
+                <path>Splash/splash2.png</path>
+          </preview>
+          <preview>
+                <type>interior</type>
+                <splash type="bool">true</splash>
+                <path>Splash/splash3.png</path>
+          </preview>
+          <preview>
+                <type>exterior</type>
+                <splash type="bool">true</splash>
+                <path>Splash/splash4.png</path>
+          </preview>
+          <preview>
+                <type>exterior</type>
+                <splash type="bool">true</splash>
+                <path>Splash/splash5.png</path>
+          </preview>
+
+        </previews>
+        
+        <help>
+            <key>
+              <name>]</name>
+              <desc>Start engines</desc>
+            </key>
+                
+            <key>
+              <name>[</name>
+              <desc>Shut down engines</desc>
+            </key>
+                
+            <key>
+              <name>Ctrl d</name>
+              <desc>Turn off SAS</desc>
+            </key>
+                      
+            <key>
+              <name>w</name>
+              <desc>Rotate Searchlight Up</desc>
+            </key>
+            <key>
+              <name>a</name>
+              <desc>Rotate Searchlight Left</desc>
+            </key>
+            <key>
+              <name>s</name>
+              <desc>Rotate Searchlight Down</desc>
+            </key>
+            <key>
+              <name>d</name>
+              <desc>Rotate Searchlight Right</desc>
+            </key>   
+            <key>
+              <name>r</name>
+              <desc>Activate Winch Man ( see notes below )</desc>
+            </key>  
+          <line>  Rotorbrake can only be activated by the lever on the cabin floor RHS of pilot seat.</line> 
+            <line>All external lights are default to OFF</line>
+            <line>  Landing light + Search light ( when fitted ) are switched on/off from the switches on the collective.</line>
+            <line>  Search light ( when fitted ) needs to be armed first, via HISL sw. on overhead panel.</line>
+            <line> All other exterior lights are controlled from the switches in the overhead panel.</line>
+            <line> The winch man is only available on winch equipped payloads. He can only be seen when he has been activated and the sliding door is open..</line>
+            <line></line>
+            <line>Emergency Floatation system</line>
+            <line> The system is currently available on SAY and Offshore payloads only.</line>
+            <line>When fitted the arming switch is available on the overhead panel.</line>      
+            <line>When armed the switch on the overhead will glow red. The red trigger switch will be available on the collective.</line>
+        </help>
+		
+		
+<!--  payload definitions -->
+<weight n="0">
+			<name>Pilot</name>
+			<weight-lb>180</weight-lb>
+			<max-lb>300</max-lb>
+		</weight>
+
+		<weight n="1">
+			<name>Co-Pilot</name>
+			<weight-lb>180</weight-lb>
+			<max-lb>300</max-lb>
+		</weight>
+
+                <weight n="2">
+                        <name>Passengers</name>
+                        <weight-lb>0</weight-lb>
+                        <max-lb>2000</max-lb>
+                </weight>
+
+                <weight n="3">
+                        <name>LongLine</name>
+                        <weight-lb>0</weight-lb>
+                        <max-lb>3307</max-lb>
+                </weight>
+
+                <weight n="4">
+                        <name>Not used</name>
+                        <weight-lb>0</weight-lb>
+                        <max-lb>0</max-lb>
+                </weight>
+
+
+		<weight n="5">
+                      <name>Load</name>
+                      <weight-lb>0</weight-lb>
+                      <selected>none</selected>
+                      <opt>
+                        <name>none</name>
+                        <lbs>0</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>Law Enforcement</name>
+                        <lbs>319.1</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>Passenger</name>
+                        <lbs>199.3</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>Passenger-offshore</name>
+                        <lbs>297.4</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>SAR</name>
+                        <lbs>670</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>Medivac</name>
+                        <lbs>576.1</lbs>
+                      </opt>
+                </weight>
+
+                <flir>
+                        <view type="int">105</view>
+                        <weight type="int">5</weight>
+                        <options>
+                                <name>SAR</name>
+                                <name>Law Enforcement</name>
+                        </options>
+                </flir>		
+        
+    </sim>
+    <instrumentation>
+            <!-- For the canvas panels add this to the instrumentation section of the aircraft set file. -->
+            
+<!--        Note: You need to provide these parameters for all 4 MEGHAS MFDs even if your
+            aircraft does not all use them .-->
+        
+            <mfd n="0">
+              <mode-list type="string">init2,pfd</mode-list>
+              <nav-source type="string">NAV1</nav-source>
+              <bearing-source type="string" n="0">NAV1</bearing-source>
+              <bearing-source type="string" n="1">ADF1</bearing-source>
+              <pwr-sw-pos type="bool">1</pwr-sw-pos> <!--initial position of the screens power switch-->
+              <supply>/systems/electrical/outputs/avio[1]</supply>
+            </mfd>  
+            <mfd n="1">
+              <mode-list type="string">init2,pfd</mode-list>
+              <nav-source type="string">NAV2</nav-source>
+              <bearing-source type="string" n="0">NAV2</bearing-source>
+              <bearing-source type="string" n="1">ADF1</bearing-source>
+              <pwr-sw-pos type="bool">1</pwr-sw-pos> <!--initial position of the screens power switch-->
+              <supply>/systems/electrical/outputs/avio[1]</supply>
+            </mfd>  
+            <mfd n="2">
+              <mode-list type="string">init2,vemd</mode-list>
+              <pwr-sw-pos type="bool">1</pwr-sw-pos> <!--initial position of the screens power switch-->
+              <supply>/systems/electrical/outputs/bus[3]</supply>
+            </mfd>  
+            <mfd n="3">
+              <mode-list type="string">init2,cad</mode-list>
+              <pwr-sw-pos type="bool">1</pwr-sw-pos> <!--initial position of the screens power switch-->
+              <supply>/systems/electrical/outputs/bus[3]</supply>
+            </mfd>  
+    </instrumentation>
+
+    <nasal>
+            <!-- there is an issue with the sequence the .nas files get loaded in the ec145-set and the ec145-base file..
+                  therefore I use n="1", however no idea what it exactly does to nasal load sequence?-->
+            <bk117 n="1">
+                <file>Aircraft/ec145/Nasal/bk117.nas</file>
+				 <file>Aircraft/ec145/Nasal/liveries.nas</file>
+                <file>Aircraft/ec145/Nasal/vemd.nas</file>
+                <file>Aircraft/ec145/Nasal/enginecontrol-ec145.nas</file>
+                <file>Aircraft/ec145/Models/instruments/tach/tach.nas</file>                
+            </bk117>          
+
+            <helionix>
+                <!-- for the BK117 C2 load the MEGHAS screens-->
+                <file>Aircraft/ec145/Models/instruments/EUcopter-mfd-c/Nasal/meghas.nas</file>
+                <file>Aircraft/ec145/Models/instruments/GNS430/gns430-radio/gns430-radio-1.nas</file>
+            </helionix>
+
+
+    </nasal>
+
+</PropertyList>

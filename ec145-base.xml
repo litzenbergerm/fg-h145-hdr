@@ -1,0 +1,1008 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+These are the parameters common to both variants BK117-C2 (EC145) and
+BK117-D2 (H145).
+
+************************************************************************
+-->
+
+<PropertyList>
+
+  <constants>
+      <true type="bool">true</true>
+      <false type="bool">false</false>
+      <zero type="double">0</zero>
+      <one type="double">1</one>
+  </constants>
+      
+  <sim>
+    <flight-model>yasim</flight-model>
+    <fuel-fraction>0.7</fuel-fraction>
+    <tags>
+      <tag>Eurocopter</tag>
+      <tag>helicopter</tag>
+      <tag>2-engine</tag>
+      <tag>Airbus Helicopters</tag>
+      <tag>FGUK</tag>
+      <tag>Rotary Wing</tag>
+      <tag>1990s</tag>
+      <tag>2000s</tag>
+    </tags>
+
+
+    <flight-recorder include="Systems/flight-recorder.xml"/>
+
+    <multiplay>
+      <generic>
+	<string n="2" type="string">EC-145</string>
+		   <!-- Nav lights on -->
+      <int n="0" alias="/controls/switches/nav-lights-switch" />
+      <!-- Beacon on -->
+      <int n="1" alias="/controls/switches/beacon-switch" />
+      <!-- Landing lights on -->
+      <int n="2" alias="/controls/switches/landing-lights-switch" />
+	    <!-- Taxi light on -->
+      <int n="3" alias="/controls/switches/strobe-switch" />
+	  
+	   <int n="6" alias="/gear/gear/ground-is-solid"/><!-- rotor particles -->
+	   <!-- Crashed -->
+      <int n="7" alias="/sim/crashed" />
+	     <!-- search light on -->
+      <int n="8" alias="/controls/switches/search-lights-switch" />
+	   <!-- Float Inflation -->
+      <int n="9" alias="/controls/gear/floats-inflat" />
+     
+                  
+      <float n="0" alias="/sim/model/bk117/door-positions/rightFrontDoor/position-norm"/>
+      <float n="1" alias="/sim/model/bk117/door-positions/leftFrontDoor/position-norm"/>
+      <float n="2" alias="/sim/model/bk117/door-positions/rightBackDoor/position-norm"/>
+      <float n="3" alias="/sim/model/bk117/door-positions/leftBackDoor/position-norm"/>
+      <float n="4" alias="/sim/model/bk117/door-positions/rightRearDoor/position-norm"/>
+      <float n="5" alias="/sim/model/bk117/door-positions/leftRearDoor/position-norm"/>
+      <float n="6" alias="/orientation/pitch-deg"/>	<!-- rotor particles -->
+      <float n="7" alias="/position/gear-agl-m"/>	<!-- rotor particles -->
+      <float n="8" alias="/orientation/roll-deg"/><!-- rotor particles -->
+      <float n="9" alias="/rotors/main/torque"/>	<!-- rotor particles -->
+          
+      <float n="10" alias="/sim/model/turret-positions/turretx"/><!--Searchlight over MP -->
+      <float n="11" alias="/sim/model/turret-positions/turretz"/><!--searchlight over MP -->
+      <float n="12" alias="/sim/model/rescue"/><!--winchman over MP -->
+      <float n="13" alias="/sim/model/rescue-lift"/><!--winchman over MP -->
+      <float n="14" alias="/controls/special/wiper-deg"/><!--wiper over MP , added in v1.3-->
+      <float n="15" alias="/accelerations/pilot-gdamped"/><!--Pilot G over MP -->
+      <string n="1" alias="/sim/weight[5]/selected" /><!-- Payload over multiplayer -->
+
+	
+      </generic>
+  </multiplay>
+
+      <sound>
+              <path>Aircraft/ec145/Sounds/sound.xml</path>
+      </sound>
+
+
+      <systems> 
+        <electrical include="Systems/electrical.xml"/> 
+        
+        <autopilot>
+          <path>Aircraft/ec145/Systems/autopilotH2.xml</path>
+        </autopilot>
+        
+        <autopilot n="103">
+            <path>Aircraft/ec145/Systems/sound-rules.xml</path>
+        </autopilot>
+
+        <autopilot n="102">
+            <path>Aircraft/ec145/Systems/glass-rain.xml</path>
+          </autopilot>
+          
+        <autopilot n="101">
+            <name>Helionix instrumentation drivers</name>
+            <path>Aircraft/ec145/Systems/filter.xml</path>      
+        </autopilot>
+
+        <autopilot n="104">
+            <name>Engine fire and smoke simulation</name>
+            <path>Aircraft/ec145/Models/Effects/Engine/fire-and-smoke.xml</path>      
+        </autopilot>
+        
+        <autopilot n="105">
+            <path>Aircraft/ec145/Systems/propulsion-rules.xml</path>      
+        </autopilot>        
+      </systems> 
+
+
+
+	<rendering>
+    <refl_correction type="string">-0.24</refl_correction>
+    </rendering>	
+<airport>
+        <runways>
+            <start-offset-m>3.3</start-offset-m>
+        </runways>
+</airport>		
+
+		
+<!--	<hud>
+   <path n="1">Aircraft/ec145/Hud/hud.xml</path>
+   <visibility n="1">true</visibility>
+   
+   <palette>
+    <color n="0">
+     <alpha type="float">0.85</alpha>
+     <antialiased type="bool">true</antialiased>
+     <brightness type="float">0.85</brightness>
+     <transparent type="bool">true</transparent>
+     <red type="float">0.38</red>
+     <green type="float">0.38</green>
+     <blue type="float">0.22</blue>
+    </color>
+    
+   </palette>
+   
+  </hud>-->
+
+
+		<!--view-->
+		<view n="0">
+			<name>Cockpit</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+                <x-offset-m type="double">0.36</x-offset-m><!--left-->
+				<y-offset-m type="double">0.4</y-offset-m><!--up-->
+				<!--y-offset-m type="double">0.4</y-offset-m--><!--up-->
+				<z-offset-m type="double">0.6</z-offset-m><!--back-->
+				<!--pitch-offset-deg>-14</pitch-offset-deg-->
+				<pitch-offset-deg>-16</pitch-offset-deg>
+				<default-field-of-view-deg type="double">80</default-field-of-view-deg>
+			</config>
+		</view>
+
+		 <view n="101">
+    <name>Pilot cam</name>
+       <type>lookfrom</type>
+       <internal type="bool">true</internal>
+        <config>
+		 <from-model type="bool">true</from-model>
+      <from-model-idx type="int">0</from-model-idx>
+          <x-offset-m type="double">0</x-offset-m><!--left-->
+				<y-offset-m type="double">0.45</y-offset-m><!--up-->
+				<z-offset-m type="double">0</z-offset-m><!--back-->
+          <pitch-offset-deg>-20</pitch-offset-deg>
+		  <heading-offset-deg>199</heading-offset-deg>
+          <default-field-of-view-deg>110</default-field-of-view-deg>
+        </config>
+     
+  </view>
+  
+  
+  	<view n="102">
+			<name>Over the shoulder</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<x-offset-m archive="y">0.</x-offset-m><!--right-->
+				<y-offset-m archive="y">0.65</y-offset-m><!--up-->
+				<z-offset-m archive="y">2.2</z-offset-m><!--back-->
+				<pitch-offset-deg>-14</pitch-offset-deg>
+				<heading-offset-deg>0</heading-offset-deg>
+				<default-field-of-view-deg>65</default-field-of-view-deg>
+			</config>
+			
+		 </view>
+		 
+		 
+		 <view n="103">
+			<name>Cabin crew member</name>
+			<type>lookfrom</type>
+			<internal type="bool">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<x-offset-m archive="y">0.5613</x-offset-m><!--right-->
+				<y-offset-m archive="y">0.42</y-offset-m><!--up-->
+				<z-offset-m archive="y">1.3</z-offset-m><!--back-->
+				<pitch-offset-deg>-14</pitch-offset-deg>
+				<heading-offset-deg>180</heading-offset-deg>
+				<default-field-of-view-deg>65</default-field-of-view-deg>
+			</config>
+			
+		 </view>
+		 
+		 
+		  <view n="104">
+			<name>Winch Cam</name>
+			<type>lookfrom</type>
+			<internal type="bool">false</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<x-offset-m archive="y">1.15</x-offset-m><!--right-->
+				<y-offset-m archive="y">0.72</y-offset-m><!--up-->
+				<z-offset-m archive="y">1.9</z-offset-m><!--back-->
+				<pitch-offset-deg>-89</pitch-offset-deg>
+				<heading-offset-deg>-45</heading-offset-deg>
+				<default-field-of-view-deg>85</default-field-of-view-deg>
+			</config>
+			
+		 </view>
+		 
+		 
+		 <view n="105">
+			<name>FLIR</name>
+			<internal archive="y">false</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<x-offset-m archive="y">1.3</x-offset-m><!--right-->
+				<y-offset-m archive="y">-1</y-offset-m><!--up-->
+				<z-offset-m archive="y">-0.1</z-offset-m><!--back-->
+				<pitch-offset-deg>0</pitch-offset-deg>
+				<heading-offset-deg>0</heading-offset-deg>
+				<default-field-of-view-deg>65</default-field-of-view-deg>
+				<limits>
+					<enabled type="bool">true</enabled>
+					<left>
+						<heading-max-deg type="double">110</heading-max-deg>
+						<x-offset-max-m type="double">0.20</x-offset-max-m>
+						<x-offset-threshold-deg type="double">25</x-offset-threshold-deg>
+					</left>
+					<right>
+						<heading-max-deg type="double">160</heading-max-deg>
+						<x-offset-max-m type="double">0.20</x-offset-max-m>
+						<x-offset-threshold-deg type="double">25</x-offset-threshold-deg>
+					</right>
+					</limits>
+			</config>
+	         <flir type="bool">true</flir>
+
+		</view>
+  	
+
+		<view n="1">
+			<config>
+				<target-z-offset-m archive="y" type="double">2.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="2">
+			<config>
+				<target-z-offset-m archive="y" type="double">2.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="3">
+			<config>
+				<target-z-offset-m archive="y" type="double">2.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="4">
+			<config>
+				<target-z-offset-m archive="y" type="double">2.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="5">
+			<config>
+				<target-z-offset-m archive="y" type="double">2.5</target-z-offset-m>
+			</config>
+		</view>
+
+		<view n="6">
+			<config>
+				<target-z-offset-m archive="y" type="double">2.5</target-z-offset-m>
+			</config>
+		</view>
+
+<!--
+		<weight n="0">
+			<name>Pilot</name>
+			<weight-lb>180</weight-lb>
+			<max-lb>300</max-lb>
+		</weight>
+
+		<weight n="1">
+			<name>Co-Pilot</name>
+			<weight-lb>180</weight-lb>
+			<max-lb>300</max-lb>
+		</weight>
+
+                <weight n="2">
+                        <name>Passengers</name>
+                        <weight-lb>0</weight-lb>
+                        <max-lb>2000</max-lb>
+                </weight>
+
+                <weight n="3">
+                        <name>LongLine</name>
+                        <weight-lb>0</weight-lb>
+                        <max-lb>3307</max-lb>
+                </weight>
+
+                <weight n="4">
+                        <name>Not used</name>
+                        <weight-lb>0</weight-lb>
+                        <max-lb>0</max-lb>
+                </weight>
+
+
+		<weight n="5">
+                      <name>Load</name>
+                      <weight-lb>0</weight-lb>
+                      <selected>none</selected>
+                      <opt>
+                        <name>none</name>
+                        <lbs>0</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>Law Enforcement</name>
+                        <lbs>319.1</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>Passenger</name>
+                        <lbs>199.3</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>Passenger-offshore</name>
+                        <lbs>297.4</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>SAR</name>
+                        <lbs>670</lbs>
+                      </opt>
+
+                      <opt>
+                        <name>Medivac</name>
+                        <lbs>576.1</lbs>
+                      </opt>
+                </weight>
+
+                <flir>
+                        <view type="int">105</view>
+                        <weight type="int">5</weight>
+                        <options>
+                                <name>SAR</name>
+                                <name>Law Enforcement</name>
+                        </options>
+                </flir>
+ -->               
+                <!-- help section is now type specific and is found in the respective ec145-set and h145-set files -->
+
+		<hitches>
+			<!-- make sure some properties do exist, when the list for multiplayer transfere is defined-->
+			<!-- they need to be in the same value, as they are initilized in the FDM, to get the same values after reset
+    should fix this somehow-->
+			<aerotow>
+				<tow>
+					<length type="float">60</length>
+					<elastic-constant type="float">10000</elastic-constant>
+					<weight-per-m-kg-m type="float">1</weight-per-m-kg-m>
+					<dist type="float">1</dist>
+					<connected-to-property-node type="bool"></connected-to-property-node>
+					<brake-force type="float">100000</brake-force>
+					<connected-to-ai-or-mp-callsign type ="string">*</connected-to-ai-or-mp-callsign>
+					<end-force-x type ="float">0</end-force-x>
+					<end-force-y type ="float">0</end-force-y>
+					<end-force-z type ="float">0</end-force-z>
+				</tow>
+				<speed-in-tow-direction type="float">0</speed-in-tow-direction>
+				<open type="bool">true</open>
+				<local-pos-x type="float">0</local-pos-x>
+				<local-pos-y type="float">0</local-pos-y>
+				<local-pos-z type="float">0</local-pos-z>
+				<is-slave type="bool">true</is-slave>
+			</aerotow>
+		</hitches>
+
+		<menubar>
+			<default>
+				<menu n="10">
+				<label>EC-145</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Select Livery</label>
+						<binding>
+							<command>nasal</command>
+							<script>aircraft.livery.dialog.toggle()</script>
+						</binding>
+					</item>
+				
+				<item>
+						<label>Autostart</label>
+						<binding>
+							<command>nasal</command>
+							<script>bk117.startup()</script>
+						</binding>
+					</item>
+					<item>
+						<label>Autoshutdown</label>
+						<binding>
+							<command>nasal</command>
+							<script>bk117.shutdown()</script>
+						</binding>
+                    </item>
+                    <item>
+                        <label>Quickstart (development)</label>
+                        <binding>
+                                <command>nasal</command>
+                                <script>bk117.propulsion.quickstart()</script>
+                        </binding>
+                    </item>
+
+                    <item>
+                        <label>Failures</label>
+                        <binding>
+                            <command>dialog-show</command>
+                            <dialog-name>failures</dialog-name>
+                        </binding>
+                    </item>
+                    
+				</menu>
+			</default>
+		</menubar>
+	</sim>
+	
+	
+	
+	<environment>
+    <turbulence>
+      <use-cloud-turbulence>true</use-cloud-turbulence>
+    </turbulence>
+<precipitation-control>
+            <clip-distance type="double">3.75</clip-distance>
+        </precipitation-control>
+  </environment>
+  
+  
+
+	<consumables>
+                <!-- litzi: needed to change fuel density to keep tank capacity consistent, a bug in fg? -->
+		<fuel>
+			<tank>
+				<name>Main</name>
+				<selected type="bool" write="n">1</selected>
+				<density-ppg type="double" write="n">6</density-ppg>
+			</tank>
+
+			<tank>
+				<name>LH Supply</name>
+				<selected type="bool" write="n">1</selected>
+				<density-ppg type="double" write="n">6</density-ppg>
+			</tank>
+                        
+                        <tank>
+                                <name>RH Supply</name>
+                                <selected type="bool" write="n">1</selected>
+                                <density-ppg type="double" write="n">6</density-ppg>
+                        </tank>
+		</fuel>
+	</consumables>
+
+        <controls>
+            <electric>
+            <!-- init some electrical system switches positions-->
+            <battery-switch type="bool">true</battery-switch>           
+            <avionics-switch1 type="bool">true</avionics-switch1>           
+            <avionics-switch2 type="bool">true</avionics-switch2>           
+            <stbyhor-switch type="bool">false</stbyhor-switch>           
+            <gndpwr-switch type="bool">true</gndpwr-switch>           
+            <dcrecept-switch type="bool">false</dcrecept-switch>           
+            
+            <engine n="0">
+                <bus-tie type="bool">true</bus-tie>
+                <generator type="bool">true</generator>
+            </engine>
+            
+            <engine n="1">
+                <bus-tie type="bool">true</bus-tie>
+                <generator type="bool">true</generator>
+            </engine>
+        </electric>
+
+		<rotor>
+			<brake type="double">0</brake>
+			<reltarget type="double">0</reltarget>
+			<maxreltorque type="double">0</maxreltorque>
+		</rotor>
+         
+		 <gear> 
+		 <floats-inflat type="bool">false</floats-inflat> 
+		 <floats-armed type="bool">false</floats-armed> 
+		 <floats-deflate type="bool">false</floats-deflate> 
+		 </gear>
+		 <gear>
+          <brake-parking>1</brake-parking>
+         </gear>
+		
+        <switches>
+          <landing-lights-switch type="bool">false</landing-lights-switch>
+          <search-lights-switch type="bool">false</search-lights-switch>
+          <nav-lights-switch type="bool">false</nav-lights-switch>
+          <beacon-switch type="bool">false</beacon-switch>
+          <strobe-switch type="bool">false</strobe-switch>
+          <white-light-switch type="bool">false</white-light-switch>
+          <hisl-switch type="bool">false</hisl-switch>
+          <fuel>
+            <transfer-pump n="0" type="bool">false</transfer-pump>
+            <transfer-pump n="1" type="bool">false</transfer-pump>
+          </fuel>
+        </switches>
+        
+        <test>
+          <fire-warntest1 type="int">0</fire-warntest1>
+          <fire-warntest2 type="int">0</fire-warntest2>
+          <hydraulic type="int">1</hydraulic>
+          <p-flight type="int">1</p-flight>
+        </test>
+        
+        <lighting>
+           <stdby-instrument-lights-norm type="float">1.0</stdby-instrument-lights-norm>
+           <instrument-lights-norm type="float">0.5</instrument-lights-norm>
+           <instrument-lights type="float">1.0</instrument-lights>
+           <!--
+                <strobe type="bool">false</strobe>
+                <beacon type="bool">false</beacon>
+                <nav-lights type="bool">false</nav-lights>
+            -->
+        </lighting>
+        <engines>
+        
+         <engine n="0">
+                      <twist-grip type="float">0</twist-grip>
+         </engine>
+        </engines>
+          
+	</controls>
+
+	<instrumentation>
+        <warningunit>
+            <sys n="0">
+                <emerg-off type="bool">false</emerg-off>
+                <fire-bot type="bool">false</fire-bot>
+                <fire-bot-arm type="bool">false</fire-bot-arm>
+                <ext type="bool">false</ext>
+            </sys>    
+            <sys n="1">
+                <emerg-off type="bool">false</emerg-off>
+                <fire-bot type="bool">false</fire-bot>
+                <fire-bot-arm type="bool">false</fire-bot-arm>
+                <ext type="bool">false</ext>
+            </sys>    
+        </warningunit>        
+		<gsdi>
+			<serviceable type="bool">true</serviceable>
+		</gsdi>
+		<hsi>
+			<serviceable type="bool" archive="y">true</serviceable>
+		</hsi>
+		
+		<efis>
+                  <!-- For the Helionix panels add vmd,navd,fnd to the efis section of the aircraft set file. -->
+                  <vmd>
+                      <num type="bool">true</num>
+                      <!-- set caution ranges for enigines oil temp and pressure gauges -->
+                      <oilt-caution-lo-degc type="float">0</oilt-caution-lo-degc>
+                      <oilt-caution-hi-degc type="float">120</oilt-caution-hi-degc> 
+                      <oilp-caution-lo-bar type="float">1.5</oilp-caution-lo-bar> 
+                      <oilp-caution-hi-bar type="float">8</oilp-caution-hi-bar>
+                      
+                      <!-- set caution ranges for engines -->                      
+                      <n2-low type="float">95</n2-low>
+                      <n2-hi type="float">108</n2-hi>
+                      <trq-low type="float">0</trq-low>
+                      <trq-hi type="float">73.9</trq-hi>
+                      <n1-low type="float">0</n1-low>
+                      <n1-hi type="float">100</n1-hi>
+                      
+                  </vmd>
+                  <navd>
+                                <scale type="float">1.00</scale> <!-- adjust to the svg display size in px-->
+                                <range type="float">10</range>   <!-- initial range of the navd -->
+                  </navd>
+                  <fnd>
+                                <radar-alt-offset-ft type="float">5.0</radar-alt-offset-ft>
+                                <nav-source>NAV1</nav-source>
+                  </fnd>
+
+			<ecam>
+					<display-mode type="string">FUEL</display-mode>
+			</ecam>
+			<nd>
+					<display-mode type="string">VOR</display-mode>
+					<display-mode-knob type="int">2</display-mode-knob>
+					<display-range type="int">20</display-range>
+				
+			</nd>
+			<input>
+				<vor-adf-1 type="int">1</vor-adf-1>
+				<vor-adf-2 type="int">1</vor-adf-2>
+				<CSTR type="bool">1</CSTR>
+				<WPT type="bool">1</WPT>
+				<VORD type="bool">1</VORD>
+				<NDB type="bool">1</NDB>
+				<ARPT type="bool">1</ARPT>
+				<WX type="bool">1</WX>
+				<TERR type="bool">1</TERR>
+				<TRAF type="bool">1</TRAF>
+				<taxi type="bool">1</taxi>
+			</input>
+
+		
+		</efis>
+		
+		 <cdu>
+  <display>IDENT</display>
+  <ident>
+   <model>EC 145</model>
+   <engines>-80C2B1F</engines>
+  </ident>
+  <input type="string"/>
+  <serviceable type="bool">true</serviceable>
+ </cdu>
+		
+		
+		  <tcas>
+            <serviceable type="bool">true</serviceable>
+            <inputs>
+                <mode type="int">3</mode>       <!-- 0=off, 1=standby, 2=TA-only, 3=auto(TA/RA) -->
+            </inputs>
+            <!--voice>
+                <file-prefix type="string">Sounds/tcas/</file-prefix>
+            </voice-->
+            <speaker>                           <!-- Speaker Configuration -->
+                <max-dist type="double">2</max-dist>        <!-- Max. distance where speaker is heard -->
+                <reference-dist type="double">1</reference-dist> <!-- Distance to pilot -->
+                <volume type="double"> 1 </volume>          <!-- Volume at reference distance -->
+            </speaker>
+            <range type="int">3</range>
+        </tcas>
+
+        <tcas-display>
+            <radar-texture-path type="string">Aircraft/ec145/Models/instruments/mfd/tacas/tcas-display.png</radar-texture-path>
+            <symbol-texture-path type="string">Aircraft/ec145/Models/instruments/mfd/tacas/symbols.png</symbol-texture-path>
+            <font>
+                <color>
+                    <red type="float">0.7</red>
+                    <green type="float">0.7</green>
+                    <blue type="float">0.7</blue>
+                    <alpha type="float">1</alpha>
+                </color>
+                <name type="string">helvetica_bold.txf</name>
+                <size type="float">14</size>
+                <line-spacing type="float">0.01</line-spacing>
+            </font>
+            <serviceable type="bool">true</serviceable>
+            <range type="int" archive="y">3</range>
+            <aircraft-heading-up type="bool">true</aircraft-heading-up>
+            <heading-up-deg type="float">0.01</heading-up-deg>
+            <x-center type="float">0.5</x-center>
+            <y-center type="float">0.5</y-center>
+            <display>
+            </display>
+            <line-width type="double">3</line-width>
+        </tcas-display>
+
+        <radar>
+            <switch type="string" >off</switch>
+            <switch-pos type="int">0</switch-pos>
+            <mode-control type="int" >1</mode-control>
+            <display-controls>
+                <WX type="bool" >false</WX>
+                <pos type="bool" >true</pos>
+                <data type="bool" >false</data>
+                <centre type="bool" >true</centre>
+        <symbol type="bool" >true</symbol>
+                <tcas type="bool" >true</tcas>
+            </display-controls>
+            <serviceable type="bool">true</serviceable>
+            <range type="int" >10</range>
+            <reference-range-nm type="double" >20</reference-range-nm>
+            <mode type="string" >WX</mode>
+            <font>
+                <tcas>
+                   <color n="0"> <!-- distant targets -->
+                       <red type="float">0</red>
+                       <green type="float">1</green>
+                       <blue type="float">1</blue>
+                   </color>
+                   <color n="1"> <!-- proximity targets -->
+                       <red type="float">0</red>
+                       <green type="float">1</green>
+                       <blue type="float">1</blue>
+                   </color>
+                   <color n="2"> <!-- TA threat targets -->
+                       <red type="float">1</red>
+                       <green type="float">0.5</green>
+                       <blue type="float">0</blue>
+                   </color>
+                   <color n="3"> <!-- RA threat targets -->
+                       <red type="float">1</red>
+                       <green type="float">0</green>
+                       <blue type="float">0</blue>
+                   </color>
+               </tcas>
+            </font>
+            <lightning type="bool" >false</lightning>
+            <display-mode type="string" >map</display-mode>
+            <radar-texture-path type="string">Aircraft/ec145/Models/instruments/mfd/tcas-2.png</radar-texture-path>
+            <echo-texture-path type="string" >Aircraft/ec145/Models/instruments/mfd/wxecho.png</echo-texture-path>
+            <minimized type="bool" >false</minimized>
+            <heading-marker type="bool" >true</heading-marker>
+            <limit-deg type="int">180</limit-deg>
+        </radar>
+
+	</instrumentation>
+
+
+        <input>
+          <keyboard>
+
+                <key n="4">
+                    <name>Ctrl-d</name>
+                    <desc>Toggle SAS enabled</desc>
+                    <binding>
+                      <command>nasal</command>
+                      <script>bk117.sas.toggleEnable();</script>
+                    </binding>
+                </key>
+                <key n="97">
+                    <name>a</name>
+                    <desc>Rotate Spotlight left</desc>
+                    <repeatable>true</repeatable>
+                    <interval-sec>0.001</interval-sec>
+                    <binding>
+                        <command>property-adjust</command>
+                        <property>sim/multiplay/generic/float[10]</property>
+                        <step>1</step>
+                        <!-- <min>0</min> -->
+                        <max>110</max>
+                    </binding>
+                </key>
+                <key n="100">
+                    <name>d</name>
+                    <desc>Rotate Spotlight right</desc>
+                    <repeatable>true</repeatable>
+                    <interval-sec>0.001</interval-sec>
+                    <binding>
+                        <command>property-adjust</command>
+                        <property>sim/multiplay/generic/float[10]</property>
+                        <step>-1</step>
+                        <!-- <min>-110</min> -->
+                        <max>110</max>
+                    </binding>
+                </key>
+                <key n="119">
+                    <name>w</name>
+                    <desc>Rotate Spotlight up</desc>
+                    <repeatable>true</repeatable>
+                    <interval-sec>0.001</interval-sec>
+                    <binding>
+                        <command>property-adjust</command>
+                        <property>sim/multiplay/generic/float[11]</property>
+                        <step>-1</step>
+                        <!--<min>0</min>-->
+                        <max>0</max>
+                    </binding>
+                </key>
+                <key n="115">
+                    <name>s</name>
+                    <desc>Rotate Spotlight down</desc>
+                    <repeatable>true</repeatable>
+                    <interval-sec>0.001</interval-sec>
+                    <binding>
+                        <command>property-adjust</command>
+                        <property>sim/multiplay/generic/float[11]</property>
+                        <step>1</step>
+                          <!--<min>0</min>-->
+                        <max>0</max>
+                    </binding>
+                </key>
+                <key n="123">
+                        <name>{</name>
+                        <desc>Shutdown Engines</desc>
+                        <binding>
+                                <command>nasal</command>
+                                <script>bk117.shutdown()</script>
+                                <condition>
+                                        <property>/sim/signals/fdm-initialized</property>
+                                </condition>
+                        </binding>
+                        
+                </key>
+                <key n="125">
+                        <name>}</name>
+                        <desc>Start Engines</desc>
+                        <binding>
+                                <command>nasal</command>
+                                <script>bk117.startup()</script>
+                                <condition>
+                                        <property>/sim/signals/fdm-initialized</property>
+                                </condition>
+                        </binding>
+                        
+                </key>
+                <key n="79">
+                        <name>O</name>
+                        <desc>Open aerotow hook</desc>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/sim/hitches/aerotow/open</property>
+                                <value type="bool">true</value>
+                        </binding>
+                </key>
+                <key n="111">
+                        <name>o</name>
+                        <desc>Lock aerotow hook</desc>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/sim/hitches/aerotow/open</property>
+                                <value type="bool">false</value>
+                        </binding>
+                </key>
+                <key n="15">
+                        <name>Ctrl-o</name>
+                        <desc>Find aircraft for aerotow</desc>
+                        <binding>
+                                <command>property-assign</command>
+                                <property>/controls/aerotow/find-aircraft</property>
+                                <value type="bool">true</value>
+                        </binding>
+                        <mod-up>
+                                <binding>
+                                        <command>property-assign</command>
+                                        <property>/controls/aerotow/find-aircraft</property>
+                                        <value type="bool">false</value>
+                                </binding>
+                        </mod-up>
+                </key>
+                <key n="114">
+                        <name>r</name>
+                        <desc>Toggle Rescue</desc>
+                        <binding>
+                                <command>property-toggle</command>
+                                <property>sim/multiplay/generic/float[12]</property>
+                        </binding>
+                </key>
+                <key n="109">
+                        <name>m</name>
+                        <desc>Lift Winch</desc>
+                        <repeatable type="bool">true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>sim/model/rescue-lift</property>
+                                <step type="double">-0.01</step>
+                                <min>0.0</min>
+                                <max>1</max>
+                        </binding>
+                </key>
+                <key n="77">
+                        <name>M</name>
+                        <desc>Down Winch</desc>
+                        <repeatable type="bool">true</repeatable>
+                        <binding>
+                                <command>property-adjust</command>
+                                <property>sim/model/rescue-lift</property>
+                                <step type="double">0.01</step>
+                                <min>0.0</min>
+                                <max>1</max>
+                        </binding>
+                </key>
+            </keyboard>
+	</input>
+
+
+	<nasal>
+              <FG1000>
+                    <file>Aircraft/ec145/Nasal/FGUK1000.nas</file>
+              </FG1000>
+	
+              <flir>
+                    <file>Aircraft/ec145/Nasal/flir.nas</file>
+              </flir>	
+                
+              <electrical>
+                    <file>Aircraft/ec145/Nasal/electrical.nas</file>
+                    <file>Aircraft/ec145/Nasal/electrical-loads.nas</file> 
+              </electrical>
+
+              <bk117 n="0">
+                   
+                    <file>Aircraft/ec145/Nasal/woolthread.nas</file>
+                    <file>Aircraft/ec145/Nasal/fcs.nas</file>
+                    <file>Aircraft/ec145/Nasal/casdisable.nas</file>
+                    <file>Aircraft/ec145/Nasal/mk-wiper.nas</file>
+                    <file>Aircraft/ec145/Models/headset/headset.nas</file>
+                    
+              </bk117>
+		
+              <rotorwash>
+                    <file>Aircraft/ec145/Nasal/rotorwash.nas</file>
+              </rotorwash>
+
+              <lights>
+                    <file>Aircraft/ec145/Nasal/Lights.nas</file>
+              </lights>
+              
+              <cdu>
+                   <file>Aircraft/ec145/Models/instruments/cdu/boeing.nas</file>
+              </cdu>
+         <!-- 
+            <radar><file>Aircraft/Instruments-3d/RDR-160/RDR160.nas</file></radar>
+
+            <radar2>
+            <file>Aircraft/Instruments-3d/radar2/radar2.nas</file>
+            </radar2>	 
+
+            <terrain-map>
+            <file>Aircraft/ec145/Nasal/terrain-map.nas</file>
+            </terrain-map> 
+         -->
+
+            <sound-helper>
+              <file>Aircraft/ec145/Nasal/sound-helper.nas</file>
+            </sound-helper> 
+
+            <floats>
+              <file>Aircraft/ec145/Nasal/floats.nas</file>
+            </floats>
+            
+            <systems>
+                <file>Aircraft/ec145/Models/instruments/kns80/KNS80.nas</file>
+            </systems>
+		
+
+	</nasal>
+
+
+        <rotors>
+            <main>
+                    <rpm type="double">0</rpm>
+            </main>
+            <gear>
+                    <mgb-oil-pressure-bar type="double">0</mgb-oil-pressure-bar>
+            </gear>
+        </rotors>
+
+        <!-- init all the engine parameters to avoid reading nil's at startup -->  
+        <engines>
+            <engine n="0">
+              <oil-pressure-bar type="double">0.0</oil-pressure-bar>
+              <oil-temperature-degc type="double">0.0</oil-temperature-degc>
+              <n1-pct type="double">0.0</n1-pct>
+              <n2-pct type="double">0.0</n2-pct>
+              <torque-pct type="double">0.0</torque-pct>
+              <tot-degc type="double">0.0</tot-degc>  
+              <fire type="bool">false</fire>
+              <extinguisher type="bool">false</extinguisher>
+              <smoke type="bool">false</smoke>
+            </engine>
+            <engine n="1">
+              <oil-pressure-bar type="double">0.0</oil-pressure-bar>        
+              <oil-temperature-degc type="double">0.0</oil-temperature-degc>
+              <n1-pct type="double">0.0</n1-pct>
+              <n2-pct type="double">0.0</n2-pct>
+              <torque-pct type="double">0.0</torque-pct>
+              <tot-degc type="double">0.0</tot-degc>        
+              <fire type="bool">false</fire>
+              <extinguisher type="bool">false</extinguisher>
+              <smoke type="bool">false</smoke>
+            </engine>
+        </engines>
+                
+        <autopilot>
+          <settings>
+            <target-agl-ft type="double">0.0</target-agl-ft>
+          </settings>
+        </autopilot>        
+        
+
+</PropertyList>

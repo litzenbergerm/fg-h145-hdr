@@ -1,0 +1,465 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+    <checklist>
+        <title>Pre-start check</title>
+        <page>
+            <item>
+                <name>Mainp BATT MSTR switch</name>
+                <value>ON</value>
+                <condition>
+                     <equals>
+                        <property>/controls/electric/battery-switch</property>
+                        <value>1</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/electric/battery-switch</property>
+                    <value>1</value>
+                </binding>
+            </item>
+
+            <item>
+                <name>Mainp NR/N2 instrument</name>
+                <value>check full deflection</value>
+            </item>
+
+            <item>
+                <name>Ovrhd FUEL PUMPS XFER (A and F)</name>
+                <value>ON</value>
+                <condition>
+                     <equals>
+                        <property>/controls/switches/fuel/transfer-pump[0]</property>
+                        <value>1</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/switches/fuel/transfer-pump[0]</property>
+                    <value>1</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/switches/fuel/transfer-pump[1]</property>
+                    <value>1</value>
+                </binding>
+            </item>
+
+            <item>
+                <name>on CAD:check caution F PUMP A/F off</name>
+                <value>CHECK</value>
+            </item>
+
+            <item>
+                <name>Ovrhd FUEL PUMPS XFER (A and F)</name>
+                <value>OFF</value>
+
+                <condition>
+                     <equals>
+                        <property>/controls/switches/fuel/transfer-pump[0]</property>
+                        <value>0</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/switches/fuel/transfer-pump[0]</property>
+                    <value>0</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/switches/fuel/transfer-pump[1]</property>
+                    <value>0</value>
+                </binding>
+            </item>
+
+            <item>
+                <name>on CAD: caution F PUMP A/F on</name>
+                <value>CHECK</value>
+            </item>
+
+            <item>
+                <name>EMER SHED BUS switch</name>
+                <value>NORM and guarded</value>
+            </item>
+
+            <item>
+                <name>Ovrhd FUEL PRIME PUMPS (1 and 2)</name>
+                <value>ON</value>
+                <condition>
+                     <equals>
+                        <property>controls/fuel/tank[2]/prime-pump</property>
+                        <value>1</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/fuel/tank[2]/prime-pump</property>
+                    <value>1</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/fuel/tank[1]/prime-pump</property>
+                    <value>1</value>
+                </binding>
+            </item>
+
+            <item>
+                <name>on CAD:PRIME PUMP caution on and FUEL PRESS caution off</name>
+                <value>CHECK</value>
+            </item>
+
+            <item>
+                <name>Ovrhd A.COLL switch</name>
+                <value>ON</value>
+
+                <condition>
+                     <equals>
+                        <property>controls/switches/beacon-switch</property>
+                        <value>1</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/switches/beacon-switch</property>
+                    <value>1</value>
+                </binding>
+            </item>
+
+            <item>
+                <name>on VEMD: DC voltage</name>
+                <value>minimum 23.5 V</value>
+
+                <condition>
+                     <greater-than>
+                        <property>systems/electrical/outputs/bus[0]</property>
+                        <value>23.5</value>
+                    </greater-than>
+                </condition>
+            </item>
+
+            <item>
+                <name>CAD fuel indication</name>
+                <value>CHECK QTY</value>
+            </item>
+
+            <item>
+                <name>Instruments</name>
+                <value>CHECK</value>
+            </item>
+
+            <item>
+                <name>Flight controls</name>
+                <value>CHECK free movement</value>
+            </item>
+
+            <item>
+                <name>Pedals</name>
+                <value>Parallel</value>
+            </item>
+
+            <item>
+                <name>Cyclic stick position</name>
+                <value>CHECK</value>
+            </item>
+
+            <item>
+                <name>Twist grip</name>
+                <value>CHECK free movement, then set both to 0</value>
+                <condition>
+                  <and>
+                     <equals>
+                        <property>controls/engines/engine[1]/twist-grip</property>
+                        <value>0</value>
+                    </equals>
+                     <equals>
+                        <property>controls/engines/engine[0]/twist-grip</property>
+                        <value>0</value>
+                    </equals>
+                  </and>
+                </condition>
+            </item>
+      </page>
+    </checklist>
+    
+    <checklist>
+        <title>Starting first engine</title>
+        <page>
+            <item>
+                <name>TWIST GRIP Eng.1</name>
+                <value>Preselect 30</value>
+                <condition>
+                     <greater-than>
+                        <property>controls/engines/engine[0]/twist-grip</property>
+                        <value>2.0</value>
+                    </greater-than>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/engines/engine[0]/twist-grip</property>
+                    <value>2.4</value>
+                </binding>
+            </item>
+            
+            <item>
+                <name>Eng.1 start switch</name>
+                <value>START</value>
+                <condition>
+                     <equals>
+                        <property>controls/switches/ecp/pos[0]</property>
+                        <value>1</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/switches/ecp/pos[0]</property>
+                    <value>1</value>
+                </binding>
+            </item>
+
+            <item>
+                <name>on VEMD: TOT</name>
+                <value>Monitor, check increase</value>
+            </item>
+
+            <item>
+                <name>N1, N2/NR</name>
+                <value>Check increase</value>
+            </item>
+            
+            <item>
+                <name>Eng.1 start switch</name>
+                <value>Check off at N1=40</value>
+                <condition>
+                     <equals>
+                        <property>controls/switches/ecp/pos[0]</property>
+                        <value>0</value>
+                    </equals>
+                </condition>               
+            </item>
+
+            <item>
+                <name>TWIST GRIP Eng.1</name>
+                <value>Rotate to 65 pct N1</value>
+                <condition>
+                     <greater-than>
+                        <property>engines/engine[0]/n1-pct</property>
+                        <value>65</value>
+                    </greater-than>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/engines/engine[0]/twist-grip</property>
+                    <value>8.5</value>
+                </binding>
+            </item>
+            
+       </page>
+    </checklist>
+  
+    <checklist>
+        <title>Starting second engine</title>
+        <page>
+            <item>
+                <name>TWIST GRIP Eng.2</name>
+                <value>Preselect 30</value>
+                <condition>
+                     <greater-than>
+                        <property>controls/engines/engine[1]/twist-grip</property>
+                        <value>2.0</value>
+                    </greater-than>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/engines/engine[1]/twist-grip</property>
+                    <value>2.4</value>
+                </binding>
+            </item>
+            
+            <item>
+                <name>Eng.2 start switch</name>
+                <value>START</value>
+                <condition>
+                     <equals>
+                        <property>controls/switches/ecp/pos[1]</property>
+                        <value>1</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/switches/ecp/pos[1]</property>
+                    <value>1</value>
+                </binding>
+            </item>
+
+            <item>
+                <name>on VEMD: TOT</name>
+                <value>Monitor, check increase</value>
+            </item>
+
+            <item>
+                <name>N1,N2</name>
+                <value>Check increase</value>
+            </item>
+            
+            <item>
+                <name>Eng.2 start switch</name>
+                <value>Check off at N1=40</value>
+                <condition>
+                     <equals>
+                        <property>controls/switches/ecp/pos[1]</property>
+                        <value>0</value>
+                    </equals>
+                </condition>               
+            </item>
+
+            <item>
+                <name>TWIST GRIP Eng.2</name>
+                <value>Rotate to 65 pct N1</value>
+                <condition>
+                     <greater-than>
+                        <property>engines/engine[1]/n1-pct</property>
+                        <value>65</value>
+                    </greater-than>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/engines/engine[1]/twist-grip</property>
+                    <value>8.5</value>
+                </binding>
+            </item>
+            
+            <item>
+                <name>Ovrhd AVIO MSTR switches (1 and 2)</name>
+                <value>ON</value>
+                <condition>
+                     <equals>
+                        <property>controls/electric/avionics-switch1</property>
+                        <value>1</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/electric/avionics-switch1</property>
+                    <value>1</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/electric/avionics-switch2</property>
+                    <value>1</value>
+                </binding>
+            </item>
+            
+            <item>
+                <name>Ovrhd FUEL PRIME PUMPS (1 and 2)</name>
+                <value>OFF</value>
+                <condition>
+                     <equals>
+                        <property>controls/fuel/tank[2]/prime-pump</property>
+                        <value>0</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/fuel/tank[2]/prime-pump</property>
+                    <value>0</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>controls/fuel/tank[1]/prime-pump</property>
+                    <value>0</value>
+                </binding>
+            </item>
+            
+            <item>
+                <name>Ovrhd FUEL PUMPS XFER (A and F)</name>
+                <value>ON</value>
+                <condition>
+                     <equals>
+                        <property>/controls/switches/fuel/transfer-pump[0]</property>
+                        <value>1</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/switches/fuel/transfer-pump[0]</property>
+                    <value>1</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/switches/fuel/transfer-pump[1]</property>
+                    <value>1</value>
+                </binding>
+            </item>
+            
+       </page>
+    </checklist>
+
+    <checklist>
+        <title>Pre-takeoff check</title>
+        <page>
+    
+            <item>
+                <name>TWIST GRIP Eng.1 and Eng.2</name>
+                <value>Rotate smoothly to FLIGHT</value>
+                <condition>
+                  <and>
+                     <equals>
+                        <property>controls/engines/engine[0]/twist-grip</property>
+                        <value>10.0</value>
+                    </equals>
+                     <equals>
+                        <property>controls/engines/engine[1]/twist-grip</property>
+                        <value>10.0</value>
+                    </equals>
+                  </and>                                   
+                </condition>
+                <binding>
+                    <command>property-interpolate</command>
+                    <property>controls/engines/engine[0]/twist-grip</property>
+                    <value>10</value>
+                    <time>2</time>
+                </binding>
+                <binding>
+                    <command>property-interpolate</command>
+                    <property>controls/engines/engine[1]/twist-grip</property>
+                    <value>10</value>
+                    <time>2</time>
+                </binding>
+            </item>
+            
+            <item>
+                <name>All CAD and VEMD indications</name>
+                <value>Check off</value>
+            </item>            
+            
+            <item>
+                <name>Standby horizon</name>
+                <value>Release cage button</value>
+            </item>            
+            
+            <item>
+                <name>Pilot/Coplt doors</name>
+                <value>Check properly closed</value>
+            </item>
+            <item>
+                <name>Seats, Seat Belts, Shoulder Harnesses, Headset Holder</name>
+                <value>CHECK SECURE</value>
+                <condition>
+                    <equals>
+                        <property>sim/model/bk117/headsetholder/position-deg</property>
+                        <value>0</value>
+                    </equals>
+                </condition>
+                <binding>
+                    <command>property-assign</command>
+                    <property>sim/model/bk117/headsetholder/position-deg</property>
+                    <value>0</value>
+                </binding>
+            </item>
+            
+       </page>
+       
+    </checklist>          
+          
+</PropertyList>
