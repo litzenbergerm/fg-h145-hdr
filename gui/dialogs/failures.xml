@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<PropertyList>
+    <name>failures</name>
+    <layout>vbox</layout>
+    <draggable>true</draggable>
+
+    <nasal>
+        <open>
+            setprop("/sim/failure-manager/engines/random-engine-fire-in-mins",0);
+        </open>
+        <close>
+        </close>
+    </nasal>
+            
+    <text>
+        <label>EC/H-145 Failure Settings</label>
+    </text>
+
+    <hrule/>
+
+    <text>
+        <label>Immediate engine fire (random engine)</label>
+    </text>
+
+  <button>
+    <legend>Eng Fire</legend>
+    <default>false</default>
+    <key></key>
+    <binding>
+      <command>nasal</command>
+      <script>setprop("engines/engine["~ math.round(rand()) ~"]/fire",1);</script>
+    </binding>
+  </button>
+
+  <hrule/>
+
+    <text>
+        <label>Random eng. fire within minutes (0=off):</label>
+    </text>
+
+  <input>
+   <label>mins.</label>
+   <property>/sim/failure-manager/engines/random-engine-fire-in-mins</property>
+  </input>  
+
+  <hrule/>
+    <text>
+        <label>Note: Particle system must be turned on for smoke effects!</label>
+    </text>
+  
+  <hrule/>
+  
+  <button>
+    <legend>Close</legend>
+    <default>true</default>
+    <key>Esc</key>
+    <binding>
+      <command>dialog-close</command>
+    </binding>
+  </button>
+
+  <button>
+    <legend>Apply</legend>
+    <default>true</default>
+    <key></key>
+    <binding>
+      <command>dialog-apply</command>
+    </binding>
+    
+    <binding>
+      <command>nasal</command>
+      <script>
+            <![CDATA[
+            var s=getprop("/sim/failure-manager/engines/random-engine-fire-in-mins")*60*rand();
+            if (s>0) {
+               print("EC/H-145 failures: engine fire in "~ int(s) ~" s.");
+               settimer( func { 
+                  setprop("engines/engine["~ math.round(rand()) ~"]/fire",1)
+               }              
+               ,s);
+            }
+            ]]>
+      </script>
+    </binding>
+    
+  </button>  
+</PropertyList>
