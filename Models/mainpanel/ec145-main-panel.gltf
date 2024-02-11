@@ -551,8 +551,8 @@
 				"baseColorTexture":{
 					"index":2
 				},
-				"metallicFactor":0,
-				"roughnessFactor":0.5
+				"metallicFactor":0.20000000298023224,
+				"roughnessFactor":0.30000001192092896
 			}
 		},
 		{
@@ -837,16 +837,16 @@
 			"name":"ScreenGlass",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0.10527865588665009,
-					0.10527865588665009,
-					0.10527865588665009,
+					0.04023461788892746,
+					0.04023461788892746,
+					0.04023461788892746,
 					1
 				],
 				"baseColorTexture":{
 					"index":9
 				},
-				"metallicFactor":0.05000000074505806,
-				"roughnessFactor":0.10000000149011612
+				"metallicFactor":0,
+				"roughnessFactor":0.30000001192092896
 			}
 		},
 		{

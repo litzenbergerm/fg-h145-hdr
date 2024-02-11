@@ -57,10 +57,10 @@
     <object-name>xmfd1glass</object-name>
     <object-name>xmfd2glass</object-name>
     <object-name>xmfd3glass</object-name>
-    <object-name>xmfd0bg</object-name>
+<!--    <object-name>xmfd0bg</object-name>
     <object-name>xmfd1bg</object-name>
     <object-name>xmfd2bg</object-name>
-    <object-name>xmfd3bg</object-name>
+    <object-name>xmfd3bg</object-name>-->
     <condition>
      <equals>
         <property>sim/current-view/internal</property>
