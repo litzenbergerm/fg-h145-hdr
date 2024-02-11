@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+	<model>
+		<livery>
+			<name type="string">Test</name>
+			<texture>liveries/EC-145texture.png</texture>
+			<rotor>liveries/black.png</rotor>
+			<texture-skids>liveries/skidrow.png</texture-skids>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.21</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

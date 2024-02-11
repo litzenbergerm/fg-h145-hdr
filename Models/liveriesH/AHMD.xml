@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">D-HADX</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">Airbus Helicopters Military Demonstrator</name>
+			<texture>liveriesH/AHMD/AHMD.png</texture>
+			<texture-tail>liveriesH/AHMD/AHMDHt.png</texture-tail>
+			<rotor>liveriesH/black.png</rotor>
+			<texture-skids>liveriesH/blackskids.png</texture-skids>
+			<texture-radar>liveriesH/AHMD/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/AHMD/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.45</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

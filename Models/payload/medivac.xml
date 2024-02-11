@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+<model>
+<name>pilot1</name>
+<path>Aircraft/ec145/Models/People/sar/pilots.xml</path>
+<offsets>
+<x-m> -8.2 </x-m>
+<y-m>  -0.05 </y-m>
+<z-m> -0.7 </z-m>
+</offsets>
+</model>
+
+<model>
+<name>pilot2</name>
+<path>Aircraft/ec145/Models/People/sar/pilots.xml</path>
+<offsets>
+<x-m> -8.2 </x-m>
+<y-m> -0.82 </y-m>
+<z-m> -0.7 </z-m>
+</offsets>
+</model>
+<!-- Crew seats -->
+
+<!--  front row -->
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/chair.xml</path>
+<offsets>
+<x-m> -6.34697 </x-m>
+<y-m>  0.5 </y-m>
+<z-m> -1.26</z-m>
+<heading-deg>90</heading-deg>
+</offsets>
+</model>
+
+
+
+
+
+
+<!-- Middle row -->
+
+
+
+
+
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/chair.xml</path>
+<offsets>
+<x-m> -5.21054 </x-m>
+<y-m>  0.48 </y-m>
+<z-m> -1.35 </z-m>
+<heading-deg>-90</heading-deg>
+</offsets>
+</model>
+
+
+<!-- Bed -->
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/bed2.xml</path>
+<offsets>
+<x-m> -4.9 </x-m>
+<y-m>  -0.27 </y-m>
+<z-m> -1.15 </z-m>
+<heading-deg>180</heading-deg>
+</offsets>
+<overlay>
+		 <animation n="900">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1</x-offset>
+    <y-offset>0.8</y-offset>
+    <z-offset>1</z-offset>
+   </animation>
+  </overlay>
+</model>
+
+
+<!-- medipack -->
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/medipack.xml</path>
+<offsets>
+<x-m> -6.75</x-m>
+<y-m>  -0.38 </y-m>
+<z-m> -1.2 </z-m>
+<heading-deg>180</heading-deg>
+</offsets>
+
+</model>
+
+<!-- life support -->
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/lifesupport1.xml</path>
+<offsets>
+<x-m> -5.0</x-m>
+<y-m>  -0.75 </y-m>
+<z-m> -0.8 </z-m>
+<heading-deg>270</heading-deg>
+</offsets>
+
+</model>
+
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/lifesupport2.xml</path>
+<offsets>
+<x-m> -5.4</x-m>
+<y-m>  -0.78 </y-m>
+<z-m> -0.8 </z-m>
+<heading-deg>270</heading-deg>
+</offsets>
+
+</model>
+
+
+<!-- 02 -->
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/o2.xml</path>
+<offsets>
+<x-m> -5.0</x-m>
+<y-m>  -0.75 </y-m>
+<z-m> -1.25 </z-m>
+<heading-deg>270</heading-deg>
+</offsets>
+
+</model>
+
+
+<!-- monitor -->
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/monitor.xml</path>
+<offsets>
+<x-m> -4.72</x-m>
+<y-m>  -0.75 </y-m>
+<z-m> -0.8 </z-m>
+<heading-deg>270</heading-deg>
+</offsets>
+
+</model>
+
+<!-- gel -->
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/gel.xml</path>
+<offsets>
+<x-m> -4.66</x-m>
+<y-m>  -0.78 </y-m>
+<z-m> -0.4 </z-m>
+<heading-deg>270</heading-deg>
+</offsets>
+
+</model>
+
+<!-- mask -->
+<model>
+<path>Aircraft/ec145/Models/Divers/hems/mask.xml</path>
+<offsets>
+<x-m> -4.49</x-m>
+<y-m>  -0.76 </y-m>
+<z-m> -0.39 </z-m>
+<heading-deg>29</heading-deg>
+</offsets>
+
+</model>
+
+
+
+</PropertyList>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+<model>
+<name>pilot1</name>
+<path>Aircraft/ec145/Models/People/pilot.xml</path>
+<offsets>
+<x-m> -3.2 </x-m>
+<y-m>  1.08 </y-m>
+<z-m> -0.05 </z-m>
+</offsets>
+</model>
+
+<!-- Passenger seats -->
+
+<!-- Middle row -->
+<model>
+<path>Aircraft/ec145/Models/Divers/Seats/seat2.xml</path>
+<offsets>
+<x-m> -5.21054 </x-m>
+<y-m> -0.56132  </y-m>
+<z-m> -1.32578 </z-m>
+
+</offsets>
+</model>
+
+
+
+<model>
+<path>Aircraft/ec145/Models/Divers/Seats/seat2.xml</path>
+<offsets>
+<x-m> -5.21054 </x-m>
+<y-m>  0.56132 </y-m>
+<z-m> -1.32578 </z-m>
+
+</offsets>
+</model>
+
+<!-- Back row -->
+<model>
+<path>Aircraft/ec145/Models/Divers/Seats/seat2.xml</path>
+<offsets>
+<x-m> -4.54697 </x-m>
+<y-m> 0.56132 </y-m>
+<z-m> -1.32578 </z-m>
+</offsets>
+</model>
+
+<model>
+<path>Aircraft/ec145/Models/Divers/Seats/seat2.xml</path>
+<offsets>
+<x-m> -4.54697 </x-m>
+<y-m> -0.56132</y-m>
+<z-m> -1.32578 </z-m>
+</offsets>
+</model>
+
+<model>
+<path>Aircraft/ec145/Models/Divers/Seats/seat2.xml</path>
+<offsets>
+<x-m> -4.54697 </x-m>
+<y-m> -0.0 </y-m>
+<z-m> -1.32578 </z-m>
+</offsets>
+</model>
+
+
+<!--  front row -->
+<model>
+<path>Aircraft/ec145/Models/Divers/Seats/seat2.xml</path>
+<offsets>
+<x-m> -6.24697 </x-m>
+<y-m>  0.5613 </y-m>
+<z-m> -1.32578 </z-m>
+<heading-deg>180</heading-deg>
+</offsets>
+</model>
+
+
+<model>
+<path>Aircraft/ec145/Models/Divers/Seats/seat2.xml</path>
+<offsets>
+<x-m> -6.24697 </x-m>
+<y-m>  0 </y-m>
+<z-m> -1.32578 </z-m>
+<heading-deg>180</heading-deg>
+</offsets>
+</model>
+
+<model>
+<path>Aircraft/ec145/Models/Divers/Seats/seat2.xml</path>
+<offsets>
+<x-m> -6.24697 </x-m>
+<y-m> -0.5613 </y-m>
+<z-m> -1.32578 </z-m>
+<heading-deg>180</heading-deg>
+</offsets>
+</model>
+
+
+</PropertyList>

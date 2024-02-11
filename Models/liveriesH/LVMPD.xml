@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">N-145DV</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">Las Vegas Police Dept</name>
+			<texture>liveriesH/LVMPD/LVMPD.png</texture>
+			<texture-tail>liveriesH/LVMPD/LVMPDHt.png</texture-tail>
+			<rotor>liveriesH/LVMPD/black.png</rotor>
+			<texture-skids>liveriesH/blackskids.png</texture-skids>
+			<texture-radar>liveriesH/LVMPD/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/LVMPD/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.2</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

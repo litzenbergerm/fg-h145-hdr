@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	
+	
+<animation>
+        <type>range</type>
+        <min-m>0</min-m>
+        <max-m>500</max-m>
+    </animation>
+
+<model>
+		<name>Pylons</name>
+		<path>Aircraft/ec145/Models/payload/pylons.xml</path>
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+	</model>	
+
+
+
+
+
+
+  <model>
+		<name>Passenger</name>
+		<path>Aircraft/ec145/Models/payload/passenger.xml</path>
+		<offsets>
+			<x-m>5</x-m>
+            <y-m>  0.00000 </y-m>
+            <z-m>0.8 </z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+  <animation>
+    <type>select</type>
+    <object-name>Passenger</object-name>      
+    <condition>
+    
+        <equals>
+          <property>sim/multiplay/generic/string[1]</property>
+          <value>Passenger</value>
+        </equals>
+       
+    </condition>
+
+	  </animation>	
+	  
+
+	  
+  
+    <model>
+		<name>Passenger-offshore</name>
+		<path>Aircraft/ec145/Models/payload/passenger-offshore.xml</path>
+		<offsets>
+			<x-m>5</x-m>
+            <y-m>  0.00000 </y-m>
+            <z-m>0.8 </z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+  <animation>
+    <type>select</type>
+    <object-name>Passenger-offshore</object-name>      
+    <condition>
+     
+        <equals>
+          <property>sim/multiplay/generic/string[1]</property>
+          <value>Passenger-offshore</value>
+        </equals>
+     	 
+    </condition>
+	
+	
+  </animation>	
+
+
+  <model>
+		<name>SAR</name>
+		<path>Aircraft/ec145/Models/payload/sar.xml</path>
+		<offsets>
+			<x-m>5</x-m>
+            <y-m>  0.00000 </y-m>
+            <z-m>0.8 </z-m>
+			<pitch-deg>0</pitch-deg>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+  <animation>
+    <type>select</type>
+    <object-name>SAR</object-name>      
+    <condition>
+     
+        <equals>
+          <property>sim/multiplay/generic/string[1]</property>
+          <value>SAR</value>
+        </equals>
+       
+    </condition>
+  </animation>
+
+ <model>
+		<name>Law Enforcement</name>
+		<path>Aircraft/ec145/Models/payload/law.xml</path>
+		<offsets>
+			<x-m>5</x-m>
+            <y-m>  0.00000 </y-m>
+            <z-m>0.8 </z-m>
+			<pitch-deg>0</pitch-deg>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+  <animation>
+    <type>select</type>
+    <object-name>Law Enforcement</object-name>      
+    <condition>
+     
+        <equals>
+          <property>sim/multiplay/generic/string[1]</property>
+          <value>Law Enforcement</value>
+        </equals>
+       
+    </condition>
+  </animation>
+
+
+  <model>
+		<name>Medivac</name>
+		<path>Aircraft/ec145/Models/payload/medivac.xml</path>
+		<offsets>
+			<x-m>5</x-m>
+            <y-m>  0.00000 </y-m>
+            <z-m>0.8 </z-m>
+			<pitch-deg>0</pitch-deg>
+			<heading-deg>0</heading-deg>
+		</offsets>
+	</model>
+  <animation>
+    <type>select</type>
+    <object-name>Medivac</object-name>      
+    <condition>
+     
+        <equals>
+          <property>sim/multiplay/generic/string[1]</property>
+          <value>Medivac</value>
+        </equals>
+       
+    </condition>
+  </animation>
+
+
+  <animation>
+  <type>select</type>
+  <object-name>pylon.C</object-name>  
+  <condition>
+  <or>
+   <equals>
+    <property>sim/multiplay/generic/string[1]</property>
+    <value>Law Enforcement</value>
+   </equals>
+   <equals>
+    <property>sim/multiplay/generic/string[1]</property>
+    <value>Medivac</value>
+   </equals>
+   <equals>
+    <property>sim/multiplay/generic/string[1]</property>
+    <value>SAR</value>
+   </equals>
+   <equals>
+    <property>sim/multiplay/generic/string[1]</property>
+    <value>Passenger</value>
+   </equals>
+   
+   <equals>
+    <property>sim/multiplay/generic/string[1]</property>
+    <value>Passenger-offshore</value>
+   </equals>
+  
+   
+   
+  </or>
+  </condition>
+ </animation>
+
+</PropertyList>

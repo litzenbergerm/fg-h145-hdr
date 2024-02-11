@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+<model>
+<name>pilot1</name>
+<path>Aircraft/ec145/Models/People/helipilot5/helipilot5.xml</path>
+<offsets>
+<x-m> -7. </x-m>
+<y-m>  0.4 </y-m>
+<z-m> -1.0 </z-m>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>0.95</x-offset>
+    <y-offset>0.95</y-offset>
+    <z-offset>0.95</z-offset>
+   </animation>
+  </overlay>
+</model>
+
+<model>
+<name>pilot2</name>
+<path>Aircraft/ec145/Models/People/helipilot5/helipilot5.xml</path>
+<offsets>
+<x-m> -7. </x-m>
+<y-m> -0.4 </y-m>
+<z-m> -1.0 </z-m>
+</offsets>
+<overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>0.95</x-offset>
+    <y-offset>0.95</y-offset>
+    <z-offset>0.95</z-offset>
+   </animation>
+  </overlay>
+</model>
+<!-- Crew seats -->
+
+
+
+<!-- FLIR -->
+
+<model>
+<path>Aircraft/ec145/Models/payload/flir/flirM.xml</path>
+<offsets>
+<x-m>-5</x-m>
+<y-m>0</y-m>
+<z-m>-0.81</z-m>
+</offsets>
+</model>
+
+<!-- Radome -->
+
+<model>
+<path>Aircraft/ec145/Models/payload/radome/radome.xml</path>
+<offsets>
+<x-m>-5</x-m>
+<y-m>0</y-m>
+<z-m>-0.8</z-m>
+</offsets>
+</model>
+
+<!-- weapon mounts -->
+
+<model>
+<path>Aircraft/ec145/Models/payload/weaponmounts/mounts.xml</path>
+<offsets>
+<x-m>-5</x-m>
+<y-m>-0.01</y-m>
+<z-m>-0.8</z-m>
+</offsets>
+</model>
+
+<!-- right gun -->
+
+<model>
+<path>Aircraft/ec145/Models/payload/gunpod/gunpod.xml</path>
+<offsets>
+<x-m>-5</x-m>
+<y-m>-0.01</y-m>
+<z-m>-0.8</z-m>
+</offsets>
+</model>
+
+<!-- left gun -->
+
+<model>
+<path>Aircraft/ec145/Models/payload/gunpod/gunpod.xml</path>
+<offsets>
+<x-m>-5</x-m>
+<y-m>-3.56</y-m>
+<z-m>-0.8</z-m>
+</offsets>
+</model>
+
+
+
+</PropertyList>

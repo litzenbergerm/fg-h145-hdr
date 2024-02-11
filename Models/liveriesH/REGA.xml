@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">HB-ZQH</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">REGA - Swiss Air Ambulance</name>
+			<texture>liveriesH/REGA/REGA.png</texture>
+			<texture-tail>liveriesH/REGA/REGAHt.png</texture-tail>
+			<rotor>liveriesH/REGA/black.png</rotor>
+			<texture-skids>liveriesH/blackskids.png</texture-skids>
+			<texture-radar>liveriesH/REGA/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/REGA/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.2</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

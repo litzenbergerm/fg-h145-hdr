@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">G-XXXX</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">Westpac Rescue</name>
+			<texture>liveriesH/Westpac/Westpac.png</texture>
+			<texture-tail>liveriesH/Westpac/WestpacHt.png</texture-tail>
+			<rotor>liveriesH/Westpac/black.png</rotor>
+			<texture-skids>liveriesH/Westpac/Westpacskids.png</texture-skids>
+			<texture-radar>liveriesH/Westpac/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/Westpac/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.2</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

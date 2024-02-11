@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+
+<path>Aircraft/ec145/Models/payload/weaponmounts/weaponmounts.ac</path>
+
+
+<effect>
+    <inherits-from>Aircraft/ec145/Models/Effects/reflect-uber</inherits-from> 
+      <object-name>mounts</object-name>
+   
+  </effect>	
+
+
+</PropertyList>

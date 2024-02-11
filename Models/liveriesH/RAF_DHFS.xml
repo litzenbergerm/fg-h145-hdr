@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">ZM500</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">RAF Defence Helicopter Flying School</name>
+			<texture>liveriesH/RAF_DHFS/RAF_DHFS.png</texture>
+			<texture-tail>liveriesH/RAF_DHFS/RAF_DHFSHt.png</texture-tail>
+			<rotor>liveriesH/RAF_DHFS/black.png</rotor>
+			<texture-skids>liveriesH/blackskids.png</texture-skids>
+			<texture-radar>liveriesH/RAF_DHFS/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/RAF_DHFS/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.3</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

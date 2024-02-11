@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">EC-MOR</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">Madrid Medical Helicopter Service</name>
+			<texture>liveriesH/MMES/MMES.png</texture>
+			<texture-tail>liveriesH/MMES/MMESHt.png</texture-tail>
+			<rotor>liveriesH/MMES/black.png</rotor>
+			<texture-skids>liveriesH/blackskids.png</texture-skids>
+			<texture-radar>liveriesH/MMES/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/MMES/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.2</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

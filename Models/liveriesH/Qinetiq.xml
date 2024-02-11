@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">G-RGNS</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">Qinetiq</name>
+			<texture>liveriesH/Qinetiq/Qinetiq.png</texture>
+			<texture-tail>liveriesH/Qinetiq/QinetiqHt.png</texture-tail>
+			<rotor>liveriesH/Qinetiq/black.png</rotor>
+			<texture-skids>liveriesH/blackskids.png</texture-skids>
+			<texture-radar>liveriesH/Qinetiq/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/Qinetiq/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.2</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

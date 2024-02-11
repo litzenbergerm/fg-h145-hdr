@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">D-HNWR</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">North Rhine-Westphalia Police</name>
+			<texture>liveriesH/Polizei/Polizei.png</texture>
+			<texture-tail>liveriesH/Polizei/PolizeiHt.png</texture-tail>
+			<rotor>liveriesH/Polizei/black.png</rotor>
+			<texture-skids>liveriesH/blackskids.png</texture-skids>
+			<texture-radar>liveriesH/Polizei/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/Polizei/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.2</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

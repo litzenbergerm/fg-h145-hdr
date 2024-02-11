@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+	<model>
+		<livery>
+			<name type="string">Gendarmerie</name>
+			<texture>liveries/EC-145 Gendarmerie_tex1.png</texture>
+			<rotor>liveries/black.png</rotor>
+			<texture-skids>liveries/blackskids.png</texture-skids>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.24</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

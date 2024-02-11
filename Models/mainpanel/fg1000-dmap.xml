@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <path>fg1000-dmap.ac</path>
+
+ <!-- FG1000 Screen4 for the Helionix DMAP. 
+  
+   adjust Canvas texture position
+   to fit on screen object, hide if DMAP not selected 
+ -->
+ <animation> 
+    <type>material</type> 
+    <object-name>Screen4</object-name>
+    <transparency>
+    <offset>1.0</offset>
+    </transparency>      
+ </animation>
+
+ <animation>
+  <type>texmultiple</type>
+  <object-name>Screen4</object-name>
+  <transform>
+    <subtype>textranslate</subtype>
+    <bias>0.3</bias>
+    <axis>
+    <x>0.6</x>
+    <y>-0.2</y>
+    </axis>
+  </transform>    
+  <transform>
+    <subtype>textrapezoid</subtype>
+    <side>bottom</side>
+    <bias>-0.08</bias>
+  </transform>    
+  <transform>
+    <subtype>textrapezoid</subtype>
+    <side>top</side>
+    <bias>-0.08</bias>
+  </transform>    
+ </animation>    
+ 
+ <animation>
+  <type>select</type>
+  <object-name>Screen4</object-name>
+  <condition>
+    <equals>
+        <property>/instrumentation/mfd[1]/mode</property>
+        <value type="string">dmap</value>
+    </equals>
+  </condition>     
+ </animation>
+
+  <animation>
+    <type>knob</type>
+    <object-name>mfd1.knob</object-name>
+    <action>
+      <button>3</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device>4</device>
+        <notification>RANGE</notification>
+        <offset>-1</offset>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/mfd[1]/dmap-zoom-level</property>
+        <offset>-1</offset>
+        <min>0</min>
+        <max>30</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    
+    <action>
+      <button>4</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device>4</device>
+        <notification>RANGE</notification>
+        <offset>1</offset>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/mfd[1]/dmap-zoom-level</property>
+        <offset>1</offset>
+        <min>0</min>
+        <max>30</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>zoom</tooltip-id>
+        <label>DMAP zoom (use mouse wheel)</label>
+      </binding>
+    </hovered>
+  </animation>
+ 
+</PropertyList>

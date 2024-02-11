@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+	<model>
+		<livery>
+			<name type="string">Llanbedr Air Executive</name>
+			<texture>liveries/LAE.png</texture>
+			<rotor>liveries/white.png</rotor>
+			<texture-skids>liveries/whiteskids.png</texture-skids>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.22</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

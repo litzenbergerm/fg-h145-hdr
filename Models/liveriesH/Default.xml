@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">G-OFYS</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">Default FGUK 10th year</name>
+			<texture>liveriesH/fguk10/fguk10.png</texture>
+			<texture-tail>liveriesH/fguk10/fguk10Ht.png</texture-tail>
+			<rotor>liveriesH/fguk10/black.png</rotor>
+			<texture-skids>liveriesH/fguk10/fguk10skids.png</texture-skids>
+			<texture-radar>liveriesH/fguk10/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/fguk10/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.2</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

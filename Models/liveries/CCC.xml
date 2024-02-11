@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">G-CHIB</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">Cassie’s Celtic Capers</name>
+			<texture>liveries/CCC.png</texture>
+			<rotor>liveries/black.png</rotor>
+			<texture-skids>liveries/blackskids.png</texture-skids>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.21</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

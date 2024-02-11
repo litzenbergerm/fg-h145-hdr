@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">D-HECE</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">Medicopter 117 (Jedes Leben zahlt)</name>
+			<texture>liveries/medicopter117.png</texture>
+			<rotor>liveries/orange.png</rotor>
+			<texture-skids>liveries/blackskids.png</texture-skids>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.26</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

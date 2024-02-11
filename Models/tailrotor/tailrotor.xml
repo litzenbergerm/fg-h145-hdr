@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<path>tailrotor.ac</path>
+
+	<offsets>
+		<z-m>0.0</z-m>
+		<y-m>0</y-m>
+		<x-m>0</x-m>
+		<pitch-deg>0</pitch-deg>
+	</offsets>
+	
+		 <!--  REMBRANDT support for transparent objects-->
+  <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <condition>
+      <property>sim/rendering/rembrandt/enabled</property>
+    </condition>
+        <object-name>rotor_disc_T</object-name>
+       
+		<object-name>tailrotor_blade1</object-name>
+		<object-name>tailrotor_blade2</object-name>
+		
+  </effect> 
+	
+	
+	
+
+<animation>
+		<type>rotate</type>
+		<name>tail_rotor_tilt</name>
+		<object-name>tailrotorgearbox</object-name>
+		<object-name>tailsleevefix</object-name>
+		<object-name>tailsleeverot</object-name>
+		<object-name>tailrotorshaft</object-name>
+		<object-name>tailpitchlink_1</object-name>
+		<object-name>tailpitchlink_2</object-name>
+		<object-name>tailrotor_blade1</object-name>
+		<object-name>tailrotor_blade2</object-name>
+		<object-name>fake_axis</object-name>
+		<offset-deg>4.6</offset-deg>
+		<center>
+			<x-m>6.482</x-m>
+			<y-m>0</y-m>
+			<z-m>1.987</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>rotor_disc_T</object-name>
+		<offset-deg>4.6</offset-deg>
+		<center>
+			<x-m>6.482</x-m>
+			<y-m>0</y-m>
+			<z-m>1.987</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>rotor_disc_T</object-name>
+		<transparency>
+			<alpha-prop>rotors/tail/rpm</alpha-prop>
+			<factor>0.0015</factor>
+			<offset>-0.2</offset>
+			<max>1.0</max>
+		</transparency>
+		<threshold>0.001</threshold>
+	</animation>
+
+	<animation>
+		<type>spin</type>
+		<object-name>rotor_disc_T</object-name>
+		<property>rotors/tail/rpm</property>
+		<factor>0.05</factor>
+		<center>
+			<x-m>6.482</x-m>
+			<y-m>-0.232</y-m>
+			<z-m>1.987</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>noshadow</type>
+		<object-name>rotor_disc_T</object-name>
+	</animation>
+
+	<!-- tail rotor blades -->
+
+	<animation>
+		<type>material</type>
+		<object-name>tailrotor_blade1</object-name>
+		<object-name>tailrotor_blade2</object-name>
+		<transparency>
+			<alpha-prop>rotors/tail/rpm</alpha-prop>
+			<factor>-0.0015</factor>
+			<offset>1</offset>
+		</transparency>
+	</animation>
+
+<animation>
+		<type>spin</type>
+		<object-name>tailsleeverot</object-name>
+		<object-name>tailrotorshaft</object-name>
+		<object-name>tailpitchlink_1</object-name>
+		<object-name>tailpitchlink_2</object-name>
+		<object-name>tailrotor_blade1</object-name>
+		<object-name>tailrotor_blade2</object-name>
+		<object-name>fake_axis</object-name>
+		<property>rotors/tail/rpm</property>
+		<factor>1.0</factor>
+		<center>
+			<x-m>6.482</x-m>
+			<y-m>-0.232</y-m>
+			<z-m>1.987</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>tailrotor_blade1</object-name>
+		<property>rotors/tail/blade[0]/incidence-deg</property>
+		<center>
+			<x-m>6.482</x-m>
+			<y-m>-0.410</y-m>
+			<z-m>1.987</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>tailrotor_blade2</object-name>
+		<property>rotors/tail/blade[1]/incidence-deg</property>
+		<center>
+			<x-m>6.482</x-m>
+			<y-m>-0.410</y-m>
+			<z-m>1.987</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	
+</PropertyList>
+
+
+

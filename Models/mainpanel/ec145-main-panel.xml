@@ -1,0 +1,1110 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <path>ec145-main-panel.gltf</path>
+
+   <!-- lights for the MFDs as emission dont work in HDR-->
+
+  <model>
+      <path>Aircraft/ec145/Models/Lights/ScreenLight.xml</path>
+      <offsets>
+          <x-m>-2.63</x-m>
+          <y-m> 0.035</y-m>
+          <z-m> 0.36</z-m>
+          <pitch-deg>0</pitch-deg>
+      </offsets>
+  </model>
+
+  <model>
+      <path>Aircraft/ec145/Models/Lights/ScreenLight.xml</path>
+      <offsets>
+          <x-m>-2.63</x-m>
+          <y-m> 0.25</y-m>
+          <z-m> 0.36</z-m>
+          <pitch-deg>0</pitch-deg>
+      </offsets>
+  </model>
+
+  <model>
+      <path>Aircraft/ec145/Models/Lights/ScreenLight.xml</path>
+      <offsets>
+          <x-m>-2.63</x-m>
+          <y-m>-0.29</y-m>
+          <z-m> 0.36</z-m>
+          <pitch-deg>0</pitch-deg>
+      </offsets>
+  </model>
+  
+  <!-- 1 mm offset to mitigate z-fighting with screen background --> 
+  <animation>
+    <type>translate</type>
+    <object-name>xmfd0screen</object-name>
+    <object-name>xmfd1screen</object-name>
+    <object-name>xmfd2screen</object-name>
+    <object-name>xmfd3screen</object-name>
+    <offset-m>0.001</offset-m>
+    <axis>
+     <x>1</x>
+     <y>0</y>
+     <z>0</z>
+    </axis>
+  </animation>
+
+  <!-- for testing of screen lights--> 
+  <animation>
+    <type>select</type>
+    <object-name>xmfd0glass</object-name>
+    <object-name>xmfd1glass</object-name>
+    <object-name>xmfd2glass</object-name>
+    <object-name>xmfd3glass</object-name>
+    <object-name>xmfd0bg</object-name>
+    <object-name>xmfd1bg</object-name>
+    <object-name>xmfd2bg</object-name>
+    <object-name>xmfd3bg</object-name>
+    <condition>
+     <equals>
+        <property>sim/current-view/internal</property>
+        <value>true</value>
+     </equals>
+    </condition>
+  </animation>
+  
+<!-- Engine Control Panel animation -->
+
+  <animation>
+    <type>pick</type>
+    <object-name>train</object-name>
+    <visible>true</visible>
+    
+    <action>
+      <button>0</button>
+      <binding>
+        <command>nasal</command>
+        <script>bk117.engswitch.train();</script>
+      </binding>          
+    </action>      
+  </animation>
+
+  <animation>      
+    <type>material</type>
+    <object-name>train</object-name>
+    <visible>true</visible>
+    <condition>
+        <property>/controls/switches/ecp/trainswitch</property>
+    </condition>       
+    <emission>
+        <red>1</red>
+        <green>1</green>
+        <blue>0</blue>       
+    </emission>  
+  </animation>
+  
+  <animation>
+    <type>pick</type>
+    <object-name>engvent1</object-name>
+    <visible>true</visible>
+    
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <interval-sec>0.5</interval-sec>
+      <binding>
+        <command>nasal</command>
+        <script>bk117.engswitch.vent(0);</script>
+    </binding>          
+  </action>
+  </animation>
+  
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>main1</object-name>
+    <property>/controls/switches/ecp/pos[0]</property>
+    <factor>-20</factor>
+    <offset-deg>20</offset-deg>
+<!--    <axis>
+      <object-name>axis1</object-name>    
+    </axis>-->
+    <center>
+      <x-m>-2.70527</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.16821</z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>main1</object-name>
+    <visible>true</visible>
+    
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <interval-sec>0.5</interval-sec>
+      <binding>
+        <command>nasal</command>
+        <script>bk117.engswitch.up(0);</script>
+    </binding>          
+  </action>
+    
+  <action>
+      <button>1</button>
+      <repeatable>false</repeatable>
+      <interval-sec>0.5</interval-sec>
+      <binding>
+        <command>nasal</command>
+        <script>bk117.engswitch.down(0);</script>
+    </binding>          
+  </action>
+  
+  <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <label>Eng 1 Power: %3d%%</label>
+        <tooltip-id>eng1</tooltip-id>
+        <mapping>percent</mapping>
+        <property>/controls/engines/engine/power</property>
+      </binding>
+    </hovered>
+  </animation>  
+
+
+  
+  <animation>
+    <type>rotate</type>
+<!--      <condition>
+      <equals>
+        <property>/controls/engines/engine/power</property>
+        <value>1</value>
+      </equals>
+    </condition>-->        
+    <object-name>save1</object-name>
+    <property>/controls/switches/ecp/pos[0]</property>
+    <interpolation>
+    <entry><ind> 0.0</ind><dep> 0.0</dep> </entry>
+    <entry><ind> 1.0</ind><dep> 0.0</dep> </entry>
+    <entry><ind> 2.0</ind><dep> 90.0</dep> </entry>
+    </interpolation>
+    <center>
+      <x-m>-2.688</x-m>
+      <y-m>-0.05523</y-m>
+      <z-m>0.17686</z-m>
+    </center>
+    <axis>
+      <x> -0.2 </x>
+      <y> 0 </y>
+      <z> 1 </z>
+    </axis>
+  </animation>
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>main2</object-name>
+    <property>/controls/switches/ecp/pos[1]</property>   
+    <factor>-20</factor>
+    <offset-deg>20</offset-deg>
+    <center>
+      <x-m>-2.70527</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.16821</z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>main2</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <interval-sec>0.5</interval-sec>
+      <binding>
+        <command>nasal</command>
+        <script>bk117.engswitch.up(1);</script>
+    </binding>          
+  </action>
+  
+  <action>
+      <button>1</button>
+      <repeatable>false</repeatable>
+      <interval-sec>0.5</interval-sec>
+      <binding>
+        <command>nasal</command>
+        <script>bk117.engswitch.down(1);</script>
+    </binding>          
+  </action>
+  
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <label>Eng 2 Power: %3d%%</label>
+        <tooltip-id>eng1</tooltip-id>
+        <mapping>percent</mapping>
+        <property>/controls/engines/engine[1]/power</property>
+      </binding>
+    </hovered>
+  </animation>  
+
+  <animation>
+    <type>pick</type>
+    <object-name>engvent2</object-name>
+    <visible>true</visible>
+    
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <interval-sec>0.5</interval-sec>
+      <binding>
+        <command>nasal</command>
+        <script>bk117.engswitch.vent(1);</script>
+    </binding>          
+  </action>
+  </animation>
+  
+  <animation>
+    <type>rotate</type>
+<!--      <condition>
+      <equals>
+        <property>/controls/engines/engine/power</property>
+        <value>1</value>
+      </equals>
+    </condition>-->        
+    <object-name>save2</object-name>
+    <property>/controls/switches/ecp/pos[1]</property>
+    <interpolation>
+    <entry><ind> 0.0</ind><dep> 0.0</dep> </entry>
+    <entry><ind> 1.0</ind><dep> 0.0</dep> </entry>
+    <entry><ind> 2.0</ind><dep> 90.0</dep> </entry>
+    </interpolation>
+    <center>
+      <x-m>-2.688</x-m>
+      <y-m>0.10422</y-m>
+      <z-m>0.17686</z-m>
+    </center>
+    <axis>
+      <x> -0.2 </x>
+      <y> 0 </y>
+      <z> 1 </z>
+    </axis>
+  </animation>
+
+<!--  <animation>
+      <type>material</type>
+      <object-name>Plane</object-name>     
+      <emission>
+          <red>0.028</red>
+          <green>0.014</green>
+          <blue>0.007</blue>
+          <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+      </emission>
+  </animation>-->
+
+  <!--             Altimeter              -->  
+
+  <animation>
+   <type>knob</type>
+   <object-name>StbyAIknob</object-name>
+   <visible>true</visible>
+   <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/altimeter/setting-inhg</property>
+       <factor>0.01</factor>
+       <min>26.0</min>
+       <max>33.0</max>
+       <wrap>false</wrap>
+     </binding>
+   </action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>alt-setting</tooltip-id>
+      <label>Altimeter In Hg: %5.2f</label>
+      <property>instrumentation/altimeter/setting-inhg</property>
+   </binding>
+  </hovered>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>StbyAIknob</object-name>
+    <property>instrumentation/altimeter/setting-inhg</property>
+    <factor>200</factor>
+    <center>
+      <x-m> -2.72641 </x-m>
+      <y-m> -0.08236 </y-m>
+      <z-m>  0.34684 </z-m>
+    </center>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0.249328003 </z>
+    </axis>
+  </animation>  
+  
+  
+  <!-- MFD0 ANIMATIONS
+  
+       all interactions are done via an overlaid transparent 'button' objects with action-elements -->
+
+  <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.1</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/instrumentation/mfd[0]/pwr-sw-pos</property>
+                </binding>
+        </action>
+  </animation>
+  
+  <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.2</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(2);</script>
+                </binding>
+        </action>
+ </animation>
+  
+  <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.3</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(3);</script>
+                </binding>
+        </action>
+ </animation>
+
+   <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.4</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(4);</script>
+                </binding>
+        </action>
+ </animation>
+  
+   <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.10</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(10);</script>
+                </binding>
+        </action>
+ </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.11</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(11);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.12</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(12);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.19</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(19);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.20</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(20);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.24</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(24);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.25</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(25);</script>
+                </binding>
+        </action>
+ </animation>
+
+
+
+
+
+
+ 
+ <!-- MFD1 ANIMATIONS -->
+
+   <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.1</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/instrumentation/mfd[1]/pwr-sw-pos</property>
+                </binding>
+        </action>
+  </animation>
+  
+  <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.2</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(2);</script>
+                </binding>
+        </action>
+ </animation>
+  
+  <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.3</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(3);</script>
+                </binding>
+        </action>
+ </animation>
+
+   <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.4</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(4);</script>
+                </binding>
+        </action>
+ </animation>
+  
+   <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.5</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(5);</script>
+                </binding>
+        </action>
+ </animation>
+
+   <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.6</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(6);</script>
+                </binding>
+        </action>
+ </animation>
+
+   <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.7</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(7);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.10</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(10);</script>
+                </binding>
+        </action>
+ </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.11</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(11);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.12</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(12);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.19</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(19);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.20</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(20);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.22</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(22);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.24</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(24);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd1.button.25</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[1].clickon(25);</script>
+                </binding>
+        </action>
+ </animation>
+
+
+
+
+
+
+
+ 
+ <!-- MFD2 ANIMATIONS -->
+
+   <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.1</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                    <command>property-toggle</command>
+                    <property>/instrumentation/mfd[2]/pwr-sw-pos</property>
+                </binding>
+        </action>
+  </animation>
+  
+  <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.2</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(2);</script>
+                </binding>
+        </action>
+ </animation>
+  
+  <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.3</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(3);</script>
+                </binding>
+        </action>
+ </animation>
+
+   <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.4</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(4);</script>
+                </binding>
+        </action>
+ </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.5</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(5);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+   <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.6</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(6);</script>
+                </binding>
+        </action>
+ </animation>
+
+   <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.7</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(7);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+   <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.10</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(10);</script>
+                </binding>
+        </action>
+ </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.11</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(11);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.12</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(12);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.19</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(19);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.20</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(20);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.24</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(24);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd2.button.25</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[2].clickon(25);</script>
+                </binding>
+        </action>
+ </animation>
+
+  <animation>
+        <type>pick</type>
+        <object-name>StbyAIbtn.std</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                  <command>property-assign</command>
+                  <property>instrumentation/altimeter/setting-inhg</property>
+                  <value>29.92</value>                  
+                </binding>
+        </action>
+ </animation>
+
+
+
+
+
+
+
+
+ 
+ <text>
+      <name>callsign RHS</name>
+      <offsets>
+          <x-m>-2.774</x-m>
+          <y-m>0.25599</y-m>
+          <z-m>0.481</z-m>
+          <pitch-deg>-15</pitch-deg>
+      </offsets>
+      <alignment>center-center</alignment>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">text-value</type>
+      <property>sim/aircraft-registration</property>
+      <font>helvetica_bold.txf</font>
+      <character-size>0.008</character-size>
+      <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+      <font-resolution>
+          <width type="int">64</width>
+          <height type="int">64</height>
+      </font-resolution>
+  </text> 
+
+  <text>
+      <name>callsign LHS</name>
+      <offsets>
+          <x-m>-2.774</x-m>
+          <y-m>-0.27344</y-m>
+          <z-m>0.481</z-m>
+          <pitch-deg>-15</pitch-deg>
+      </offsets>
+      <alignment>center-center</alignment>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">text-value</type>
+      <property>sim/aircraft-registration</property>
+      <font>helvetica_bold.txf</font>
+      <character-size>0.008</character-size>
+      <character-aspect-ratio type="double">1.0</character-aspect-ratio>
+      <font-resolution>
+          <width type="int">64</width>
+          <height type="int">64</height>
+      </font-resolution>
+  </text> 
+  
+  <animation> 
+      <type>material</type> 
+      <object-name>callsign LHS</object-name>
+      <object-name>callsign RHS</object-name>
+      <emission>
+        <red>0.1</red>
+        <green>0.1</green>
+        <blue>0.0</blue>
+      </emission>    
+      <ambient>
+        <red>0.8</red>
+        <green>0.8</green>
+        <blue>0.8</blue>
+      </ambient>
+      <diffuse>
+        <red>0.8</red>
+        <green>0.8</green>
+        <blue>0.8</blue>
+      </diffuse>
+  </animation>
+ 
+  <animation>
+    <type>knob</type>
+    <object-name>mfd0.knob</object-name>
+    <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>instrumentation/mfd[0]/knob-pos</property>
+       <factor>1</factor>
+     </binding>
+     <binding>
+       <condition>
+          <equals>
+            <property>instrumentation/mfd[0]/nav-source</property>
+            <value type="string">NAV1</value>       
+          </equals>
+       </condition>  
+       <command>property-adjust</command>
+       <property>instrumentation/nav[0]/radials/selected-deg</property>
+       <factor>1</factor>
+       <min>0.0</min>
+       <max>360.0</max>
+       <wrap>true</wrap>
+     </binding>
+     <binding>
+       <condition>
+          <equals>
+            <property>instrumentation/mfd[0]/nav-source</property>
+            <value type="string">NAV2</value>       
+          </equals>
+       </condition>  
+       <command>property-adjust</command>
+       <property>instrumentation/nav[1]/radials/selected-deg</property>
+       <factor>1</factor>
+       <min>0.0</min>
+       <max>360.0</max>
+       <wrap>true</wrap>
+     </binding>
+    </action> 
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>zoom</tooltip-id>
+        <label>selected NAV CRS</label>
+      </binding>
+    </hovered>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>mfd0.knob</object-name>
+    <property>instrumentation/mfd[0]/knob-pos</property>
+    <factor>3</factor>
+    <center>
+      <x-m> -2.6883 </x-m>
+      <y-m> 0.33513 </y-m>
+      <z-m> 0.22662 </z-m>
+    </center>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0.249328003 </z>
+    </axis>
+  </animation>
+  
+  <animation>
+    <type>knob</type>
+    <object-name>mfd2.knob</object-name>    
+    <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>instrumentation/mfd[2]/knob-pos</property>
+       <factor>1</factor>
+     </binding>
+     <binding>
+       <condition>
+          <equals>
+            <property>instrumentation/mfd[2]/nav-source</property>
+            <value type="string">NAV1</value>       
+          </equals>
+       </condition>  
+       <command>property-adjust</command>
+       <property>instrumentation/nav[0]/radials/selected-deg</property>
+       <factor>1</factor>
+       <min>0.0</min>
+       <max>360.0</max>
+       <wrap>true</wrap>
+     </binding>
+     <binding>
+       <condition>
+          <equals>
+            <property>instrumentation/mfd[2]/nav-source</property>
+            <value type="string">NAV2</value>       
+          </equals>
+       </condition>  
+       <command>property-adjust</command>
+       <property>instrumentation/nav[1]/radials/selected-deg</property>
+       <factor>1</factor>
+       <min>0.0</min>
+       <max>360.0</max>
+       <wrap>true</wrap>
+     </binding>
+    </action>
+    <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <tooltip-id>zoom</tooltip-id>
+          <label>selected NAV CRS</label>
+        </binding>
+     </hovered>
+  </animation>
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>mfd2.knob</object-name>
+    <property>instrumentation/mfd[2]/knob-pos</property>
+    <factor>3</factor>
+    <center>
+      <x-m> -2.68435 </x-m>
+      <y-m> -0.19594 </y-m>
+      <z-m> 0.22762 </z-m>
+    </center>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0.249328003 </z>
+    </axis>
+  </animation>
+  
+</PropertyList>

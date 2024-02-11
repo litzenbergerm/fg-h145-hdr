@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+        <aircraft-registration type="string">7603</aircraft-registration>
+	<model>
+		<livery>
+			<name type="string">Luftwaffe / Bundeswehr Kommando Spezialkräfte</name>
+			<texture>liveriesH/LuftBKS/LuftBKS.png</texture>
+			<texture-tail>liveriesH/LuftBKS/LuftBKSHt.png</texture-tail>
+			<rotor>liveriesH/black.png</rotor>
+			<texture-skids>liveriesH/LuftBKS/LuftBKSskids.png</texture-skids>
+			<texture-radar>liveriesH/LuftBKS/Radome.png</texture-radar>
+			<texture-mounts>liveriesH/LuftBKS/WeaponsMounts.png</texture-mounts>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.45</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>
+	<model>
+		<livery>
+			<name type="string">FGUK 10th year</name>
+			<texture>liveries/fguk10.png</texture>
+			<rotor>liveries/black.png</rotor>
+			<texture-skids>liveries/fguk10skids.png</texture-skids>
+		</livery>
+		
+	</model>
+	<rendering>
+    <refl_correction type="string">-0.2</refl_correction>
+    </rendering>
+</sim>
+
+</PropertyList>
