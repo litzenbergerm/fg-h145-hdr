@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <animation>
+    <type>range</type>
+    <min-m>0</min-m>
+    <max-m>50</max-m>
+  </animation>
+ 
+  <!-- Main instrument panel -->       
+  
+  <model>
+     <name>mainpanel</name>
+     <path>Aircraft/ec145/Models/mainpanel/ec145-main-panel.xml</path>
+  </model>
+  
+  <model>
+      <path>Aircraft/ec145/Models/instruments/warn-D2/warn.xml</path>
+      <offsets>
+              <x-m>-2.778</x-m>
+              <y-m>-0.015</y-m>
+              <z-m>0.487</z-m>
+              <pitch-deg>-15</pitch-deg>
+      </offsets>
+  </model>
+  
+  <model>
+      <path>Aircraft/ec145/Models/instruments/compass/compass.xml</path>
+      <offsets>
+              <x-m>-2.76</x-m>
+              <y-m>-0.005</y-m>
+              <z-m>0.657</z-m>
+              <pitch-deg>0</pitch-deg>
+      </offsets>
+  </model>
+  
+  <!-- Centre console -->	
+
+<!--  <model>
+      <path>Aircraft/ec145/Models/instruments/panel/panel1.xml</path>
+      <offsets>
+              <x-m>-2.675</x-m>
+              <y-m>-0.095</y-m>
+              <z-m>0.113</z-m>
+              <pitch-deg>-61</pitch-deg>
+      </offsets>
+  </model>-->
+
+  <!-- the GTN750 was modelled according to dimensions found in spec sheets.
+       however, when integrated in the aircraft model it appears smaller than on
+       photographs, therefore its up-scaled.
+  -->
+        
+   <model>
+      <name>GTN7501</name>
+      <path>Aircraft/ec145/Models/instruments/GTN750/gtn750-2.xml</path>
+      <offsets>
+          <x-m>-2.60</x-m>
+          <y-m>-0.095</y-m>
+          <z-m>0.08</z-m>
+          <pitch-deg>-61</pitch-deg>
+      </offsets>
+      <overlay>
+        <animation n="200">
+          <type>scale</type>
+          <property>constants/zero</property>              
+          <x-offset>1.0</x-offset>
+          <y-offset>1.095</y-offset>
+          <z-offset>1.095</z-offset>
+        </animation>
+      </overlay>  
+  </model>
+
+  
+   <model>
+      <name>GTN7502</name>
+      <path>Aircraft/ec145/Models/instruments/GTN750/gtn750-1.xml</path>
+      <offsets>
+          <x-m>-2.60</x-m>
+          <y-m>0.082</y-m>
+          <z-m>0.08</z-m>
+          <pitch-deg>-61</pitch-deg>
+      </offsets>
+      <overlay>
+        <animation n="100">
+          <type>scale</type>
+          <property>constants/zero</property>              
+          <x-offset>1.0</x-offset>
+          <y-offset>1.095</y-offset>
+          <z-offset>1.095</z-offset>
+        </animation>
+      </overlay>  
+  </model>
+
+  <model>
+      <name>audiopanel1</name>
+      <path>Aircraft/ec145/Models/instruments/audiopanel/audiopanel.xml</path>
+      <offsets>
+          <x-m>-2.42</x-m>
+          <y-m>-0.093</y-m>
+          <z-m>-0.02</z-m>
+          <pitch-deg>-61</pitch-deg>
+      </offsets>
+  </model>
+
+  <model>
+      <name>audiopanel2</name>
+      <path>Aircraft/ec145/Models/instruments/audiopanel/audiopanel.xml</path>
+      <offsets>
+          <x-m>-2.42</x-m>
+          <y-m>0.082</y-m>
+          <z-m>-0.02</z-m>
+          <pitch-deg>-61</pitch-deg>
+      </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/ec145/Models/instruments/ccp/ccp.xml</path>
+    <offsets>
+        <x-m>-2.315</x-m>
+        <y-m>-0.094</y-m>
+        <z-m>-0.042</z-m>
+        <pitch-deg>-87</pitch-deg>
+        <roll-deg>0</roll-deg>
+    </offsets>
+  </model>
+ 
+  <model>
+      <path>Aircraft/ec145/Models/instruments/ap/ap-m.xml</path>
+      <offsets>
+          <x-m>-2.22</x-m>
+          <y-m>-0.093</y-m>
+          <z-m>-0.046</z-m>
+          <pitch-deg>-87</pitch-deg>
+      </offsets>
+  </model>	
+
+  <model>
+      <path>Aircraft/Instruments-3d/ADF-462/ctl62-adf.xml</path>
+      <offsets>
+        <x-m>-2.14</x-m>
+        <y-m>-0.135</y-m>
+        <z-m>-0.054</z-m>
+        <pitch-deg>-87</pitch-deg>
+        <roll-deg>0</roll-deg>           
+      </offsets>
+      <overlay>
+        <animation n="100">
+          <type>scale</type>
+          <property>constants/zero</property>              
+          <x-offset>1</x-offset>
+          <y-offset>1.4</y-offset>
+          <z-offset>1.4</z-offset>
+        </animation>
+        
+        <animation n="101"> 
+          <type>material</type> 
+          <object-name>CTL-62</object-name>
+          
+          <emission>
+            <red>0.02</red>
+            <green>0.02</green>
+            <blue>0.02</blue>
+            <factor-prop>/systems/electrical/outputs/floodlight</factor-prop> 
+          </emission>
+       </animation>        
+        
+      </overlay>
+  </model>
+ 
+ <model>
+  <path>Aircraft/Instruments-3d/TDR-94/ctl92-transponder.xml</path>
+   <offsets>
+      <x-m>-2.14</x-m>
+      <y-m>-0.05</y-m>
+      <z-m>-0.054</z-m>
+      <pitch-deg>-87</pitch-deg>
+      <roll-deg>0</roll-deg>
+  </offsets>
+  <overlay>
+    <animation n="100">
+      <type>scale</type>
+      <property>constants/zero</property>
+      <x-offset>1</x-offset>
+      <y-offset>1.4</y-offset>
+      <z-offset>1.4</z-offset>
+   </animation>
+
+    <animation n="101"> 
+      <type>material</type> 
+      <object-name>CTL-92</object-name>
+      
+      <emission>
+        <red>0.02</red>
+        <green>0.02</green>
+        <blue>0.02</blue>
+        <factor-prop>/systems/electrical/outputs/floodlight</factor-prop> 
+      </emission>
+    </animation>    
+       
+  </overlay>
+ </model>
+
+
+ 
+ <model>
+      <name>overhead</name>
+      <path>Aircraft/ec145/Models/instruments/overhead/overhead.xml</path>
+      <offsets>
+          <x-m>-3.32</x-m>
+          <y-m>0</y-m>
+          <z-m>0.155</z-m>
+          <pitch-deg>0</pitch-deg>
+      </offsets>
+ </model>
+  
+</PropertyList>
+
+
+
