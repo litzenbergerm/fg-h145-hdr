@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+    <path>wiper.ac</path>
+
+    <!--wiper-->
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>wiper1</object-name>
+        <object-name>wiperblade</object-name>
+        <property>sim/multiplay/generic/float[14]</property>
+        <offset-deg>-3</offset-deg>
+        <factor>1.0</factor>
+        <axis>
+            <object-name>axis1</object-name>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>wiper2</object-name>
+        <property>sim/multiplay/generic/float[14]</property>
+        <offset-deg>-3</offset-deg>
+        <factor>1.0</factor>
+        <axis>
+            <object-name>axis2</object-name>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>wiperblade</object-name>
+        <property>sim/multiplay/generic/float[14]</property>
+        <offset-deg>3</offset-deg>
+        <factor>-1</factor>
+        <axis>
+            <object-name>axis3</object-name>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>wiperblade</object-name>
+        <property>sim/model/wipertilt</property>
+        <offset-deg>0</offset-deg>
+        <factor>1.6</factor>
+        <axis>
+            <object-name>axis4</object-name>
+        </axis>
+    </animation>
+</PropertyList>

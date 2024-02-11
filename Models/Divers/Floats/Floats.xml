@@ -1,0 +1,145 @@
+<!--emergency float -->
+
+<PropertyList>
+<!-- Packed floats -->
+<model>
+  <path>Aircraft/ec145/Models/Divers/Floats/short-packed.xml</path>
+  <offsets>
+   <x-m> -1.6 </x-m>
+   <y-m> -1.22 </y-m>
+   <z-m> -1.165 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model>
+
+<model>
+  <path>Aircraft/ec145/Models/Divers/Floats/short-packed.xml</path>
+  <offsets>
+   <x-m> -1.6 </x-m>
+   <y-m> 1.22 </y-m>
+   <z-m> -1.165 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model>
+ 
+ 
+  <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/long-packed.xml</path>
+  <offsets>
+  <x-m> -0.3 </x-m>
+   <y-m> -1.22 </y-m>
+   <z-m> -1.165 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model>
+ 
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/long-packed.xml</path>
+  <offsets>
+  <x-m> -0.3 </x-m>
+   <y-m> 1.22 </y-m>
+   <z-m> -1.165 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model>
+ 
+ 
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/long-packed.xml</path>
+  <offsets>
+   <x-m> 1.45 </x-m>
+   <y-m> 1.215 </y-m>
+   <z-m> -1.12 </z-m>
+   <pitch-deg>-7.6</pitch-deg>
+  </offsets>
+ </model>
+ 
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/long-packed.xml</path>
+  <offsets>
+   <x-m> 1.45 </x-m>
+   <y-m> -1.215 </y-m>
+   <z-m> -1.12 </z-m>
+   <pitch-deg>-7.6</pitch-deg>
+  </offsets>
+ </model>
+ 
+
+<!-- unpacked floats -->
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/float_small.xml</path>
+  <offsets>
+   <x-m> -2 </x-m>
+   <y-m> -1.22 </y-m>
+   <z-m> -1.165 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model>
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/float_long.xml</path>
+  <offsets>
+  <x-m> -0.3 </x-m>
+   <y-m> 1.22 </y-m>
+   <z-m> -1.165 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model>
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/float_long.xml</path>
+  <offsets>
+   <x-m> 1.45 </x-m>
+   <y-m> 1.21 </y-m>
+   <z-m> -1.15 </z-m>
+   <pitch-deg>-7.6</pitch-deg>
+  </offsets>
+ </model>
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/float_small.xml</path>
+  <offsets>
+  <x-m> -2 </x-m>
+   <y-m> 1.22 </y-m>
+   <z-m> -1.165 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model>
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/float_long.xml</path>
+  <offsets>
+   <x-m> -0.3 </x-m>
+   <y-m> -1.225 </y-m>
+   <z-m> -1.165 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model>
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/float_long.xml</path>
+  <offsets>
+    <x-m> 1.45 </x-m>
+   <y-m> -1.21 </y-m>
+   <z-m> -1.15 </z-m>
+   <pitch-deg>-7.6</pitch-deg>
+  </offsets>
+ </model> 
+
+ <!-- Extended skids -->
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/longskid.xml</path>
+  <offsets>
+   <x-m> 1.54 </x-m>
+   <y-m> -1.21 </y-m>
+   <z-m> -1.11 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model> 
+
+ 
+ <model>
+  <path>Aircraft/ec145/Models/Divers/Floats/longskid.xml</path>
+  <offsets>
+   <x-m> 1.54 </x-m>
+   <y-m> 1.235 </y-m>
+   <z-m> -1.11 </z-m>
+   <pitch-deg>0</pitch-deg>
+  </offsets>
+ </model> 
+</PropertyList>
