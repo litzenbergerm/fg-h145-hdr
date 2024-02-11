@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <!-- nav lights -->
+  <!-- green and red navigation lights, usually mounted on the wingtips -->
+  <!-- note: default orientation is up -->
+  
+  <model>
+    <name>GreenLight</name>
+    <path>Aircraft/ec145/Models/Lights/GreenLight.xml</path>
+    <offsets>
+      <x-m>  5.2 </x-m>
+      <y-m> 1.39 </y-m>
+      <z-m> 0.75 </z-m>
+      <roll-deg>-90</roll-deg>
+      <pitch-deg>-5</pitch-deg> <!-- due to roll, this tunes heading - I want it to point 5 deg more forward -->
+    </offsets>
+  </model>
+  
+  <model>
+    <name>RedLight</name>
+    <path>Aircraft/ec145/Models/Lights/RedLight.xml</path>
+    <offsets>
+      <x-m>  5.2 </x-m>
+      <y-m> -1.39 </y-m>
+      <z-m> 0.75 </z-m>
+      <roll-deg>90</roll-deg>
+      <pitch-deg>-5</pitch-deg> <!-- due to roll, this tunes heading - I want it to point 5 deg more forward -->
+    </offsets>
+  </model>
+
+  <!-- beacon -->
+  <!-- bright red flashing light -->
+  <!-- note: default orientation is up -->
+  
+  <model>
+    <name>Beacon1</name>
+    <path>Aircraft/ec145/Models/Lights/Beacon.xml</path>
+    <offsets>
+      <x-m> 7.02 </x-m>
+      <y-m> -0.05 </y-m>
+      <z-m> 2.78 </z-m>
+      <pitch-deg>6</pitch-deg>
+    </offsets>
+  </model>
+  
+ <!--the actual ldg light mounted on skid bar --> 
+ <model>
+    <name>LandingLight2</name>
+    <path>Aircraft/ec145/Models/Lights/LandingLight.xml</path>
+    <offsets>
+      <x-m>-1.42</x-m>
+      <y-m>0.26</y-m>
+      <z-m>-0.85</z-m>
+      <pitch-deg>-5.7</pitch-deg>
+    </offsets>
+  </model>
+
+ <!--the search light mounted in housing under pilot --> 
+ <model>
+    <name>LandingLight1</name>
+    <path>Aircraft/ec145/Models/Lights/LandingLight.xml</path>
+    <offsets>
+      <x-m>-2.45</x-m>
+      <y-m>0.26</y-m>
+      <z-m>-0.85</z-m>
+      <pitch-deg>-5.7</pitch-deg>
+    </offsets>
+  </model>
+  
+  <!-- strobes -->
+  <!-- a bright briefly flashing white light -->
+  <!-- note: default orientation is up -->
+  
+  <!-- in the H145 the strobe is on the fuselage, next to the rear cabin window-->
+  
+  <model>
+    <name>Strobe1</name>
+    <path>Aircraft/ec145/Models/Lights/Strobe.xml</path>
+    <offsets>
+      <x-m> 0.98 </x-m>
+      <y-m> 0.88 </y-m>
+      <z-m> 0.018 </z-m>
+      <roll-deg>-90</roll-deg>
+      <pitch-deg>-3</pitch-deg> <!-- due to roll, this tunes heading - I want it to point 3 deg more forward -->
+    </offsets>
+  </model>
+  
+  <model>
+    <name>Strobe2</name>
+    <path>Aircraft/ec145/Models/Lights/Strobe.xml</path>
+    <offsets>
+      <x-m> 0.98 </x-m>
+      <y-m> -0.88 </y-m>
+      <z-m> 0.018 </z-m>
+      <roll-deg>90</roll-deg>
+      <pitch-deg>-3</pitch-deg> <!-- due to roll, this tunes heading - I want it to point 3 deg more forward -->
+    </offsets>
+  </model>
+  
+  <!-- white light -->
+  <!-- a white stable light, usually used as a visibility feature on the tail -->
+  <!-- note: default orientation is up  -->
+  
+  <model>
+    <name>WhiteLight</name>
+    <path>Aircraft/ec145/Models/Lights/WhiteLight.xml</path>
+    <offsets>
+      <x-m>7.646</x-m>
+      <y-m>-0.0</y-m>
+      <z-m>1.279</z-m>
+      <pitch-deg>45</pitch-deg>
+    </offsets>
+  </model>
+
+</PropertyList>
