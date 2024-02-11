@@ -1,0 +1,32 @@
+Last Changed Date: 2022-06-18 14:57:44 +0200 (Sat, 18 Jun 2022)
+Revision: 1095
+
+Changes:
+fixed some flipped surface normals
+updated readme
+added sliding doors (backdoor) handles and rotation axes
+animated sliding doors (backdoor) handles, fixed backdoor glass normals
+added placards on sliding doors (backdoor)
+added interior details cabin ceiling
+added cabin interior spotlights
+animated cabin interior lights
+fixed M tail and cabin interior details
+added high poly exhaust model with metallic effect
+added high poly exhaust model with metallic effect
+refined the exhaust metallic effect and added a test "mirror" to main model
+added a mirror model for SAR configuration
+adjusted mirror position
+
+Affected Files:
+Models/EC-145-base.xml
+Models/Effects/reflect-metal.eff
+Models/Effects/reflect-mirror.eff
+Models/center-spar.png
+Models/ec145.ac
+Models/exhaust.png
+Models/payload/mirror/mirror.ac
+Models/payload/mirror/mirror.xml
+Models/payload/mirror
+Models/payload/sarM.xml
+Models/tail-m.ac
+v1.3.1.README
