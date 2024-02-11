@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+
+<!-- note: tach.nas Nasal code must be loaded via the aircraft -set file -->
+
+<PropertyList>
+	<path>tach.ac</path>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>N2Needle1</object-name>
+		<property>instrumentation/tachi/indicated-n2-pct[0]</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>52</dep>
+			</entry>
+			<entry>
+				<ind>50</ind>
+				<dep>92.5</dep>
+			</entry>
+			<entry>
+				<ind>80</ind>
+				<dep>187.75</dep>
+			</entry>
+			<entry>
+				<ind>90</ind>
+				<dep>223</dep>
+			</entry>
+			<entry>
+				<ind>100</ind>
+				<dep>268.73</dep>
+			</entry>
+			<entry>
+				<ind>110</ind>
+				<dep>314</dep>
+			</entry>
+			<entry>
+				<ind>120</ind>
+				<dep>360</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>-1</x>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>N2Needle2</object-name>
+		<property>instrumentation/tachi/indicated-n2-pct[1]</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>52</dep>
+			</entry>
+			<entry>
+				<ind>50</ind>
+				<dep>92.5</dep>
+			</entry>
+			<entry>
+				<ind>80</ind>
+				<dep>187.75</dep>
+			</entry>
+			<entry>
+				<ind>90</ind>
+				<dep>223</dep>
+			</entry>
+			<entry>
+				<ind>100</ind>
+				<dep>268.73</dep>
+			</entry>
+			<entry>
+				<ind>110</ind>
+				<dep>314</dep>
+			</entry>
+			<entry>
+				<ind>120</ind>
+				<dep>360</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>-1</x>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>RotorNeedle</object-name>
+		<property>instrumentation/tachi/indicated-nr-pct</property>
+                
+		<interpolation>
+                        <entry>
+                                <ind>0</ind>
+                                <dep>52</dep>
+                        </entry>
+                        <entry>
+                                <ind>50</ind>
+                                <dep>92.5</dep>
+                        </entry>
+                        <entry>
+                                <ind>80</ind>
+                                <dep>187.75</dep>
+                        </entry>
+                        <entry>
+                                <ind>90</ind>
+                                <dep>223</dep>
+                        </entry>
+                        <entry>
+                                <ind>100</ind>
+                                <dep>268.73</dep>
+                        </entry>
+                        <entry>
+                                <ind>110</ind>
+                                <dep>314</dep>
+                        </entry>
+                        <entry>
+                                <ind>120</ind>
+                                <dep>360</dep>
+                        </entry>
+		</interpolation>
+		<axis>
+			<x>-1</x>
+		</axis>
+	</animation>
+
+        <!-- dimming -->
+        <animation>
+          <type>material</type>
+          <object-name>Face</object-name>
+          
+          <condition>
+            <greater-than>
+              <property>/systems/electrical/outputs/instrument-lights</property>
+              <value>10.0</value>
+            </greater-than>
+          </condition>
+
+          <emission>
+            <red>   0.8 </red>
+            <green> 0.8 </green>
+            <blue>  1.0 </blue>
+            <factor-prop>/controls/lighting/stdby-instrument-lights-norm</factor-prop>
+          </emission>
+        </animation>
+
+        <animation>
+          <type>material</type>
+          <object-name>RotorNeedle</object-name>
+          <object-name>N2Needle1</object-name>
+          <object-name>N2Needle2</object-name>
+
+          <condition>
+            <greater-than>
+              <property>/systems/electrical/outputs/instrument-lights</property>
+              <value>10.0</value>
+            </greater-than>
+          </condition>
+
+          <emission>
+            <red>   0.8 </red>
+            <green> 0.8 </green>
+            <blue>  1.0 </blue>
+            <factor>0.4</factor>
+          </emission>
+        </animation> 
+        
+        
+        <animation>
+          <type>noshadow</type>
+          <object-name>RotorNeedle</object-name>
+          <object-name>N2Needle1</object-name>
+          <object-name>N2Needle2</object-name>
+          <object-name>Face</object-name>
+        </animation>
+</PropertyList>
+

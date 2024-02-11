@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>Model/GDU-104X.1.ac</path>
+
+  <!-- this model contains only the Screen1 object to place the canvas on -->
+
+</PropertyList>

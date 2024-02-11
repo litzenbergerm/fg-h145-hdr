@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="512"
+   height="512"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="gns430-radio.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="344.06472"
+     inkscape:cy="235.31562"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1124"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:showpageshadow="false"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="1,0"
+       position="369.28572,555"
+       id="guide3000" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-540.36218)">
+    <rect
+       y="540.50482"
+       x="0.114945"
+       height="512.28625"
+       width="289.92816"
+       id="rect2985-3"
+       style="color:#000000;fill:#0279c0;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:6.00000048;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <g
+       id="commAct"
+       transform="matrix(0.92821985,0,0,1.0614313,-12.965976,-44.195742)"
+       inkscape:label="#g3803">
+      <rect
+         y="553.79077"
+         x="17.142857"
+         height="200"
+         width="305.71429"
+         id="rect2985"
+         style="color:#000000;fill:#0279c0;fill-opacity:1;fill-rule:nonzero;stroke:#86ccf1;stroke-width:6.04477137;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755"
+         y="668.08044"
+         x="18.460443"
+         style="font-size:69.74195099000000653px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#86ccf1;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+         xml:space="preserve"
+         transform="scale(1.089718,0.91766864)"><tspan
+           y="668.08044"
+           x="18.460443"
+           id="tspan3757"
+           sodipodi:role="line">COM</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="CommAct"
+         y="783.98804"
+         x="21.74243"
+         style="font-size:74.19329834px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#fffdff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+         xml:space="preserve"
+         inkscape:label="#text3755-3"
+         transform="scale(1.1592704,0.86261153)"><tspan
+           y="783.98804"
+           x="21.74243"
+           id="tspan3757-6"
+           sodipodi:role="line">000.000</tspan></text>
+      <rect
+         y="686.64209"
+         x="20.535715"
+         height="58.672531"
+         width="299.18552"
+         id="CommSelect"
+         style="color:#000000;fill:#86ccf1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:6;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         inkscape:label="#rect3801" />
+      <text
+         sodipodi:linespacing="125%"
+         id="CommStb"
+         y="856.85651"
+         x="20.433237"
+         style="font-size:74.19329834px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#6f4fd7;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+         xml:space="preserve"
+         inkscape:label="#text3755-3-7"
+         transform="scale(1.1592704,0.86261153)"><tspan
+           y="856.85651"
+           x="20.433237"
+           id="tspan3757-6-5"
+           sodipodi:role="line">000.000</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.9529761,0,0,0.94729512,-9.390371,226.68019)"
+       id="g3803-3">
+      <rect
+         y="575.47278"
+         x="12.94548"
+         height="224.09727"
+         width="297.77252"
+         id="rect2985-5"
+         style="color:#000000;fill:#0279c0;fill-opacity:1;fill-rule:nonzero;stroke:#86ccf1;stroke-width:6.31491708999999979;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3755-6"
+         y="593.47852"
+         x="17.769686"
+         style="font-size:66.30145263999999372px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#86ccf1;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+         xml:space="preserve"
+         transform="scale(0.9245631,1.0815919)"><tspan
+           y="593.47852"
+           x="17.769686"
+           id="tspan3757-2"
+           sodipodi:role="line">VLOC</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="VlocAct"
+         y="769.57074"
+         x="19.266684"
+         style="font-size:77.43152618px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#fffdff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+         xml:space="preserve"
+         transform="scale(1.0797702,0.92612299)"
+         inkscape:label="#text3755-3-9"><tspan
+           y="769.57074"
+           x="19.266684"
+           id="tspan3757-6-1"
+           sodipodi:role="line">000.000</tspan></text>
+      <rect
+         y="725.39728"
+         x="16.2502"
+         height="64.142242"
+         width="291.78812"
+         id="VlocSelect"
+         style="color:#000000;fill:#86ccf1;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:6;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         inkscape:label="#rect3801-2" />
+      <text
+         sodipodi:linespacing="125%"
+         id="VlocStb"
+         y="845.61951"
+         x="17.900349"
+         style="font-size:77.43152618px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#6f4fd7;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+         xml:space="preserve"
+         transform="scale(1.0797702,0.92612299)"
+         inkscape:label="#text3755-3-7-7"><tspan
+           y="845.61951"
+           x="17.900349"
+           id="tspan3757-6-5-0"
+           sodipodi:role="line">000.000</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+   H145 warning panel
+-->
+
+<PropertyList>
+    <path>warn.ac</path>
+   
+    <animation>
+        <type>pick</type>
+        <object-name>firewarn1.pb</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/warningunit/sys[0]/emerg-off</property>
+                <value>1</value>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>    
+
+    <animation>
+        <type>pick</type>
+        <object-name>firewarn2.pb</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/warningunit/sys[1]/emerg-off</property>
+                <value type="bool">true</value>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>   
+    
+    <!-- pressing exitinguisher button-->
+    
+     <animation>
+        <type>pick</type>
+        <object-name>bot1.pb</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/warningunit/sys[0]/ext</property>
+                <value type="bool">true</value>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+            <mod-up>  
+                <binding>
+                    <command>property-assign</command>
+                    <property>instrumentation/warningunit/sys[0]/ext</property>
+                    <value type="bool">false</value>
+                </binding>
+            </mod-up>    
+        </action>
+    </animation>   
+    
+     <animation>
+        <type>pick</type>
+        <object-name>bot2.pb</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-assign</command>
+                <property>instrumentation/warningunit/sys[1]/ext</property>
+                <value type="bool">true</value>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+            <mod-up>  
+                <binding>
+                    <command>property-assign</command>
+                    <property>instrumentation/warningunit/sys[1]/ext</property>
+                    <value type="bool">false</value>
+                </binding>
+            </mod-up>    
+        </action>
+    </animation>  
+
+
+   <!-- emerg off active indicators -->
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>active1</object-name>
+      <property>instrumentation/warningunit/sys[0]/emerg-off</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>active1</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[0]/emerg-off</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>active2</object-name>
+      <property>instrumentation/warningunit/sys[1]/emerg-off</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>active2</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[1]/emerg-off</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>    
+
+
+   <!-- extinguisher active indicators -->
+   
+   <animation>
+      <type>textranslate</type>
+      <object-name>ext1</object-name>
+      <property>engines/engine[0]/extinguisher</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>ext1</object-name>
+      <condition>
+         <property>engines/engine[0]/extinguisher</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>    
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>ext2</object-name>
+      <property>engines/engine[1]/extinguisher</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>ext2</object-name>
+      <condition>
+         <property>engines/engine[1]/extinguisher</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>    
+
+
+   
+   <!-- 
+        fire warning, 
+        connected to fire test 
+        sw. in overhead p.
+   -->
+ 
+   <!-- fire warning on emerg off switches -->
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>firewarn1.pb</object-name>
+      <property>instrumentation/warningunit/sys[0]/fire</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>firewarn1.pb</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[0]/fire</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>firewarn2.pb</object-name>
+      <property>instrumentation/warningunit/sys[1]/fire</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>firewarn2.pb</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[1]/fire</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+   
+
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>bot1.pb</object-name>
+      <property>instrumentation/warningunit/sys[0]/fire-bot</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>bot1.pb</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[0]/fire-bot</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>bot2.pb</object-name>
+      <property>instrumentation/warningunit/sys[1]/fire-bot</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>bot2.pb</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[1]/fire-bot</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+
+
+
+
+
+
+
+
+   <!-- fuel supply tank 1 low warning at 24 kg, 48 lbs (ref. flight manual BK117-C2) -->
+   
+   <animation>
+      <type>textranslate</type>
+      <object-name>fuel1</object-name>
+      <property>instrumentation/warningunit/sys[0]/fuel</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>fuel1</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[0]/fuel</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+   
+   <!-- fuel supply tank 2 low warning -->
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>fuel2</object-name>
+      <property>instrumentation/warningunit/sys[1]/fuel</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>fuel2</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[1]/fuel</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+
+   <!-- engine 1 fail indication -->
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>fail1</object-name>
+      <property>instrumentation/warningunit/sys[0]/fail</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>fail1</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[0]/fail</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+
+
+   <!-- engine 2 fail indication -->
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>fail2</object-name>
+      <property>instrumentation/warningunit/sys[1]/fail</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>fail2</object-name>
+      <condition>
+         <property>instrumentation/warningunit/sys[1]/fail</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+
+   <!-- rotor speed warning -->
+   
+   <animation>
+      <type>textranslate</type>
+      <object-name>rpm</object-name>
+      <property>instrumentation/warningunit/rpm</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>rpm</object-name>
+      <condition>
+         <property>instrumentation/warningunit/rpm</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+   
+   
+   <!-- transmission (main gearbox) oil pressure warn -->
+   
+   <animation>
+      <type>textranslate</type>
+      <object-name>oilp</object-name>
+      <property>instrumentation/warningunit/oilp</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>oilp</object-name>
+      <condition>
+         <property>instrumentation/warningunit/oilp</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+   
+   
+   <!-- battery overheat -->
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>batt</object-name>
+      <property>instrumentation/warningunit/batt</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>batt</object-name>
+      <condition>
+         <property>instrumentation/warningunit/batt</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+   
+   <!-- autopilot-->
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>ap</object-name>
+      <property>instrumentation/warningunit/ap</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>ap</object-name>
+      <condition>
+         <property>instrumentation/warningunit/ap</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+
+
+   <!-- cargo smoke warn-->
+
+   <animation>
+      <type>textranslate</type>
+      <object-name>smoke</object-name>
+      <property>instrumentation/warningunit/smoke</property>
+      <interpolation>
+            <entry><ind>0</ind><dep>0.0</dep></entry>
+            <entry><ind>1</ind><dep>0.5</dep></entry>
+      </interpolation>      
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>        
+   </animation>
+
+   <animation>
+      <type>material</type>
+      <object-name>smoke</object-name>
+      <condition>
+         <property>instrumentation/warningunit/smoke</property>
+      </condition>
+      <emission>
+         <red>1.0</red>
+         <green>1.0</green>
+         <blue>1.0</blue>
+      </emission>
+   </animation>
+
+
+   
+</PropertyList>

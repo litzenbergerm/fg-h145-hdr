@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!--
+Helionix MFD - Canvas Flight Navigation Display for Eurocopter
+Author : litzi
+-->
+
+<PropertyList>
+  
+  <path>Models/mfd0.ac</path> 
+  
+ <!-- include the base 3D model of the instrument bezel 
+  and screen background
+  the panel screen is included as a Canvas via Nasal 
+ -->
+  
+ <model>
+    <path>mfd-base.xml</path>
+    <offsets>
+      <x-m>0.0</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.0</z-m>
+    </offsets>
+ </model>
+
+ <animation> 
+    <type>material</type> 
+    <object-name>xmfd0screen</object-name>
+    <emission>
+      <red>1.0</red>
+      <green>1.0</green>
+      <blue>1.0</blue>
+    </emission>
+    <ambient>
+      <red>0.0</red>
+      <green>0.0</green>
+      <blue>0.0</blue>
+    </ambient>
+    <diffuse>
+      <red>0.0</red>
+      <green>0.0</green>
+      <blue>0.0</blue>
+    </diffuse>    
+ </animation>
+
+ <animation> 
+    <type>select</type> 
+    <object-name>xmfd0screen</object-name>
+    <condition>
+      <not-equals>
+        <property>instrumentation/mfd[0]/mode</property>
+        <value>off</value>
+      </not-equals>
+    </condition>
+ </animation> 
+          
+ <!-- all interactions are done via an overlaid transparent 'button' objects with action-elements -->
+
+  <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.2</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(2);</script>
+                </binding>
+        </action>
+ </animation>
+  
+  <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.3</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(3);</script>
+                </binding>
+        </action>
+ </animation>
+
+   <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.4</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(4);</script>
+                </binding>
+        </action>
+ </animation>
+  
+   <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.10</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(10);</script>
+                </binding>
+        </action>
+ </animation>
+
+    <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.11</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(11);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.12</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(12);</script>
+                </binding>
+        </action>
+ </animation>
+
+ <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.19</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(19);</script>
+                </binding>
+        </action>
+ </animation>
+ 
+ <animation>
+        <type>pick</type>
+        <object-name>mfd0.button.20</object-name>
+        <action>
+                <button>0</button>
+                <repeatable>false</repeatable>
+                <binding>
+                      <command>nasal</command>
+                      <script>helionix.mfdctrl[0].clickon(20);</script>
+                </binding>
+        </action>
+ </animation>
+</PropertyList>

@@ -1,0 +1,589 @@
+<?xml version="1.0" ?>
+
+<PropertyList>
+    <path>ap-m.ac</path>
+
+    <animation>
+        <type>range</type>
+        <min-m>0</min-m>
+        <max-m>10</max-m>
+    </animation>
+
+    <effect>
+      <inherits-from>Aircraft/ec145/Models/Effects/implicit-lightmap</inherits-from> 
+      <object-name>apcp</object-name>
+    </effect>
+
+   <!-- effect of overhead floodlight as material emission, 
+  'cheap trick' to simulate ambient cabin lighting 
+  -->
+  
+  <animation> 
+    <type>material</type> 
+    <object-name>apcp</object-name>
+    <object-name>hdg</object-name>
+    <object-name>vs</object-name>
+    <object-name>alta</object-name>
+    <object-name>crht</object-name>
+    <object-name>ias</object-name>
+    <object-name>knob</object-name>
+    
+    <emission>
+      <red>0.02</red>
+      <green>0.02</green>
+      <blue>0.02</blue>
+      <factor-prop>/systems/electrical/outputs/floodlight</factor-prop> 
+    </emission>    
+  </animation>
+
+  <!-- SAS (fcs) must be active, for AP to work -->
+  <animation>
+    <type>knob</type>
+    <object-name>hdg</object-name>
+    <condition>
+        <property>/controls/flight/fcs/sas-enabled</property>
+        <property>/instrumentation/apcp/serviceable</property>
+    </condition>
+    <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>autopilot/settings/heading-bug-deg</property>
+       <factor>1</factor>
+       <min>0.0</min>
+       <max>360.0</max>
+       <wrap>true</wrap>
+     </binding>
+    </action>
+    
+    <shift-action>
+     <binding>
+        <command>property-cycle</command>
+        <property>autopilot/locks/heading</property>
+        <value type="string">dg-heading-hold</value>
+        <value type="string"></value>
+      </binding>
+   </shift-action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>hdg-setting</tooltip-id>
+      <label>Autopilot HDG: %3.0fdeg (Shift to activate)</label>
+      <property>autopilot/settings/heading-bug-deg</property>
+    </binding>
+   </hovered>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>hdg</object-name>
+    <property>autopilot/settings/heading-bug-deg</property>
+    <factor>3</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>0.0362</y-m>
+      <z-m>-0.00347</z-m>
+    </center>    
+  </animation> 
+
+  <animation>
+    <type>material</type>
+    <object-name>hdg.light</object-name>
+    <condition>
+      <property>instrumentation/apcp/serviceable</property>
+      <equals>        
+        <property>autopilot/locks/heading</property>
+        <value type="string">dg-heading-hold</value>
+      </equals>
+    </condition>
+    <emission>
+        <red>0.1</red>
+        <green>1.0</green>
+        <blue>0.1</blue>
+    </emission>    
+  </animation> 
+
+  <animation>
+    <type>knob</type>
+    <object-name>vs</object-name>
+    <condition>
+        <property>/controls/flight/fcs/sas-enabled</property>
+        <property>/instrumentation/apcp/serviceable</property>
+    </condition>
+    <visible>true</visible>
+    <shift-action>
+      <binding>
+        <property>autopilot/locks/altitude</property>
+        <command>property-cycle</command>
+        <value type="string">vertical-speed-hold</value>
+        <value type="string"></value>
+      </binding>
+    </shift-action>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <factor>50</factor>
+        <min>-1000</min>
+        <max>1000</max>
+        <wrap>false</wrap>
+        
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>vs-activate</tooltip-id>
+        <label>Autopilot vertical speed hold (Shift to activate)</label>
+      </binding>
+    </hovered>    
+  </animation>      
+
+  <animation>
+    <type>rotate</type>
+    <object-name>vs</object-name>
+    <property>autopilot/settings/vertical-speed-fpm</property>
+    <factor>0.3</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.03349</y-m>
+      <z-m>-0.00347</z-m>
+    </center>    
+  </animation> 
+  
+  <animation>
+    <type>material</type>
+    <object-name>vs.light</object-name>
+    <condition>
+      <property>instrumentation/apcp/serviceable</property>
+      <equals>        
+        <property>autopilot/locks/altitude</property>
+        <value type="string">vertical-speed-hold</value>
+      </equals>
+    </condition>
+    <emission>
+        <red>0.1</red>
+        <green>1.0</green>
+        <blue>0.1</blue>
+    </emission>    
+  </animation> 
+  
+  <animation>
+    <type>knob</type>
+    <object-name>alta</object-name>
+    <condition>
+        <property>/controls/flight/fcs/sas-enabled</property>
+        <property>/instrumentation/apcp/serviceable</property>
+    </condition>
+    <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>autopilot/settings/target-altitude-ft</property>
+       <factor>50</factor>
+       <min>100.0</min>
+       <max>20000.0</max>
+       <wrap>false</wrap>
+     </binding>
+    </action> 
+    <shift-action>
+     <binding>
+        <command>property-cycle</command>
+        <property>autopilot/locks/altitude</property>
+        <value type="string">altitude-hold</value>
+        <value type="string"></value>
+      </binding>
+   </shift-action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>alt-setting</tooltip-id>
+      <label>Autopilot ALT.A: %5.0fft (Shift to activate)</label>
+      <property>autopilot/settings/target-altitude-ft</property>
+   </binding>
+   </hovered>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>alta</object-name>
+    <property>autopilot/settings/target-altitude-ft</property>
+    <factor>0.3</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>0.05374</y-m>
+      <z-m>0.02687</z-m>
+    </center>    
+  </animation>   
+
+  <animation>
+    <type>material</type>
+    <object-name>alta.light</object-name>
+    <condition>
+      <property>instrumentation/apcp/serviceable</property>
+      <equals>        
+        <property>autopilot/locks/altitude</property>
+        <value type="string">altitude-hold</value>
+      </equals>
+    </condition>
+    <emission>
+        <red>0.1</red>
+        <green>1.0</green>
+        <blue>0.1</blue>
+    </emission>    
+  </animation>   
+
+  <animation>
+    <type>knob</type>
+    <object-name>ias</object-name>
+    <condition>
+        <property>/controls/flight/fcs/sas-enabled</property>
+        <property>/instrumentation/apcp/serviceable</property>
+    </condition>
+    <visible>true</visible>
+    <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>autopilot/settings/target-speed-kt</property>
+       <factor>10</factor>
+       <min>40.0</min>
+       <max>140.0</max>
+       <wrap>false</wrap>
+     </binding>
+    </action>       
+    <shift-action>
+      <binding>
+        <property>autopilot/locks/speed</property>
+        <command>property-cycle</command>
+        <value type="string">speed-with-pitch-trim</value>
+        <value type="string"></value>
+      </binding>
+    </shift-action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>ias-activate</tooltip-id>
+        <label>Autopilot airspeed hold: %3.0fkt (Shift to activate)</label>
+        <property>autopilot/settings/target-speed-kt</property>        
+      </binding>
+    </hovered>    
+  </animation> 
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>ias</object-name>
+    <property>autopilot/settings/target-speed-kt</property>
+    <factor>2</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>0.01905</y-m>
+      <z-m>0.02687</z-m>
+    </center>    
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>ias.light</object-name>
+    <condition>
+      <property>instrumentation/apcp/serviceable</property>
+      <equals>        
+        <property>autopilot/locks/speed</property>
+        <value type="string">speed-with-pitch-trim</value>
+      </equals>
+    </condition>
+    <emission>
+        <red>0.1</red>
+        <green>1.0</green>
+        <blue>0.1</blue>
+    </emission>    
+  </animation> 
+  
+  <animation>
+    <type>knob</type>
+    <object-name>crht</object-name>
+    <condition>
+        <property>/controls/flight/fcs/sas-enabled</property>
+        <property>/instrumentation/apcp/serviceable</property>
+    </condition>
+    <visible>true</visible>
+    <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>autopilot/settings/target-agl-ft</property>
+       <factor>10</factor>
+       <min>100.0</min>
+       <max>3000.0</max>
+       <wrap>false</wrap>
+     </binding>
+    </action>       
+    <shift-action>
+      <binding>
+        <property>autopilot/locks/altitude</property>
+        <command>property-cycle</command>
+        <value type="string">agl-hold</value>
+        <value type="string"></value>
+      </binding>
+    </shift-action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>ias-activate</tooltip-id>
+        <label>Autopilot AGL hold: %4.0fft (Shift to activate)</label>
+        <property>autopilot/settings/target-agl-ft</property>        
+      </binding>
+    </hovered>    
+  </animation> 
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>crht</object-name>
+    <property>autopilot/settings/target-agl-ft</property>
+    <factor>2</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.01595</y-m>
+      <z-m>0.02687</z-m>
+    </center>    
+  </animation>  
+
+  <animation>
+    <type>material</type>
+    <object-name>crht.light</object-name>
+    <condition>
+      <property>instrumentation/apcp/serviceable</property>
+      <equals>        
+        <property>autopilot/locks/altitude</property>
+        <value type="string">agl-hold</value>
+      </equals>
+    </condition>
+    <emission>
+        <red>0.1</red>
+        <green>1.0</green>
+        <blue>0.1</blue>
+    </emission>    
+  </animation> 
+  
+  <animation>
+    <type>pick</type>
+    <object-name>alt</object-name>
+    <condition>
+        <property>/controls/flight/fcs/sas-enabled</property>
+        <property>/instrumentation/apcp/serviceable</property>
+    </condition>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <property>autopilot/locks/altitude</property>
+        <command>property-cycle</command>
+        <value type="string">altitude-hold</value>
+        <value type="string"></value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/settings/target-altitude-ft</property>
+        <property>instrumentation/altimeter/indicated-altitude-ft</property>
+      </binding>
+    </action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>alt-activate</tooltip-id>
+      <label>Autopilot altitude hold</label>
+    </binding>
+   </hovered>
+  </animation>     
+
+  <!-- switching off AP must disable all upper modes -->
+  
+  <animation>
+    <type>pick</type>
+    <object-name>ap1</object-name>
+    <object-name>ap2</object-name>
+    <condition>
+        <property>/controls/flight/fcs/sas-enabled</property>
+        <property>/instrumentation/apcp/serviceable</property>
+    </condition>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-assign</command>
+        <property>/controls/flight/fcs/sas-enabled</property>
+        <value>0</value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/locks/altitude</property>
+        <value type="string"></value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/locks/speed</property>
+        <value type="string"></value>
+      </binding>      
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/locks/heading</property>
+        <value type="string"></value>
+      </binding>      
+     </action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>ap-deactivate</tooltip-id>
+      <label>Autopilot AFCS Off</label>
+    </binding>
+   </hovered>
+  </animation>     
+
+  <animation>
+    <type>pick</type>
+    <object-name>ap1</object-name>
+    <object-name>ap2</object-name>
+    <condition>
+        <not><property>/controls/flight/fcs/sas-enabled</property></not>
+        <property>/instrumentation/apcp/serviceable</property>
+    </condition>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-assign</command>
+        <property>/controls/flight/fcs/sas-enabled</property>
+        <value>1</value>
+      </binding>
+    </action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>ap-activate</tooltip-id>
+      <label>Autopilot AFCS On</label>
+    </binding>
+   </hovered>
+  </animation>     
+  
+    <animation>
+        <type>material</type>
+        <object-name>atrim</object-name>
+        <condition>
+            <property>instrumentation/apcp/atrim-bt</property>
+        </condition>
+        <emission>
+            <red>0.5</red>
+            <green>0.5</green>
+            <blue>0.5</blue>
+        </emission>
+    </animation>
+    <animation>
+        <type>textranslate</type>
+        <object-name>atrim</object-name>
+        <property>instrumentation/apcp/atrim-bt</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>0.08</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>0.0</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>material</type>
+        <object-name>ap1</object-name>
+        <object-name>ap2</object-name>
+        <condition>
+            <property>instrumentation/apcp/ap12-bt</property>
+        </condition>
+        <emission>
+            <red>0.3</red>
+            <green>0.3</green>
+            <blue>0.3</blue>
+        </emission>
+    </animation>
+    <animation>
+        <type>textranslate</type>
+        <object-name>ap1</object-name>
+        <object-name>ap2</object-name>
+        <property>instrumentation/apcp/ap12-bt</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>0.08</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>0.0</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>1</y>
+        </axis>
+    </animation> 
+  
+    <animation>
+        <type>material</type>
+        <object-name>alt</object-name>
+        <condition>
+            <property>instrumentation/apcp/alt-bt</property>
+        </condition>
+        <emission>
+            <red>0.3</red>
+            <green>0.3</green>
+            <blue>0.3</blue>
+        </emission>
+    </animation>
+    <animation>
+        <type>textranslate</type>
+        <object-name>alt</object-name>
+        <property>instrumentation/apcp/alt-bt</property>
+        <interpolation>
+            <entry>
+                <ind>0</ind>
+                <dep>0.08</dep>
+            </entry>
+            <entry>
+                <ind>1</ind>
+                <dep>0.0</dep>
+            </entry>
+        </interpolation>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+        </axis>
+    </animation> 
+</PropertyList>

@@ -1,0 +1,311 @@
+<PropertyList>
+
+  <!--
+     Audio panel for ec145, h145m
+     non-functional model,
+     except volume knob2 controls simulated
+     avionics audio volume.
+  -->
+ 
+   <path>audiopanel.ac</path>
+
+   <effect>
+      <inherits-from>Aircraft/ec145/Models/Effects/implicit-lightmap</inherits-from> 
+      <object-name>audiopanel</object-name>
+      <object-name>knob1</object-name>
+      <object-name>knob2</object-name>
+   </effect>
+
+   <!-- effect of overhead floodlight as material emission, 
+  'cheap trick' to simulate ambient cabin lighting 
+  -->
+  
+  <animation> 
+    <type>material</type> 
+      <object-name>audiopanel</object-name>
+      <object-name>knob1</object-name>
+      <object-name>knob2</object-name>
+    
+    <emission>
+      <red>0.02</red>
+      <green>0.02</green>
+      <blue>0.02</blue>
+      <factor-prop>/systems/electrical/outputs/floodlight</factor-prop> 
+    </emission>    
+  </animation>
+ 
+   <animation>
+    <type>knob</type>
+    <object-name>knob1</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/audiopanel/knob1</property>
+        <factor>33</factor>
+        <min>0</min>
+        <max>275</max>
+        <wrap>false</wrap>
+      </binding> 
+    </action>  
+  </animation>  
+
+  <animation>
+    <type>rotate</type>
+    <object-name>knob1</object-name>
+    <property>instrumentation/audiopanel/knob1</property>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.00027</y-m>
+      <z-m>0.01243</z-m>
+    </center>    
+  </animation> 
+  
+   <animation>
+    <type>knob</type>
+    <object-name>knob2</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/audiopanel/knob2</property>
+        <factor>-10</factor>
+        <min>-230</min>
+        <max>80</max>
+        <wrap>false</wrap>
+      </binding> 
+      <binding>
+        <command>property-adjust</command>
+        <property>sim/sound/avionics/volume</property>
+        <factor>0.05</factor>
+        <min>0.0</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>  
+      <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <tooltip-id>vol</tooltip-id>
+          <label>Avio. Master Audio Volume</label>
+        </binding>
+      </hovered>
+  </animation>  
+
+  <animation>
+    <type>rotate</type>
+    <object-name>knob2</object-name>
+    <property>instrumentation/audiopanel/knob2</property>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>0.05256</y-m>
+      <z-m>0.01256</z-m>
+    </center>    
+  </animation> 
+  
+   <animation>
+    <type>knob</type>
+    <object-name>vhf1.knob</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/comm[0]/volume</property>
+        <factor>0.05</factor>
+        <min>0.1</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>  
+      <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <tooltip-id>vol</tooltip-id>
+          <label>Comm 1 Audio Volume</label>
+        </binding>
+      </hovered>
+  </animation>  
+
+  <animation>
+    <type>rotate</type>
+    <object-name>vhf1.knob</object-name>
+    <property>instrumentation/comm[0]/volume</property>
+    <factor>-300</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.06183</y-m>
+      <z-m>0.04174</z-m>
+    </center>    
+  </animation> 
+  
+   <animation>
+    <type>knob</type>
+    <object-name>vhf2.knob</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/comm[1]/volume</property>
+        <factor>0.05</factor>
+        <min>0.1</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>  
+      <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <tooltip-id>vol</tooltip-id>
+          <label>Comm 2 Audio Volume</label>
+        </binding>
+      </hovered>
+  </animation>  
+
+  <animation>
+    <type>rotate</type>
+    <object-name>vhf2.knob</object-name>
+    <property>instrumentation/comm[1]/volume</property>
+    <factor>-300</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.04408</y-m>
+      <z-m>0.04175</z-m>
+    </center>    
+  </animation> 
+
+
+  <animation>
+    <type>knob</type>
+    <object-name>nav1.knob</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/nav[0]/volume</property>
+        <factor>0.05</factor>
+        <min>0.1</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>  
+      <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <tooltip-id>vol</tooltip-id>
+          <label>Nav 1 Audio Volume</label>
+        </binding>
+      </hovered>
+  </animation>  
+
+  <animation>
+    <type>rotate</type>
+    <object-name>nav1.knob</object-name>
+    <property>instrumentation/nav[0]/volume</property>
+    <factor>-300</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.06182</y-m>
+      <z-m>-0.01514</z-m>
+    </center>    
+  </animation> 
+
+
+  
+  <animation>
+    <type>knob</type>
+    <object-name>nav2.knob</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/nav[1]/volume</property>
+        <factor>0.05</factor>
+        <min>0.1</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>  
+      <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <tooltip-id>vol</tooltip-id>
+          <label>Nav 2 Audio Volume</label>
+        </binding>
+      </hovered>
+  </animation>  
+
+  <animation>
+    <type>rotate</type>
+    <object-name>nav2.knob</object-name>
+    <property>instrumentation/nav[1]/volume</property>
+    <factor>-300</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.04408</y-m>
+      <z-m>-0.01513</z-m>
+    </center>    
+  </animation> 
+
+  <animation>
+    <type>knob</type>
+    <object-name>adf.knob</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/adf/volume-norm</property>
+        <factor>0.05</factor>
+        <min>0.1</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>  
+      <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <tooltip-id>vol</tooltip-id>
+          <label>ADF 1 Audio Volume</label>
+        </binding>
+      </hovered>
+  </animation>  
+
+  <animation>
+    <type>rotate</type>
+    <object-name>adf.knob</object-name>
+    <property>instrumentation/adf/volume-norm</property>
+    <factor>-300</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>0.0264</y-m>
+      <z-m>-0.01514</z-m>
+    </center>    
+  </animation>   
+</PropertyList>

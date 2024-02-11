@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <path>asi.ac</path>
+  <animation>
+    <type>rotate</type>
+    <object-name>Needle</object-name>
+    <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+    <interpolation>
+      <entry><ind>  0</ind><dep>    -3</dep></entry>
+      <entry><ind>  20</ind><dep>    12.84</dep></entry>
+      <entry><ind>  25</ind><dep>   24</dep></entry>
+      <entry><ind>  30</ind><dep>   35</dep></entry>
+      <entry><ind>  35</ind><dep>  50</dep></entry>
+      <entry><ind> 40</ind><dep>  65.87</dep></entry>
+      <entry><ind> 50</ind><dep>  96.64</dep></entry>
+      <entry><ind> 60</ind><dep>  127.5</dep></entry>
+      <entry><ind> 70</ind><dep>  157.5</dep></entry>
+      <entry><ind> 80</ind><dep>  182</dep></entry>
+      <entry><ind> 90</ind><dep>  201</dep></entry>
+      <entry><ind> 100</ind><dep>  216</dep></entry>
+      <entry><ind> 110</ind><dep>  232</dep></entry>
+      <entry><ind> 120</ind><dep>  247</dep></entry>
+      <entry><ind> 130</ind><dep> 263.5</dep></entry>
+      <entry><ind> 140</ind><dep> 279.3</dep></entry>
+      <entry><ind> 150</ind><dep> 295.56</dep></entry>
+      <entry><ind> 160</ind><dep> 303</dep></entry>
+      <entry><ind> 170</ind><dep> 327</dep></entry>
+    </interpolation>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <!-- dimming -->
+  <animation>
+    <type>material</type>
+    <object-name>Face</object-name>
+    
+    <condition>
+       <greater-than>
+         <property>/systems/electrical/outputs/instrument-lights</property>
+         <value>10.0</value>
+       </greater-than>
+    </condition>
+
+    <emission>
+      <red>   0.8 </red>
+      <green> 0.8 </green>
+      <blue>  1.0 </blue>
+      <factor-prop>/controls/lighting/stdby-instrument-lights-norm</factor-prop>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>Needle</object-name>
+    
+    <condition>
+       <greater-than>
+         <property>/systems/electrical/outputs/instrument-lights</property>
+         <value>10.0</value>
+       </greater-than>
+    </condition>
+
+    <emission>
+      <red>   0.8 </red>
+      <green> 0.8 </green>
+      <blue>  1.0 </blue>
+      <factor>0.4</factor>
+    </emission>
+  </animation>
+
+</PropertyList>

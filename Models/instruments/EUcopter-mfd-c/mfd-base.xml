@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+Helionix MFD - for Eurocopter
+screen object to be included by main mfds files.
+Author : litzi
+-->
+
+<PropertyList>
+  
+  <path>Models/mfd-base.ac</path> 
+  <offsets>
+      <x-m>0.001</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.0</z-m>
+  </offsets>
+ 
+ <!-- the panel screen is included as canvas via Nasal 
+  force screen emission
+ -->
+
+</PropertyList>

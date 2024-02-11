@@ -1,0 +1,282 @@
+<?xml version="1.0" ?>
+
+<PropertyList>
+    <path>ap2.ac</path>
+
+    <animation>
+        <type>range</type>
+        <min-m>0</min-m>
+        <max-m>10</max-m>
+    </animation>
+
+    <effect>
+      <inherits-from>Aircraft/ec145/Models/Effects/implicit-lightmap</inherits-from> 
+      <object-name>face</object-name>
+    </effect>
+
+    <!-- effect of overhead floodlight as material emission, 
+    'cheap trick' to simulate ambient cabin lighting 
+    -->
+    
+    <animation> 
+      <type>material</type> 
+      <object-name>face</object-name>
+      
+      <emission>
+        <red>0.02</red>
+        <green>0.02</green>
+        <blue>0.02</blue>
+        <factor-prop>/systems/electrical/outputs/floodlight</factor-prop> 
+      </emission>    
+   </animation>
+
+   <animation>
+    <type>pick</type>
+    <object-name>ap</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <property>autopilot/locks/heading</property>
+        <command>property-assign</command>
+        <value type="string"></value>
+      </binding>
+      <binding>
+        <property>autopilot/locks/altitude</property>
+        <command>property-assign</command>
+        <value type="string"></value>
+      </binding>
+      <binding>
+        <property>autopilot/locks/speed</property>
+        <command>property-assign</command>
+        <value type="string"></value>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>ap-setting</tooltip-id>
+        <label>Autopilot Off</label>
+      </binding>
+    </hovered>
+  </animation>     
+
+  <animation>
+    <type>knob</type>
+    <object-name>hdg</object-name>
+    <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>autopilot/settings/heading-bug-deg</property>
+       <factor>1</factor>
+       <min>0.0</min>
+       <max>360.0</max>
+       <wrap>true</wrap>
+     </binding>
+    </action>
+    <shift-action>
+     <binding>
+        <command>property-cycle</command>
+        <property>autopilot/locks/heading</property>
+        <value type="string">dg-heading-hold</value>
+        <value type="string"></value>
+      </binding>
+   </shift-action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>hdg-setting</tooltip-id>
+      <label>Autopilot HDG: %3.0fdeg (Shift to activate)</label>
+      <property>autopilot/settings/heading-bug-deg</property>
+    </binding>
+   </hovered>
+  </animation>
+
+  <animation>
+    <type>knob</type>
+    <object-name>alta</object-name>
+    <action>
+     <binding>
+       <command>property-adjust</command>
+       <property>autopilot/settings/target-altitude-ft</property>
+       <factor>50</factor>
+       <min>100.0</min>
+       <max>20000.0</max>
+       <wrap>false</wrap>
+     </binding>
+    </action> 
+    <shift-action>
+     <binding>
+        <command>property-cycle</command>
+        <property>autopilot/locks/altitude</property>
+        <value type="string">altitude-hold</value>
+        <value type="string"></value>
+      </binding>
+   </shift-action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>alt-setting</tooltip-id>
+      <label>Autopilot ALT.A: %5.0fft (Shift to activate)</label>
+      <property>autopilot/settings/target-altitude-ft</property>
+   </binding>
+   </hovered>
+  </animation>
+    
+  <animation>
+    <type>pick</type>
+    <object-name>alt</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <property>autopilot/locks/altitude</property>
+        <command>property-cycle</command>
+        <value type="string">altitude-hold</value>
+        <value type="string"></value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/settings/target-altitude-ft</property>
+        <property>instrumentation/altimeter/indicated-altitude-ft</property>
+      </binding>
+    </action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>alt-activate</tooltip-id>
+      <label>Autopilot altitude hold</label>
+    </binding>
+   </hovered>
+  </animation>     
+    
+  <animation>
+    <type>pick</type>
+    <object-name>vs</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <property>autopilot/locks/altitude</property>
+        <command>property-cycle</command>
+        <value type="string">vertical-speed-hold</value>
+        <value type="string"></value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/settings/vertical-speed-fpm</property>
+        <property>velocities/vertical-speed-fpm</property>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>vs-activate</tooltip-id>
+        <label>Autopilot vertical speed hold</label>
+      </binding>
+    </hovered>    
+  </animation>      
+    
+  <animation>
+    <type>pick</type>
+    <object-name>gs</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <property>autopilot/locks/altitude</property>
+        <command>property-cycle</command>
+        <value type="string">gs1-hold</value>
+        <value type="string"></value>
+      </binding>
+    </action>
+  </animation>      
+    
+  <animation>
+    <type>pick</type>
+    <object-name>nav</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <property>autopilot/locks/heading</property>
+        <command>property-cycle</command>
+        <value type="string">nav1-hold</value>
+        <value type="string"></value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>instrumentation/efis/fnd/nav-source</property>
+        <property>instrumentation/mfd[0]/nav-source</property>
+      </binding>      
+   </action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>nav-activate</tooltip-id>
+      <label>Autopilot NAV1 hold</label>
+    </binding>
+   </hovered>
+  </animation> 
+
+  <animation>
+    <type>pick</type>
+    <object-name>app</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <property>autopilot/locks/heading</property>
+        <command>property-assign</command>
+        <value type="string">nav1-hold</value>
+      </binding>
+      <binding>
+        <property>autopilot/locks/altitude</property>
+        <command>property-assign</command>
+        <value type="string">gs1-hold</value>
+      </binding>
+   </action>
+   <hovered>
+    <binding>
+      <command>set-tooltip</command>
+      <tooltip-id>nav-activate</tooltip-id>
+      <label>Autopilot LOC1+GS1 hold</label>
+    </binding>
+   </hovered>
+  </animation> 
+
+  <animation>
+    <type>pick</type>
+    <object-name>ias</object-name>
+    <visible>true</visible>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <property>autopilot/locks/speed</property>
+        <command>property-cycle</command>
+        <value type="string">speed-with-pitch-trim</value>
+        <value type="string"></value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>autopilot/settings/target-speed-kt</property>
+        <property>velocities/airspeed-kt</property>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>ias-activate</tooltip-id>
+        <label>Autopilot airspeed hold</label>
+      </binding>
+    </hovered>    
+  </animation>      
+  
+</PropertyList>

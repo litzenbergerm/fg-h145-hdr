@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+    <name>GNS430COM</name>
+    <path>gns430-radio-1.ac</path>
+  
+    <animation>
+          <type>select</type>
+          <object-name>screencom.1</object-name>
+          <condition>
+            <greater-than>
+              <property>/systems/electrical/outputs/GNS430</property>
+              <value>10</value>
+            </greater-than>
+            <greater-than>
+              <property>instrumentation/comm[0]/volume</property>
+              <value>0</value>
+            </greater-than>
+            <property>instrumentation/GNS430/device[0]/radio-menu-visible</property>
+          </condition>
+    </animation>       
+    
+    <animation> 
+        <type>material</type> 
+        <object-name>screencom.1</object-name>
+        <emission>
+          <red>1.0</red>
+          <green>1.0</green>
+          <blue>1.0</blue>
+        </emission>
+        <ambient>
+          <red>0.0</red>
+          <green>0.0</green>
+          <blue>0.0</blue>
+        </ambient>
+        <diffuse>
+          <red>0.0</red>
+          <green>0.0</green>
+          <blue>0.0</blue>
+        </diffuse>    
+    </animation>
+ 
+</PropertyList>

@@ -1,0 +1,27 @@
+# copy texture and xml files
+
+# step into directory
+cd ..
+
+cp mfd0.xml mfd1.xml
+cp mfd0.xml mfd2.xml
+cp mfd0.xml mfd3.xml
+
+# replace MFD ID strings
+sed -i 's/mfd0/mfd1/g' mfd1.xml
+sed -i 's/mfd0/mfd2/g' mfd2.xml
+sed -i 's/mfd0/mfd3/g' mfd3.xml
+
+sed -i 's/\[0\]/\[1\]/g' mfd1.xml
+sed -i 's/\[0\]/\[2\]/g' mfd2.xml
+sed -i 's/\[0\]/\[3\]/g' mfd3.xml
+
+cd ./Models
+
+cp mfd0.ac mfd1.ac
+cp mfd0.ac mfd2.ac
+cp mfd0.ac mfd3.ac
+
+sed -i 's/mfd0/mfd1/g' mfd1.ac
+sed -i 's/mfd0/mfd2/g' mfd2.ac
+sed -i 's/mfd0/mfd3/g' mfd3.ac

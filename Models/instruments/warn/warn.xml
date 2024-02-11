@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+H145 warning panel
+-->
+
+<PropertyList>
+   <path>warn.ac</path>
+   
+   <!-- yellow text, always on -->
+   <animation>
+      <type>material</type>
+      <object-name>bot1</object-name>
+      <object-name>bot2</object-name>
+      <object-name>bot3</object-name>
+      <object-name>bot4</object-name>
+      <ambient>
+         <red>0.5</red>
+         <green>0.5</green>
+         <blue>0.0</blue>
+      </ambient>
+      <diffuse>
+         <red>0.5</red>
+         <green>0.5</green>
+         <blue>0.0</blue>
+      </diffuse>
+      <emission>
+         <red>0.5</red>
+         <green>0.5</green>
+         <blue>0.0</blue>
+      </emission>
+   </animation>
+   
+   <text>
+      <name>bot1</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.123</y-m>
+         <z-m>0</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">BOT 1</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>bot2</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.123</y-m>
+         <z-m>-0.006</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">BOT 2</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>bot3</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.107</y-m>
+         <z-m>0</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">BOT 1</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>bot4</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.107</y-m>
+         <z-m>-0.006</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">BOT 2</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <!-- all elements connected to essential bus , bus #3 -->
+   
+   <!-- fire ex. bottles , 
+        connected to fire test 
+        sw. in overhead p.
+   -->
+   
+   <animation>
+      <type>select</type>
+      <object-name>bot1</object-name>
+      <object-name>bot2</object-name>
+      <condition>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+          <equals>
+              <property>/controls/test/fire-warntest1</property>
+              <value>1</value>
+          </equals>
+      </condition>
+   </animation>
+   
+   <animation>
+      <type>select</type>
+      <object-name>bot3</object-name>
+      <object-name>bot4</object-name>
+      <condition>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+          <equals>
+              <property>/controls/test/fire-warntest2</property>
+              <value>1</value>
+          </equals>
+      </condition>
+   </animation>
+   
+   <!-- Red text -->
+   
+   <animation>
+      <type>material</type>
+      <object-name>active</object-name>
+      <object-name>fuel1</object-name>
+      <object-name>fuel2</object-name>
+      <object-name>fail1</object-name>
+      <object-name>fail2</object-name>
+      <object-name>low1</object-name>
+      <object-name>low2</object-name>
+      <object-name>engine1</object-name>
+      <object-name>engine2</object-name>
+      <object-name>fire1</object-name>
+      <object-name>fire2</object-name>
+      <object-name>ap</object-name>
+      <object-name>rotor1</object-name>
+      <object-name>rpm</object-name>
+      <object-name>xmsn</object-name>
+      <object-name>oilp</object-name>
+      <object-name>batt</object-name>
+      <object-name>disch</object-name>
+      <object-name>bot1</object-name>
+      <object-name>bot2</object-name>
+      <object-name>bot3</object-name>
+      <object-name>bot4</object-name>
+      
+      <ambient>
+         <red>1.0</red>
+         <green>0.0</green>
+         <blue>0.0</blue>
+      </ambient>
+      <diffuse>
+         <red>0.5</red>
+         <green>0.0</green>
+         <blue>0.0</blue>
+      </diffuse>
+      <emission>
+         <red>0.5</red>
+         <green>0.0</green>
+         <blue>0.0</blue>
+      </emission>
+   </animation>
+
+   <!-- fire warning, 
+        connected to fire test 
+        sw. in overhead p.
+   -->
+   
+   <animation>
+      <type>material</type>
+      <object-name>firewarn1</object-name>
+      <object-name>firewarn2</object-name>      
+      <ambient>
+         <red>1.0</red>
+         <green>0.0</green>
+         <blue>0.0</blue>
+      </ambient>
+      <diffuse>
+         <red>0.5</red>
+         <green>0.0</green>
+         <blue>0.0</blue>
+      </diffuse>
+      <emission>
+         <red>1.0</red>
+         <green>0.0</green>
+         <blue>0.0</blue>
+      </emission>
+   </animation>
+ 
+   <animation>
+      <type>select</type>
+      <object-name>firewarn1</object-name>
+      <object-name>fire1</object-name>
+      <condition>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+          <equals>
+              <property>/controls/test/fire-warntest1</property>
+              <value>2</value>
+          </equals>
+      </condition>
+   </animation>
+   
+   <animation>
+      <type>select</type>
+      <object-name>firewarn2</object-name>
+      <object-name>fire2</object-name>
+      <condition>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+          <equals>
+              <property>/controls/test/fire-warntest2</property>
+              <value>2</value>
+          </equals>
+      </condition>
+   </animation>
+
+   
+   <text>
+      <name>fire1</name>
+      <character-size type="double">0.007</character-size>
+      <offsets>
+         <x-m>0.0142</x-m>
+         <y-m>-0.0975</y-m>
+         <z-m>0.001</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">FIRE</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>fire2</name>
+      <character-size type="double">0.007</character-size>
+      <offsets>
+         <x-m>0.0142</x-m>
+         <y-m>0.082</y-m>
+         <z-m>0.001</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">FIRE</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>active1</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.0025</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.075</y-m>
+         <z-m>-0.0065</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">ACTIVE</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>active2</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.0025</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.064</y-m>
+         <z-m>-0.0065</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">ACTIVE</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <!-- switch always off, because emergency engine-cutoff is not simulated -->
+   
+   <animation>
+      <type>select</type>
+      <object-name>active2</object-name>
+      <object-name>active1</object-name>
+      <condition>
+         <property>constants/zero</property>
+      </condition>
+   </animation>
+   
+   <text>
+      <name>low1</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.057</y-m>
+         <z-m>0.0144</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">LOW</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>fuel1</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.0595</y-m>
+         <z-m>0.0085</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">FUEL1</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+
+   <!-- fuel supply tank 1 low warning at 24 kg, 48 lbs (ref. flight manual BK117-C2) -->
+   
+   <animation>
+      <type>select</type>
+      <object-name>fuel1</object-name>
+      <object-name>low1</object-name>
+      <condition>
+         <less-than>
+            <property>consumables/fuel/tank[1]/level-lbs</property>
+            <value>48</value>
+         </less-than>
+        <greater-than>
+            <property>/systems/electrical/outputs/bus[3]</property>
+            <value>10</value>
+        </greater-than>
+      </condition>
+   </animation>
+   
+   <text>
+      <name>low2</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.046</y-m>
+         <z-m>0.0144</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">LOW</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>fuel2</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.0425</y-m>
+         <z-m>0.0085</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">FUEL2</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+
+   <!-- fuel supply tank 2 low warning -->
+   
+   <animation>
+      <type>select</type>
+      <object-name>fuel2</object-name>
+      <object-name>low2</object-name>
+      <condition>
+         <less-than>
+            <property>consumables/fuel/tank[2]/level-lbs</property>
+            <value>48</value>
+         </less-than>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+      </condition>
+   </animation>
+   
+   <text>
+      <name>engine1</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.039</y-m>
+         <z-m>0.0144</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">ENG 1</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>fail1</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.037</y-m>
+         <z-m>0.0085</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">FAIL</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text> 
+   
+   <animation>
+      <type>select</type>
+      <object-name>engine1</object-name>
+      <object-name>fail1</object-name>
+      <condition>
+         <less-than>
+            <property>engines/engine[0]/n1-pct</property>
+            <value>50</value>
+         </less-than>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+      </condition>
+   </animation>
+   
+   <text>
+      <name>engine2</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.0225</y-m>
+         <z-m>0.0144</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">ENG 2</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+
+   <text>
+      <name>fail2</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.024</y-m>
+         <z-m>0.0085</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">FAIL</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <animation>
+      <type>select</type>
+      <object-name>engine2</object-name>
+      <object-name>fail2</object-name>
+      <condition>
+         <less-than>
+            <property>engines/engine[1]/n1-pct</property>
+            <value>50</value>
+         </less-than>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+      </condition>
+   </animation>
+   
+   <text>
+      <name>rotor1</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.018</y-m>
+         <z-m>0.0144</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">ROTOR</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>rpm</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.0148</y-m>
+         <z-m>0.0085</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">RPM</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+
+   <!-- rotor speed warning at <95% and >110% -->
+   
+   <animation>
+      <type>select</type>
+      <object-name>rotor1</object-name>
+      <object-name>rpm</object-name>
+      <condition>
+        <or>
+         <less-than>
+            <property>rotors/main/rpm-pct</property>
+            <value>95</value>
+         </less-than>
+         <greater-than>
+            <property>rotors/main/rpm-pct</property>
+            <value>110</value>
+         </greater-than>
+        </or>
+        <greater-than>
+            <property>/systems/electrical/outputs/bus[3]</property>
+            <value>10</value>
+        </greater-than>
+      </condition>
+   </animation>
+   
+   <text>
+      <name>xmsn</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.0035</y-m>
+         <z-m>0.0144</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">XMSN</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>oilp</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.0025</y-m>
+         <z-m>0.0085</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">OIL P</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <!-- transmission (main gearbox) oil pressure, limit 1 bar (ref. flight manual BK117-C2) -->
+   
+   <animation>
+      <type>select</type>
+      <object-name>xmsn</object-name>
+      <object-name>oilp</object-name>
+      <condition>
+         <less-than>
+            <property>/rotors/gear/mgb-oil-pressure-bar</property>
+            <value>1.0</value>
+         </less-than>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+      </condition>
+   </animation>
+   
+   
+   <!-- battery discharge -->
+
+   <text>
+      <name>batt</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.057</y-m>
+         <z-m>-0.002</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">BAT</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <text>
+      <name>disch</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.005</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>-0.059</y-m>
+         <z-m>-0.008</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">DISCH</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+   
+   <animation>
+      <type>select</type>
+      <object-name>batt</object-name>
+      <object-name>disch</object-name>
+      <condition>
+          <greater-than>
+              <property>/systems/electrical/loads/battery</property>
+              <value>1</value>
+          </greater-than>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+      </condition>
+   </animation>
+   
+   <text>
+      <name>ap</name>
+      <font>lcd.txf</font>
+      <character-size type="double">0.006</character-size>
+      <offsets>
+         <x-m>0.01</x-m>
+         <y-m>0.028</y-m>
+         <z-m>-0.003</z-m>
+         <roll-deg>0</roll-deg>
+      </offsets>
+      <axis-alignment>yz-plane</axis-alignment>
+      <type type="string">literal</type>
+      <text type="string">AP</text>
+      <draw-text type="bool">true</draw-text>
+      <alignment>left-top</alignment>
+   </text>
+
+   <animation>
+      <type>select</type>
+      <object-name>ap</object-name>
+      <condition>
+         <or>
+            <not-equals>
+               <property>/autopilot/locks/heading</property>
+               <value />
+            </not-equals>
+            <not-equals>
+               <property>/autopilot/locks/altitude</property>
+               <value />
+            </not-equals>
+            <not-equals>
+               <property>/autopilot/locks/speed</property>
+               <value />
+            </not-equals>
+            <and>
+               <not-equals>
+                  <property>/autopilot/locks/heading</property>
+                  <value />
+               </not-equals>
+               <not-equals>
+                  <property>/autopilot/locks/altitude</property>
+                  <value />
+               </not-equals>
+            </and>
+            <and>
+               <not-equals>
+                  <property>/autopilot/locks/altitude</property>
+                  <value />
+               </not-equals>
+               <not-equals>
+                  <property>/autopilot/locks/speed</property>
+                  <value />
+               </not-equals>
+            </and>
+            <and>
+               <not-equals>
+                  <property>/autopilot/locks/heading</property>
+                  <value />
+               </not-equals>
+               <not-equals>
+                  <property>/autopilot/locks/speed</property>
+                  <value />
+               </not-equals>
+            </and>
+         </or>
+          <greater-than>
+              <property>/systems/electrical/outputs/bus[3]</property>
+              <value>10</value>
+          </greater-than>
+      </condition>
+   </animation>
+   
+</PropertyList>

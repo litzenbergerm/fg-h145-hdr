@@ -1,0 +1,251 @@
+<PropertyList>
+  <path>ec145ecp.ac</path>
+
+    <animation>
+      <type>pick</type>
+      <object-name>train</object-name>
+      <visible>true</visible>
+      
+      <action>
+        <button>0</button>
+        <binding>
+          <command>nasal</command>
+          <script>bk117.engswitch.train();</script>
+        </binding>          
+      </action>      
+    </animation>
+
+    <animation>      
+      <type>material</type>
+      <object-name>train</object-name>
+      <visible>true</visible>
+      <condition>
+          <property>/controls/switches/ecp/trainswitch</property>
+      </condition>       
+      <emission>
+          <red>1</red>
+          <green>1</green>
+          <blue>0</blue>       
+      </emission>  
+    </animation>
+    
+    <animation>
+      <type>pick</type>
+      <object-name>vent1</object-name>
+      <visible>true</visible>
+      
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <interval-sec>0.5</interval-sec>
+        <binding>
+          <command>nasal</command>
+          <script>bk117.engswitch.vent(0);</script>
+      </binding>          
+    </action>
+   </animation>
+    
+    
+    <animation>
+      <type>rotate</type>
+      <object-name>main1</object-name>
+      <property>/controls/switches/ecp/pos[0]</property>
+      <interpolation>
+      <entry><ind> 0.0</ind><dep> 20.0</dep> </entry>
+      <entry><ind> 1.0</ind><dep> 0.0</dep> </entry>
+      <entry><ind> 2.0</ind><dep> -20.0</dep> </entry>
+      </interpolation>
+      
+      <factor>-40</factor>
+      <offset-deg>20</offset-deg>
+      <center>
+        <x-m>-0.02</x-m>
+        <y-m>0.0</y-m>
+        <z-m>0.0</z-m>
+      </center>
+      <axis>
+        <x> 0 </x>
+        <y> 1 </y>
+        <z> 0 </z>
+      </axis>
+    </animation>
+
+    <animation>
+      <type>pick</type>
+      <object-name>main1</object-name>
+      <visible>true</visible>
+      
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <interval-sec>0.5</interval-sec>
+        <binding>
+          <command>nasal</command>
+          <script>bk117.engswitch.up(0);</script>
+      </binding>          
+    </action>
+      
+    <action>
+        <button>1</button>
+        <repeatable>false</repeatable>
+        <interval-sec>0.5</interval-sec>
+        <binding>
+          <command>nasal</command>
+          <script>bk117.engswitch.down(0);</script>
+      </binding>          
+    </action>
+    
+    <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <label>Eng 1 Power: %3d%%</label>
+          <tooltip-id>eng1</tooltip-id>
+          <mapping>percent</mapping>
+          <property>/controls/engines/engine/power</property>
+        </binding>
+      </hovered>
+    </animation>  
+
+
+    
+  <animation>
+      <type>rotate</type>
+<!--      <condition>
+        <equals>
+          <property>/controls/engines/engine/power</property>
+          <value>1</value>
+        </equals>
+      </condition>-->        
+      <object-name>save1</object-name>
+      <property>/controls/switches/ecp/pos[0]</property>
+      <interpolation>
+      <entry><ind> 0.0</ind><dep> 0.0</dep> </entry>
+      <entry><ind> 1.0</ind><dep> 0.0</dep> </entry>
+      <entry><ind> 2.0</ind><dep> 90.0</dep> </entry>
+      </interpolation>
+      <center>
+        <x-m>-0.005</x-m>
+        <y-m>-0.1</y-m>
+        <z-m>0.0</z-m>
+      </center>
+      <axis>
+        <x> 0 </x>
+        <y> 0 </y>
+        <z> 1 </z>
+      </axis>
+    </animation>
+    
+  <animation>
+      <type>rotate</type>
+      <object-name>main2</object-name>
+      <property>/controls/switches/ecp/pos[1]</property>
+      <interpolation>
+      <entry><ind> 0.0</ind><dep> 20.0</dep> </entry>
+      <entry><ind> 1.0</ind><dep> 0.0</dep> </entry>
+      <entry><ind> 2.0</ind><dep> -20.0</dep> </entry>
+      </interpolation>
+      
+      <factor>-40</factor>
+      <offset-deg>20</offset-deg>
+      <center>
+        <x-m>-0.02</x-m>
+        <y-m>0.0</y-m>
+        <z-m>0.0</z-m>
+      </center>
+      <axis>
+        <x> 0 </x>
+        <y> 1 </y>
+        <z> 0 </z>
+      </axis>
+    </animation>
+
+  <animation>
+      <type>pick</type>
+      <object-name>main2</object-name>
+      <visible>true</visible>
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <interval-sec>0.5</interval-sec>
+        <binding>
+          <command>nasal</command>
+          <script>bk117.engswitch.up(1);</script>
+      </binding>          
+    </action>
+    
+    <action>
+        <button>1</button>
+        <repeatable>false</repeatable>
+        <interval-sec>0.5</interval-sec>
+        <binding>
+          <command>nasal</command>
+          <script>bk117.engswitch.down(1);</script>
+      </binding>          
+    </action>
+    
+     <hovered>
+        <binding>
+          <command>set-tooltip</command>
+          <label>Eng 2 Power: %3d%%</label>
+          <tooltip-id>eng1</tooltip-id>
+          <mapping>percent</mapping>
+          <property>/controls/engines/engine[1]/power</property>
+        </binding>
+      </hovered>
+   </animation>  
+
+    <animation>
+      <type>pick</type>
+      <object-name>vent2</object-name>
+      <visible>true</visible>
+      
+      <action>
+        <button>0</button>
+        <repeatable>false</repeatable>
+        <interval-sec>0.5</interval-sec>
+        <binding>
+          <command>nasal</command>
+          <script>bk117.engswitch.vent(1);</script>
+      </binding>          
+    </action>
+   </animation>
+    
+  <animation>
+      <type>rotate</type>
+<!--      <condition>
+        <equals>
+          <property>/controls/engines/engine/power</property>
+          <value>1</value>
+        </equals>
+      </condition>-->        
+      <object-name>save2</object-name>
+      <property>/controls/switches/ecp/pos[1]</property>
+      <interpolation>
+      <entry><ind> 0.0</ind><dep> 0.0</dep> </entry>
+      <entry><ind> 1.0</ind><dep> 0.0</dep> </entry>
+      <entry><ind> 2.0</ind><dep> 90.0</dep> </entry>
+      </interpolation>
+      <center>
+        <x-m>-0.005</x-m>
+        <y-m>0.06</y-m>
+        <z-m>0.0</z-m>
+      </center>
+      <axis>
+        <x> 0 </x>
+        <y> 0 </y>
+        <z> 1 </z>
+      </axis>
+    </animation>
+
+    <animation>
+        <type>material</type>
+        <object-name>Plane</object-name>     
+        <emission>
+            <red>0.028</red>
+            <green>0.014</green>
+            <blue>0.007</blue>
+            <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+        </emission>
+    </animation>
+    
+</PropertyList>

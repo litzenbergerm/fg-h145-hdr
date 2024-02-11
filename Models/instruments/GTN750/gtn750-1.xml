@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+
+<PropertyList include="Aircraft/ec145/Models/instruments/GTN750/gtn750.xml">
+  
+  <params>
+    <device>1</device>
+    <comm-serviceable>instrumentation/comm[0]/serviceable</comm-serviceable>
+    <nav-serviceable>instrumentation/nav[0]/serviceable</nav-serviceable>
+    <power>instrumentation/nav[0]/power-btn</power>
+
+    <comm-frq-swp>instrumentation/comm[0]/frq-swap-btn</comm-frq-swp>
+    <comm-frq-selected>instrumentation/comm[0]/frequencies/selected-mhz</comm-frq-selected>
+    <comm-frq-standby>instrumentation/comm[0]/frequencies/standby-mhz</comm-frq-standby>
+    <comm-volume>instrumentation/comm[0]/volume</comm-volume>
+    <comm-test>instrumentation/comm[0]/test-btn</comm-test>
+
+    <nav-frq-swp>instrumentation/nav[0]/frq-swap-btn</nav-frq-swp>
+    <nav-frq-selected>instrumentation/nav[0]/frequencies/selected-mhz</nav-frq-selected>
+    <nav-frq-standby>instrumentation/nav[0]/frequencies/standby-mhz</nav-frq-standby>
+    <nav-volume>instrumentation/nav[0]/volume</nav-volume>
+    <nav-audio>instrumentation/nav[0]/audio-btn</nav-audio>
+    <mode>instrumentation/GTN750/device[0]/radio-menu-mode-comm</mode>
+    <comknob>instrumentation/GTN750/device[0]/com-knob</comknob>
+    <navknob>instrumentation/GTN750/device[0]/nav-knob</navknob>
+    <kknob>instrumentation/GTN750/device[0]/khzknob</kknob>
+    <mknob>instrumentation/GTN750/device[0]/mhzknob</mknob>
+  </params>
+
+  <!-- include the two screens for FG1000 moving map and canvas touch display for comm1/nav1-->
+  <model>
+    <name>screen</name>
+    <path>Aircraft/ec145/Models/instruments/GTN750/gtn750-1.ac</path>
+  </model>
+  
+  <animation n="50">
+    <type>select</type>
+    <object-name>screen</object-name>
+    <condition>
+      <greater-than>
+        <property>/systems/electrical/outputs/GTN750</property>
+        <value>10</value>
+      </greater-than>
+      <greater-than>
+        <property>instrumentation/comm[0]/volume</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+  </animation>       
+
+  <animation n="51"> 
+      <type>material</type> 
+      <object-name>screencom.1</object-name>
+      <emission>
+        <red>1.0</red>
+        <green>1.0</green>
+        <blue>1.0</blue>
+      </emission>
+      <ambient>
+        <red>0.0</red>
+        <green>0.0</green>
+        <blue>0.0</blue>
+      </ambient>
+      <diffuse>
+        <red>0.0</red>
+        <green>0.0</green>
+        <blue>0.0</blue>
+      </diffuse>    
+  </animation>  
+
+  <!-- make the FG1000 screen fit into the GTN750 screen -->
+  <animation n="52">
+    <type>texmultiple</type>
+    <object-name>Screen1</object-name>
+    <transform>
+      <subtype>textrapezoid</subtype>
+      <side>top</side>
+      <offset>0.15</offset>
+    </transform>
+    <transform>
+      <subtype>textrapezoid</subtype>
+      <side>bottom</side>
+      <offset>0.15</offset>
+    </transform>
+    <transform>
+      <subtype>textranslate</subtype>
+      <bias>0.09</bias>
+      <axis>
+        <x>1</x>
+        <y>0</y>
+      </axis>      
+    </transform>
+  </animation>
+
+</PropertyList>

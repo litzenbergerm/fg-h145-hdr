@@ -1,0 +1,1420 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <path>overhead.gltf</path>
+  <offsets>
+          <z-m>0</z-m>
+          <y-m>0.0</y-m>
+          <x-m>0</x-m>
+          <pitch-deg>0</pitch-deg>
+  </offsets>
+
+  <!-- Flood Light Halo -->
+  
+<!--  <model>    
+    <name>halo</name>
+    <path>overheadlight.xml</path>
+    <offsets>
+      <x-m>1.1506</x-m>
+      <y-m>0.01</y-m>
+      <z-m>0.78</z-m>
+    </offsets>    
+  </model>-->
+
+  <!--make shininess of switches-->
+
+<!--  <animation>
+      <name>switches</name>  
+      <object-name>big.sw</object-name>
+      <object-name>acoll.sw</object-name>
+      <object-name>posl.sw</object-name>
+      <object-name>strobe.sw</object-name>
+      <object-name>xfer1.sw</object-name>
+      <object-name>xfer2.sw</object-name>
+      <object-name>prime1.sw</object-name>
+      <object-name>prime2.sw</object-name>
+      <object-name>avionicmst1.sw</object-name>
+      <object-name>avionicmst2.sw</object-name>
+      <object-name>battmstr.sw</object-name>
+      <object-name>bldhtg.sw</object-name>
+      <object-name>bustie1.sw</object-name>
+      <object-name>bustie2.sw</object-name>
+      <object-name>gen1.sw</object-name>
+      <object-name>gen2.sw</object-name>
+      <object-name>firewarn1.sw</object-name>
+      <object-name>firewarn2.sw</object-name>
+      <object-name>gndpwr.sw</object-name>
+      <object-name>dcrecept.sw</object-name>
+      <object-name>hook.sw</object-name>
+      <object-name>wiper.sw</object-name>
+      <object-name>pitothtr1.sw</object-name>
+      <object-name>pitothtr2.sw</object-name>
+      <object-name>warntest.sw</object-name>
+      <object-name>paxl.sw</object-name>
+      <object-name>hisl.sw</object-name>
+      <object-name>paxblw.sw</object-name>
+      <object-name>sandfilter.sw</object-name>
+      <object-name>stbyhortest.sw</object-name>
+  </animation>-->
+  
+<!--  <animation>
+    <object-name>switches</object-name>
+    <type>material</type>
+    <ambient>
+        <red>0.66</red>
+        <green>0.66</green>
+        <blue>0.8</blue>
+    </ambient> 
+    <diffuse>
+        <red>0.66</red>
+        <green>0.66</green>
+        <blue>0.8</blue>
+    </diffuse>
+    <specular>
+      <red>0.9</red>
+      <green>0.9</green>
+      <blue>1.0</blue>
+    </specular>
+    <emission>
+      <red>0.06</red>
+      <green>0.06</green>
+      <blue>0.06</blue>
+    </emission>
+    <shininess>128</shininess>    
+  </animation>
+    
+  <effect>
+    <inherits-from>Aircraft/Effects/model-combined</inherits-from> 
+    <object-name>big.sw</object-name>
+    <object-name>acoll.sw</object-name>
+    <object-name>posl.sw</object-name>
+    <object-name>strobe.sw</object-name>
+    <object-name>xfer1.sw</object-name>
+    <object-name>xfer2.sw</object-name>
+    <object-name>prime1.sw</object-name>
+    <object-name>prime2.sw</object-name>
+    <object-name>avionicmst1.sw</object-name>
+    <object-name>avionicmst2.sw</object-name>
+    <object-name>battmstr.sw</object-name>
+    <object-name>bldhtg.sw</object-name>
+    <object-name>bustie1.sw</object-name>
+    <object-name>bustie2.sw</object-name>
+    <object-name>gen1.sw</object-name>
+    <object-name>gen2.sw</object-name>
+    <object-name>firewarn1.sw</object-name>
+    <object-name>firewarn2.sw</object-name>
+    <object-name>gndpwr.sw</object-name>
+    <object-name>dcrecept.sw</object-name>
+    <object-name>wiper.sw</object-name>
+    <object-name>pitothtr1.sw</object-name>
+    <object-name>pitothtr2.sw</object-name>
+    <object-name>warntest.sw</object-name>
+    <object-name>paxl.sw</object-name>
+    <object-name>hisl.sw</object-name>
+    <object-name>paxblw.sw</object-name>
+    <object-name>sandfilter.sw</object-name>
+    <object-name>stbyhortest.sw</object-name>
+    <object-name>hook.sw</object-name>
+    
+    <reflection-enabled type="int">1</reflection-enabled>
+    <reflection-dynamic type="int">1</reflection-dynamic>
+    <reflect_map-enabled type="int">0</reflect_map-enabled>
+    <reflection-correction type="float">1.0</reflection-correction>
+    <reflection-rainbow type="float">1.0</reflection-rainbow>
+    <reflection-fresnel type="float">1.0</reflection-fresnel>
+    <ambient_correction>1.0</ambient_correction>    
+  </effect>
+  
+  <effect>
+      <inherits-from>Aircraft/ec145/Models/Effects/overhead-lightmap</inherits-from> 
+      <object-name>OverheadPanel</object-name>
+      <object-name>OverheadFloodlight</object-name>
+  </effect>
+  -->
+  <!--Rotorbrake Lever is on cabin floor in ec145, see main model-->
+
+  <!--switches, switches everywhere-->
+
+  <!-- first row-->
+  
+  <!-- empty in ec145 because of ECP on mainpanel-->
+
+   <!-- Flood Light Button -->    
+    
+    <animation>
+        <type>pick</type>
+        <object-name>floodlight.btn</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/floodlight-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>    
+    
+<!-- second row-->
+    
+    <animation>
+        <type>pick</type>
+        <object-name>acoll.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/switches/beacon-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>acoll.sw</object-name>
+                <property>controls/switches/beacon-switch</property>
+       <factor>-40.0</factor>
+       <axis>
+           <object-name>axis1</object-name>
+       </axis>
+    </animation>
+    
+   <animation>
+        <type>pick</type>
+        <object-name>posl.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/switches/nav-lights-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>posl.sw</object-name>
+                <property>controls/switches/nav-lights-switch</property>
+       <factor>-40.0</factor>
+       <axis>
+           <object-name>axis1</object-name>
+       </axis>
+    </animation>
+    
+   <animation>
+        <type>pick</type>
+        <object-name>strobe.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/switches/strobe-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>strobe.sw</object-name>
+                <property>controls/switches/strobe-switch</property>
+       <factor>-40.0</factor>
+       <axis>
+           <object-name>axis1</object-name>
+       </axis>
+    </animation>
+    
+   <animation>
+        <type>pick</type>
+        <object-name>hisl.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/switches/hisl-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>hisl.sw</object-name>
+                <property>controls/switches/hisl-switch</property>
+       <factor>-40.0</factor>
+       <axis>
+           <object-name>axis1</object-name>
+       </axis>
+    </animation>
+    
+   <animation>
+        <type>pick</type>
+        <object-name>instrl.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/instrument-lights</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>instrl.sw</object-name>
+                <property>controls/lighting/instrument-lights</property>
+       <factor>-40.0</factor>
+       <axis>
+           <object-name>axis1</object-name>
+       </axis>
+    </animation>
+
+   <animation>
+        <type>pick</type>
+        <object-name>paxl.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/lighting/pax-lights</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>paxl.sw</object-name>
+                <property>controls/lighting/pax-lights</property>
+       <factor>-40.0</factor>
+       <axis>
+           <object-name>axis1</object-name>
+       </axis>
+    </animation>
+
+    
+     <animation>
+   <type>pick</type>
+    <object-name>instrlight.knob</object-name>
+   <visible>true</visible>
+   <action>
+     <name>Decrease - scrollwheel</name>
+     <button>3</button>
+     <repeatable>true</repeatable>
+     <binding>
+       <command>property-adjust</command>
+     <property>controls/lighting/instrument-lights-norm</property>
+       <step>-0.1</step>
+       <min>0</min>
+       <max>1.0</max>
+       <wrap>0</wrap>
+     </binding>
+   </action>
+   <action>
+     <name>Increase - scrollwheel</name>
+     <button>4</button>
+     <repeatable>true</repeatable>
+     <binding>
+       <command>property-adjust</command>
+    <property>controls/lighting/instrument-lights-norm</property>
+       <step>0.1</step>
+       <min>0</min>
+       <max>1.0</max>
+       <wrap>0</wrap>
+     </binding>
+   </action>
+ </animation>
+ 
+ <animation> 
+  <type>rotate</type>
+  <object-name>instrlight.knob</object-name>
+  <property>controls/lighting/instrument-lights-norm</property>
+  <factor>270</factor>
+  <axis>
+        <object-name>axis.knob1</object-name>
+  </axis>
+ </animation>  
+
+ 
+ 
+  <animation>
+   <type>pick</type>
+    <object-name>vent.knob</object-name>
+   <visible>true</visible>
+   <action>
+     <name>Decrease - scrollwheel</name>
+     <button>3</button>
+     <repeatable>true</repeatable>
+     <binding>
+       <command>property-adjust</command>
+     <property>controls/heating/vent</property>
+       <step>-0.1</step>
+       <min>0</min>
+       <max>1.0</max>
+       <wrap>0</wrap>
+     </binding>
+   </action>
+   <action>
+     <name>Increase - scrollwheel</name>
+     <button>4</button>
+     <repeatable>true</repeatable>
+     <binding>
+       <command>property-adjust</command>
+    <property>controls/heating/vent</property>
+       <step>0.1</step>
+       <min>0</min>
+       <max>1.0</max>
+       <wrap>0</wrap>
+     </binding>
+   </action>
+ </animation>
+ 
+ <animation> 
+  <type>rotate</type>
+  <object-name>vent.knob</object-name>
+   <property>controls/heating/vent</property>
+  <factor>270</factor>
+  <axis>
+        <object-name>axis.knob2</object-name>
+  </axis>
+ </animation>  
+
+
+
+
+
+  <animation>
+   <type>pick</type>
+    <object-name>bldhtg.knob</object-name>
+   <visible>true</visible>
+   <action>
+     <name>Decrease - scrollwheel</name>
+     <button>3</button>
+     <repeatable>true</repeatable>
+     <binding>
+       <command>property-adjust</command>
+     <property>controls/heating/bldhtg</property>
+       <step>-0.1</step>
+       <min>0</min>
+       <max>1.0</max>
+       <wrap>0</wrap>
+     </binding>
+   </action>
+   <action>
+     <name>Increase - scrollwheel</name>
+     <button>4</button>
+     <repeatable>true</repeatable>
+     <binding>
+       <command>property-adjust</command>
+    <property>controls/heating/bldhtg</property>
+       <step>0.1</step>
+       <min>0</min>
+       <max>1.0</max>
+       <wrap>0</wrap>
+     </binding>
+   </action>
+ </animation>
+ 
+ <animation> 
+  <type>rotate</type>
+  <object-name>bldhtg.knob</object-name>
+   <property>controls/heating/bldhtg</property>
+  <factor>270</factor>
+  <axis>
+        <object-name>axis.knob3</object-name>
+  </axis>
+ </animation>  
+
+ 
+ 
+
+ 
+<!-- third row-->
+    <animation>
+        <type>pick</type>
+        <object-name>xfer2.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/switches/fuel/transfer-pump[1]</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>xfer2.sw</object-name>
+                <property>controls/switches/fuel/transfer-pump[1]</property>
+        <factor>-40.0</factor>
+       <axis>
+           <object-name>axis2</object-name>
+        </axis>
+ 
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>xfer1.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/switches/fuel/transfer-pump[0]</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>xfer1.sw</object-name>
+                <property>controls/switches/fuel/transfer-pump[0]</property>
+        <factor>-40.0</factor>
+       <axis>
+           <object-name>axis2</object-name>
+        </axis>
+    </animation>
+
+    
+    <animation>
+        <type>pick</type>
+        <object-name>prime2.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/tank[2]/prime-pump</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>prime2.sw</object-name>
+                <property>controls/fuel/tank[2]/prime-pump</property>
+        <factor>-40.0</factor>
+       <axis>
+           <object-name>axis2</object-name>
+        </axis>
+ 
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>prime1.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/fuel/tank[1]/prime-pump</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>prime1.sw</object-name>
+                <property>controls/fuel/tank[1]/prime-pump</property>
+        <factor>-40.0</factor>
+       <axis>
+           <object-name>axis2</object-name>
+        </axis>
+    </animation>
+    
+
+ <animation>
+		<type>pick</type>
+        <object-name>wiper.sw</object-name>
+		<action>
+		  <button>0</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/special/wiper-switch</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>1</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/special/wiper-switch</property>
+		    <step>-1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>3</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/special/wiper-switch</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>wiper.sw</object-name>
+                <property>/controls/special/wiper-switch</property>
+        <factor>-20.0</factor>
+        <axis>
+           <object-name>axis3</object-name>
+        </axis>
+    </animation>
+
+
+    <!-- fire test and hydraulic sys test have 3 positions -->
+
+  <animation>
+		<type>pick</type>
+        <object-name>hydsys2.sw</object-name>
+		<action>
+		  <button>0</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/hydraulic</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>1</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/hydraulic</property>
+		    <step>-1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>3</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/hydraulic</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>hydsys2.sw</object-name>
+        <property>/controls/test/hydraulic</property>
+        <factor>-20.0</factor>
+        <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+
+    
+    
+  <animation>
+		<type>pick</type>
+        <object-name>firewarn1.sw</object-name>
+		<action>
+		  <button>0</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/fire-warntest1</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>1</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/fire-warntest1</property>
+		    <step>-1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>3</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/fire-warntest1</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>firewarn1.sw</object-name>
+        <property>/controls/test/fire-warntest1</property>
+        <factor>-20.0</factor>
+        <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+
+    
+  <animation>
+		<type>pick</type>
+        <object-name>firewarn2.sw</object-name>
+		<action>
+		  <button>0</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/fire-warntest2</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>1</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/fire-warntest2</property>
+		    <step>-1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>3</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/fire-warntest2</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>firewarn2.sw</object-name>
+        <property>/controls/test/fire-warntest2</property>
+        <factor>-20.0</factor>
+        <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+
+    
+    
+  <animation>
+		<type>pick</type>
+        <object-name>warntest.sw</object-name>
+		<action>
+		  <button>0</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/p-flight</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>1</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/p-flight</property>
+		    <step>-1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+		<action>
+		  <button>3</button>
+		  <repeatable>true</repeatable>
+		  <binding>
+		    <command>property-adjust</command>
+		    <property>/controls/test/p-flight</property>
+		    <step>1</step>
+		    <min>0</min>
+		    <max>3</max>
+		    <wrap>1</wrap>
+		  </binding>		  
+		  <binding>
+		    <command>property-toggle</command>
+		    <property>/sim/sound/click</property>
+		  </binding>
+		</action>
+    </animation>
+
+    <animation>
+        <type>rotate</type>
+        <object-name>warntest.sw</object-name>
+        <property>/controls/test/p-flight</property>
+        <factor>-20.0</factor>
+        <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <animation>
+        <type>pick</type>
+        <object-name>dcrecept.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/dcrecept-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>dcrecept.sw</object-name>
+                <property>controls/electric/dcrecept-switch</property>
+        <factor>-40.0</factor>
+       <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+
+
+    <animation>
+        <type>pick</type>
+        <object-name>gndpwr.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/gndpwr-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>gndpwr.sw</object-name>
+                <property>controls/electric/gndpwr-switch</property>
+        <factor>-40.0</factor>
+       <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+    
+    <!-- cargo hook switch -->
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>hook.sw</object-name>
+                <property>controls/switches/hook-switch</property>
+        <factor>-40.0</factor>
+        <axis>
+           <object-name>axis3</object-name>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>hook.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/switches/hook-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <!-- cable cut arm switch -->
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>cablecut.sw</object-name>
+                <property>controls/switches/cablecut-switch</property>
+        <factor>-40.0</factor>
+        <axis>
+           <object-name>axis3</object-name>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>cablecut.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/switches/cablecut-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+
+    <!-- floats arm switch -->
+
+    <animation>
+        <type>material</type>
+        <object-name>floatswbase</object-name>
+        <condition>
+            <and>
+                <equals>
+                    <property>controls/gear/floats-armed</property>
+                    <value>1</value>
+                </equals>
+                <or>
+                    <equals>
+                        <property>sim/multiplay/generic/string[1]</property>
+                        <value>SAR</value>
+                    </equals>
+                    <equals>
+                        <property>sim/multiplay/generic/string[1]</property>
+                        <value>Passenger-offshore</value>
+                    </equals>
+                </or>
+            </and>
+        </condition>
+        <emission>
+            <red> 1.0 </red>
+            <green> 0.1 </green>
+            <blue> 0.1 </blue>
+        </emission>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>floats.sw</object-name>
+                <property>controls/gear/floats-armed</property>
+        <factor>-40.0</factor>
+        <axis>
+           <object-name>axis3</object-name>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>floats.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/gear/floats-armed</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+
+    <animation>
+        <type>pick</type>
+        <object-name>pitothtr2.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/anti-ice/pitot-heat2</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>pitothtr2.sw</object-name>
+                <property>controls/anti-ice/pitot-heat2</property>
+        <factor>-40.0</factor>
+        <axis>
+           <object-name>axis2</object-name>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>pitothtr1.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/anti-ice/pitot-heat1</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>pitothtr1.sw</object-name>
+                <property>controls/anti-ice/pitot-heat1</property>
+        <factor>-40.0</factor>
+       <axis>
+           <object-name>axis2</object-name>
+        </axis>
+     </animation>
+
+     
+     
+     
+     
+    <!--5. row-->
+    
+    <animation>
+        <type>pick</type>
+        <object-name>stbyhortest.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/stbyhor-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>stbyhortest.sw</object-name>
+        <property>controls/electric/stbyhor-switch</property>
+        <factor>-40.0</factor>
+        <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>avionicmst2.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/avionics-switch2</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>avionicmst2.sw</object-name>
+        <property>controls/electric/avionics-switch2</property>
+        <factor>-40.0</factor>
+        <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+    
+    <animation>
+        <type>pick</type>
+        <object-name>avionicmst1.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/avionics-switch1</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>
+    
+    <animation>
+        <type>rotate</type>
+        <object-name>avionicmst1.sw</object-name>
+                <property>controls/electric/avionics-switch1</property>
+        <factor>-40.0</factor>
+        <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+
+    <!-- bus tie 1 -->    
+    
+    <animation>
+        <type>pick</type>
+        <object-name>bustie1.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine[0]/bus-tie</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>    
+
+    <animation>
+        <type>rotate</type>
+        <object-name>bustie1.sw</object-name>
+                <property>controls/electric/engine[0]/bus-tie</property>
+        <offset-deg>30.0</offset-deg>                
+        <factor>-30.0</factor>
+        <axis>
+           <object-name>axis5</object-name>
+        </axis>
+    </animation>
+    
+    <!-- bus tie 2 -->    
+    
+    <animation>
+        <type>pick</type>
+        <object-name>bustie2.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine[1]/bus-tie</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>    
+
+    <animation>
+        <type>rotate</type>
+        <object-name>bustie2.sw</object-name>
+                <property>controls/electric/engine[1]/bus-tie</property>
+        <offset-deg>30.0</offset-deg>                
+        <factor>-30.0</factor>
+        <axis>
+           <object-name>axis5</object-name>
+        </axis>
+    </animation>
+ 
+    <!-- generator 1 -->    
+    
+    <animation>
+        <type>pick</type>
+        <object-name>gen1.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine[0]/generator</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>    
+
+    <animation>
+        <type>rotate</type>
+        <object-name>gen1.sw</object-name>
+                <property>controls/electric/engine[0]/generator</property>
+        <offset-deg>30.0</offset-deg>                
+        <factor>-30.0</factor>
+        <axis>
+           <object-name>axis5</object-name>
+        </axis>
+    </animation>
+    
+    
+    <!-- generator 2 -->    
+    
+    <animation>
+        <type>pick</type>
+        <object-name>gen2.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/engine[1]/generator</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>    
+
+    <animation>
+        <type>rotate</type>
+        <object-name>gen2.sw</object-name>
+        <property>controls/electric/engine[1]/generator</property>
+        <offset-deg>30</offset-deg>                
+        <factor>-30.0</factor>
+        <axis>
+           <object-name>axis5</object-name>
+        </axis>
+    </animation>
+    
+    <!-- Battery Master SW-->    
+    
+    <animation>
+        <type>pick</type>
+        <object-name>battmstr.sw</object-name>
+        <action>
+            <button>0</button>
+            <repeatable>false</repeatable>
+            <binding>
+                <command>property-toggle</command>
+                <property>controls/electric/battery-switch</property>
+            </binding>
+            <binding>
+                <command>property-toggle</command>
+                <property>sim/sound/click</property>
+            </binding>
+        </action>
+    </animation>    
+
+    <animation>
+        <type>rotate</type>
+        <object-name>battmstr.sw</object-name>
+                <property>controls/electric/battery-switch</property>
+        <factor>-40.0</factor>
+        <axis>
+           <object-name>axis4</object-name>
+        </axis>
+    </animation>
+    
+
+<!-- Energency float ARM switch -->    
+<!--<model>
+<name>emerg-float</name>
+  <path>Aircraft/ec145/Models/Divers/Floats/Float-switch/float-switch.xml</path>
+  <offsets>
+   <x-m> 1.314 </x-m>
+   <y-m> -0.11 </y-m>
+   <z-m> 0.825 </z-m>
+   <pitch-deg>95</pitch-deg>
+    <heading-deg>180</heading-deg>
+  </offsets>
+  <overlay>
+		 <animation n="100">
+    <type>scale</type>
+    <property>constants/zero</property>
+    <x-offset>1.3</x-offset>
+    <y-offset>1</y-offset>
+    <z-offset>1</z-offset>
+   </animation>
+  </overlay>
+ </model> 
+ 
+  <animation>
+		<type>select</type>
+		<object-name>emerg-float</object-name>
+		
+			<condition>
+		<or>
+		<equals>
+    <property>sim/multiplay/generic/string[1]</property>
+    <value>SAR</value>
+	</equals>
+	
+	<equals>
+    <property>sim/multiplay/generic/string[1]</property>
+    <value>Passenger-offshore</value>
+	</equals>
+	</or>
+	</condition>
+	</animation>	-->
+
+</PropertyList>

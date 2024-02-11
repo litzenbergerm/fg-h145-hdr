@@ -1,0 +1,76 @@
+<PropertyList>
+
+  <!--
+     cockpit control panel CCP for h145(m)
+     non-functional model,
+  -->
+ 
+   <path>ccp.ac</path>
+
+   <effect>
+      <inherits-from>Aircraft/ec145/Models/Effects/implicit-lightmap</inherits-from> 
+      <object-name>ccp</object-name>
+      <object-name>knob1</object-name>
+   </effect>
+
+   <!-- effect of overhead floodlight as material emission, 
+  'cheap trick' to simulate ambient cabin lighting 
+  -->
+  
+  <animation> 
+    <type>material</type> 
+    <object-name>ccp</object-name>
+    <object-name>knob1</object-name>
+    
+    <emission>
+      <red>0.02</red>
+      <green>0.02</green>
+      <blue>0.02</blue>
+      <factor-prop>/systems/electrical/outputs/floodlight</factor-prop> 
+    </emission>    
+  </animation>
+  
+   <animation>
+    <type>knob</type>
+    <object-name>knob1</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/mfd[2]/ccp-selector</property>
+        <factor>1</factor>
+      </binding> 
+      <binding>
+        <command>property-toggle</command>
+        <property>instrumentation/mfd[2]/pwr-sw-pos</property>
+      </binding> 
+    </action>  
+  </animation>  
+
+  <animation>
+    <type>rotate</type>
+    <object-name>knob1</object-name>
+    <property>instrumentation/mfd[2]/pwr-sw-pos</property>
+    <interpolation>
+      <entry>
+        <ind> 0</ind>
+        <dep> 180.0</dep>
+      </entry>
+      <entry>
+        <ind> 1</ind>
+        <dep> 0.0</dep>
+      </entry>
+    </interpolation>    
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.04531</y-m>
+      <z-m>0.02154</z-m>
+    </center>    
+  </animation> 
+  
+  
+</PropertyList>

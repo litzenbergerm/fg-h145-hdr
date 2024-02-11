@@ -1,0 +1,511 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+        <!--texture made by Heiko H. Schulz-->
+        <name>GNS430</name>
+        <path>GNS430.ac</path>
+        
+        <!-- params for controlling either device 1 or 2, i.e comm/nav1 or comm/nav2 -->
+        
+        <params>
+          <device>1</device>
+          <comm-serviceable>instrumentation/comm[0]/serviceable</comm-serviceable>
+          <nav-serviceable>instrumentation/nav[0]/serviceable</nav-serviceable>
+          <power>instrumentation/nav[0]/power-btn</power>
+
+          <comm-frq-swp>instrumentation/comm[0]/frq-swap-btn</comm-frq-swp>
+          <comm-frq-selected>instrumentation/comm[0]/frequencies/selected-mhz</comm-frq-selected>
+          <comm-frq-standby>instrumentation/comm[0]/frequencies/standby-mhz</comm-frq-standby>
+          <comm-volume>instrumentation/comm[0]/volume</comm-volume>
+          <comm-test>instrumentation/comm[0]/test-btn</comm-test>
+
+          <nav-frq-swp>instrumentation/nav[0]/frq-swap-btn</nav-frq-swp>
+          <nav-frq-selected>instrumentation/nav[0]/frequencies/selected-mhz</nav-frq-selected>
+          <nav-frq-standby>instrumentation/nav[0]/frequencies/standby-mhz</nav-frq-standby>
+          <nav-volume>instrumentation/nav[0]/volume</nav-volume>
+          <nav-audio>instrumentation/nav[0]/audio-btn</nav-audio>
+          <vis>instrumentation/GNS430/device[0]/radio-menu-visible</vis>
+          <mode>instrumentation/GNS430/device[0]/radio-menu-mode-comm</mode>
+          <comknob>instrumentation/GNS430/device[0]/com-knob</comknob>
+          <navknob>instrumentation/GNS430/device[0]/nav-knob</navknob>
+          <lknob>instrumentation/GNS430/device[0]/leftknob</lknob>
+        </params>
+	
+        <animation>
+            <type>material</type>
+            <object-name>Cube.001</object-name>
+            <emission>
+                    <red>0.28</red>
+                    <green>0.40</green>
+                    <blue>0.24</blue>
+                    <factor-prop>systems/electrical/outputs/instrument-lights-dimmed</factor-prop>
+            </emission>
+        </animation>
+	
+        <animation>
+            <type>material</type>
+            <object-name>ComVLOCkhz.knob</object-name>
+            <object-name>ComVLOCmhz.knob</object-name>
+            <object-name>cursor.knob</object-name>
+            <object-name>NavVolume.knob</object-name>
+            <object-name>PwrComVol.knob</object-name>
+            <object-name>ComFlipFlop.btn</object-name>
+            <object-name>cdi.btn</object-name>
+            <object-name>obs.btn</object-name>
+            <object-name>msg.btn</object-name>
+            <object-name>fpl.btn</object-name>
+            <object-name>proc.btn</object-name>
+            <object-name>RangeKeyUp.btn</object-name>
+            <object-name>RangeKeyDown.btn</object-name>
+            <object-name>directto.btn</object-name>
+            <object-name>menu.btn</object-name>
+            <object-name>clear.btn</object-name>
+            <object-name>enter.btn</object-name>
+            <emission>
+                    <red>0.48</red>
+                    <green>0.80</green>
+                    <blue>0.44</blue>
+                    <factor-prop>systems/electrical/outputs/instrument-lights-dimmed</factor-prop>
+            </emission>
+        </animation>
+
+   
+        
+  <!-- buttons and bits -->
+
+   <animation>
+    <type>pick</type>
+    <object-name>ComFlipFlop.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+          <command>property-swap</command>
+          <property alias="../../../../params/comm-frq-selected"/>
+          <property alias="../../../../params/comm-frq-standby"/>        
+      </binding>      
+      <binding>
+          <command>property-assign</command>
+          <property alias="../../../../params/vis"/>
+          <value>1</value>
+      </binding> 
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>comFlip</tooltip-id>
+        <label>Flip Comm Active Frequency</label>
+      </binding>
+    </hovered>
+  </animation>
+    
+   <animation>
+    <type>pick</type>
+    <object-name>NavFlipFlop.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+          <command>property-swap</command>
+          <property alias="../../../../params/nav-frq-selected"/>
+          <property alias="../../../../params/nav-frq-standby"/>        
+      </binding> 
+      <binding>
+          <command>property-assign</command>
+          <property alias="../../../../params/vis"/>
+          <value>1</value>
+      </binding> 
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>navFlip</tooltip-id>
+        <label>Flip Nav Active Frequency</label>
+      </binding>
+    </hovered>
+  </animation>
+  
+   <animation>
+    <type>knob</type>
+    <object-name>ComVLOCkhz.knob</object-name>
+    <action>
+      <binding>
+          <command>property-assign</command>
+          <property alias="../../../../params/vis"/>
+          <value>1</value>
+      </binding> 
+      <binding>
+        <condition>
+            <property alias="../../../../../params/mode"/>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/comm-frq-standby"/>
+        <factor>0.010</factor>
+      </binding>      
+      <binding>
+        <condition>
+          <not>
+            <property alias="../../../../../../params/mode"/>
+          </not>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/nav-frq-standby"/>
+        <factor>0.010</factor>
+      </binding>      
+      <binding>
+        <command>property-adjust</command>
+        <property alias="../../../../params/lknob"/>
+        <factor>8</factor>
+      </binding>      
+    </action>
+    <shift-action>
+      <binding>
+          <command>property-assign</command>
+          <property alias="../../../../params/vis"/>
+          <value>1</value>
+      </binding> 
+      <binding>
+          <command>property-toggle</command>
+          <property alias="../../../../params/mode"/>
+        </binding>
+   </shift-action>    
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>comK</tooltip-id>
+        <label>Set Freq. KHz (Shift Comm/Vloc)</label>
+      </binding>
+    </hovered>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>ComVLOCkhz.knob</object-name>
+    <property alias="../../params/lknob"/>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.0668</y-m>
+      <z-m>-0.0198</z-m>
+    </center>    
+  </animation>
+
+  <animation>
+    <type>knob</type>
+    <object-name>ComVLOCmhz.knob</object-name>
+    <action>
+      <binding>
+        <condition>
+           <property alias="../../../../../params/mode"/>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/comm-frq-standby"/>
+        <factor>1</factor>
+      </binding>      
+      <binding>
+        <condition>
+          <not>
+            <property alias="../../../../../../params/mode"/>
+          </not>
+        </condition>
+        <command>property-adjust</command>
+        <property alias="../../../../params/nav-frq-standby"/>
+        <factor>1</factor>
+      </binding>      
+      <binding>
+          <command>property-assign</command>
+          <property alias="../../../../params/vis"/>
+          <value>1</value>
+      </binding> 
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>comM</tooltip-id>
+        <label>Set Freq. MHz</label>
+      </binding>
+    </hovered>
+  </animation>
+
+  <animation>
+    <type>knob</type>
+    <object-name>PwrComVol.knob</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property alias="../../../../params/comknob"/>
+        <factor>8</factor>
+      </binding>       
+      <binding>
+        <command>property-adjust</command>
+        <property alias="../../../../params/comm-volume"/>
+        <factor>0.1</factor>
+        <min>0.0</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>      
+    </action>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>PwrComVol.knob</object-name>
+    <property alias="../../params/comknob"/>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.0661</y-m>
+      <z-m>0.0220</z-m>
+    </center>    
+  </animation>
+  
+  <animation>
+    <type>knob</type>
+    <object-name>NavVolume.knob</object-name>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property alias="../../../../params/navknob"/>
+        <factor>8</factor>
+      </binding>       
+      <binding>
+        <command>property-adjust</command>
+        <property alias="../../../../params/nav-volume"/>
+        <factor>-0.1</factor>
+        <min>0.0</min>
+        <max>1.0</max>
+        <wrap>false</wrap>
+      </binding>      
+    </action>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>NavVolume.knob</object-name>
+    <property alias="../../params/navknob"/>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>-0.0663</y-m>
+      <z-m>0.0069</z-m>
+    </center>    
+  </animation>
+  
+  
+  <animation>
+    <type>knob</type>
+    <object-name>cursor.knob</object-name>
+    <action>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>HEADING</notification>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>instrumentation/fg1000/screen1/heading-bug-deg</property>
+        <factor>15</factor>
+      </binding>
+    </action>
+    <shift-action>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>HEADING_PRESS</notification>
+      </binding>
+    </shift-action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>HDG</tooltip-id>
+        <label>Change heading bug (Shift to sync)</label>
+      </binding>
+    </hovered>
+  </animation>
+  
+  <animation>
+    <type>pick</type>
+    <object-name>cdi.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>CRS_CENTER</notification>
+        <offset>1</offset>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>ComInner</tooltip-id>
+        <label>Center CDI on current VOR</label>
+      </binding>
+    </hovered>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>RangeKeyUp.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>RANGE</notification>
+        <offset>1</offset>
+      </binding>
+    </action>
+  </animation>
+  
+  <animation>
+    <type>pick</type>
+    <object-name>RangeKeyDown.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>RANGE</notification>
+        <offset>-1</offset>
+      </binding>
+    </action>
+  </animation>
+  
+   <animation>
+    <type>pick</type>
+    <object-name>directto.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>DTO</notification>
+        <offset>1</offset>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>DidectTo</tooltip-id>
+        <label>Display Direct To</label>
+      </binding>
+    </hovered>
+  </animation>
+  
+   <animation>
+    <type>pick</type>
+    <object-name>menu.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>MENU</notification>
+        <offset>1</offset>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>MENU</tooltip-id>
+        <label>Display Menu</label>
+      </binding>
+    </hovered>
+  </animation>
+  
+   <animation>
+    <type>pick</type>
+    <object-name>fpl.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>FPL</notification>
+        <offset>1</offset>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>MENU</tooltip-id>
+        <label>Display Flight Plan page</label>
+      </binding>
+    </hovered>
+  </animation>
+  
+  <animation>
+    <type>pick</type>
+    <object-name>proc.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>PROC</notification>
+        <offset>1</offset>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>PROC</tooltip-id>
+        <label>Display Procedures page</label>
+      </binding>
+    </hovered>
+  </animation>
+  
+  <animation>
+    <type>pick</type>
+    <object-name>clear.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>CLR_HOLD</notification>
+        <offset>1</offset>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>CLR</tooltip-id>
+        <label>Clear entry</label>
+      </binding>
+    </hovered>
+  </animation>
+  
+   <animation>
+    <type>pick</type>
+    <object-name>enter.btn</object-name>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>FG1000HardKeyPushed</command>
+        <device alias="../../../../params/device"/>
+        <notification>ENT</notification>
+        <offset>1</offset>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>ENT</tooltip-id>
+        <label>Complete data entry, or confirm selection</label>
+      </binding>
+    </hovered>
+  </animation>
+  
+</PropertyList>
