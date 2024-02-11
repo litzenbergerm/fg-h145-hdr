@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+
+ <path>winch.ac</path>
+ 
+<animation>
+  <type>range</type>
+  <min-m>0</min-m>
+  <max-m>100</max-m>
+ </animation>
+ 
+   <model>
+            <name>Rescue-Op</name>
+            <path>Aircraft/ec145/Models/Divers/Rescue/Rescue-Op.xml</path>
+            <offsets>
+                    <x-m>-1.06</x-m>
+                    <y-m>0.98</y-m>
+                    <z-m>-5.2</z-m>
+            </offsets>
+        </model>
+		
+		
+
+		
+		
+		
+		
+ 
+<animation>
+  <type>rotate</type>
+  <object-name>Rescue-Op</object-name>
+  <object-name>Material4.001</object-name>
+  <object-name>winchhead</object-name>
+  <object-name>Material3</object-name>
+  <property>sim/multiplay/generic/float[2]</property>
+  
+  <factor>60</factor>
+  <axis>
+   <x1-m>-0.315</x1-m>
+   <y1-m>1</y1-m>
+   <z1-m>1.11</z1-m>
+   <x2-m>-0.315</x2-m>
+   <y2-m>1</y2-m>
+   <z2-m>0.99</z2-m>
+  </axis>
+ </animation>
+ 
+ <!--
+ <animation>
+  <type>rotate</type>
+  <object-name>Rescue-Op</object-name>
+  <object-name>Material4.001</object-name>
+  <object-name>winchhead</object-name>
+  <object-name>Material3</object-name>
+  <property>/sim/model/rescue</property>
+  
+  <factor>60</factor>
+  <axis>
+   <x1-m>-0.315</x1-m>
+   <y1-m>1</y1-m>
+   <z1-m>1.11</z1-m>
+   <x2-m>-0.315</x2-m>
+   <y2-m>1</y2-m>
+   <z2-m>0.99</z2-m>
+  </axis>
+ </animation>
+	-->
+	
+</PropertyList>
+
+
+

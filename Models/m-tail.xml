@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+    
+  <path>tail-m.gltf</path>
+
+  <effect>
+    <inherits-from>Aircraft/ec145/Models/Effects/tail-m-lightmap</inherits-from> 
+      <object-name>fuselage.001</object-name>
+      <object-name>Horizontals</object-name>
+  </effect>	 
+
+  <!-- tail rotor blades -->
+  
+<!--  <effect>
+     <inherits-from>Effects/model-transparent</inherits-from>
+     <object-name>rotor_disc_T</object-name>
+  </effect>
+-->
+
+    <animation>
+        <name>Tblade</name>
+		<object-name>Tblade.11</object-name>
+		<object-name>Tblade.12</object-name>
+		<object-name>Tblade.21</object-name>
+		<object-name>Tblade.22</object-name>
+		<object-name>Tblade.31</object-name>
+		<object-name>Tblade.32</object-name>
+		<object-name>Tblade.41</object-name>
+		<object-name>Tblade.42</object-name>
+		<object-name>Tblade.51</object-name>
+		<object-name>Tblade.52</object-name>
+		<object-name>bladehubs</object-name>
+        
+	</animation>
+
+    <animation>
+		<!-- Rotate the fenestron blades -->
+		<type>rotate</type>
+		<object-name>Tblade</object-name>
+        
+		<property>rotors/tail/blade/position-deg</property>
+		<factor>1</factor>
+		<center>
+			<x-m>6.748</x-m>
+			<y-m>0</y-m>
+			<z-m>1.008</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+	<!-- Pitch the fenestron blades -->
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.11</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>1</factor>
+        <offset-deg>-90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.1</object-name>
+		</axis>
+	</animation>
+
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.12</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>-1</factor>
+        <offset-deg>90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.1</object-name>
+		</axis>
+	</animation>
+
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.21</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>-1</factor>
+        <offset-deg>90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.2</object-name>
+		</axis>
+	</animation>
+
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.22</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>1</factor>
+        <offset-deg>-90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.2</object-name>
+		</axis>
+	</animation>
+
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.31</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>1</factor>
+        <offset-deg>-90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.3</object-name>
+		</axis>
+	</animation>
+
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.32</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>-1</factor>
+        <offset-deg>90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.3</object-name>
+		</axis>
+	</animation>
+
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.41</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>1</factor>
+        <offset-deg>-90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.4</object-name>
+		</axis>
+	</animation>
+
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.42</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>-1</factor>
+        <offset-deg>90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.4</object-name>
+		</axis>
+	</animation>
+
+    
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.51</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>-1</factor>
+        <offset-deg>90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.5</object-name>
+		</axis>
+	</animation>
+
+    <animation>
+		<type>rotate</type>
+		<object-name>Tblade.52</object-name>
+		<property>rotors/tail/blade/incidence-deg</property>
+		<factor>1</factor>
+        <offset-deg>-90</offset-deg>
+		<axis>
+            <object-name>bladeaxis.5</object-name>
+		</axis>
+	</animation>
+    
+	<!-- Hide the fenestron blades when rotating with high rpm -->
+	<animation>
+		<type>select</type>
+		<object-name>Tblade</object-name>
+		<condition>
+			<less-than>
+				<property>rotors/tail/rpm</property>
+				<value>200</value>
+			</less-than>
+		</condition>
+	</animation>
+
+	<!-- Show the fenestron disc with rising rpm -->
+
+	<animation>
+		<type>select</type>
+		<object-name>rotor_disc_T</object-name>
+		<condition>
+			<greater-than>
+				<property>rotors/tail/rpm</property>
+				<value>200</value>
+			</greater-than>
+		</condition>
+	</animation>
+ 
+</PropertyList>

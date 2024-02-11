@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+    
+<path>screen.ac</path>
+  <!-- test screen for ALS shadow positions -->
+  <effect>
+      <inherits-from>Aircraft/ec145/Models/Effects/mfd1-lightmap</inherits-from> 
+      <object-name>Cube</object-name>
+  </effect> 
+
+</PropertyList>
+
