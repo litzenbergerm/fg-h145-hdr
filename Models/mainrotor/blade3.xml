@@ -50,7 +50,8 @@
 		<object-name>color</object-name>
 		<object-name>line</object-name>
 	</animation>
-	<!--  REMBRANDT support for transparent objects-->
+	<!--  transparency for rotor disc when moving, blades must
+	not use this effect, as blade shadows will disappear -->
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
 		<object-name>disc1e</object-name>
@@ -59,12 +60,6 @@
 		<object-name>disc1b</object-name>
 		<object-name>disc1a</object-name>
 		<object-name>disc1</object-name>
-		<object-name>blade1</object-name>
-		<object-name>blade1a</object-name>
-		<object-name>blade1b</object-name>
-		<object-name>blade1c</object-name>
-		<object-name>blade1d</object-name>
-		<object-name>blade1e</object-name>
 	</effect>
 	<animation>
 		<type>material</type>
@@ -113,7 +108,7 @@
 			</greater-than>
 		</condition>
 	</animation>
-	<!--  Blade 1-->
+	<!--  Blade 3-->
 	<animation>
 		<type>rotate</type>
 		<object-name>bladecomplete</object-name>
