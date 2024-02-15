@@ -19,15 +19,16 @@
 		</flapE>
 	</params>
 	<!-- blade color marking-->
-	<animation>
-		<object-name>color</object-name>
-		<type>material</type>
-		<ambient>
-			<red>0.0</red>
-			<green>1.0</green>
-			<blue>0.0</blue>
-		</ambient>
-	</animation>
+    <effect>
+        <name>pbr-green</name>
+        <inherits-from>Aircraft/ec145/Models/Effects/pbr/pbr-green</inherits-from>
+        <object-name>color</object-name>
+        <parameters>        
+              <metallic-factor type="float">0.0</metallic-factor>
+              <roughness-factor type="float">0.7</roughness-factor>
+        </parameters>         
+    </effect>
+	
 	<animation>
 		<name>bladecomplete</name>
 		<object-name>disc1e</object-name>

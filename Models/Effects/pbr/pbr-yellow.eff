@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+    <name>pbr-y</name>
+    <inherits-from>Effects/model-pbr</inherits-from>
+    <object-name>fuselage</object-name>
+    <parameters>
+          <emissive-factor type="vec3d">0.0 0.0 0.0</emissive-factor>        
+          <base-color-factor type="vec4d">1.0 1.0 0.0 1.0</base-color-factor>
+    </parameters>
+</PropertyList>
