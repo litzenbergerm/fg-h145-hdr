@@ -12,6 +12,16 @@
     <object-name>stick_guard</object-name>    
   </animation>
   
+    <effect>
+        <name>rough-adjust</name>
+        <inherits-from>Effects/model-pbr</inherits-from>
+        <object-name>stick_R_glossy_gr_0</object-name>
+        <parameters>        
+              <metallic-factor type="float">0.2</metallic-factor>
+              <roughness-factor type="float">0.8</roughness-factor>
+        </parameters> 
+    </effect>
+  
   <!-- the guard clip is only present in the ec145 cyclic-->
   
   <animation>

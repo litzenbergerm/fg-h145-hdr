@@ -107,21 +107,6 @@
   </condition>
  </animation>
 
- <!-- Exclude pilot from view 0 -->
- 
-  <animation>
-     <type>select</type>
-     <object-name>pilot1</object-name>
-     <condition>
-        <not>
-           <equals>
-              <property>sim/current-view/view-number</property>
-              <value>0</value>
-           </equals>
-        </not>
-     </condition>
-  </animation>
-
  <!--Doors-->
   
  <animation>
