@@ -24,7 +24,7 @@
 
     <effect>
         <name>rough-adjust</name>
-        <inherits-from>Aicraft/ec145/Models/pbr</inherits-from>
+        <inherits-from>Aircraft/ec145/Models/Effects/pbr/pbr-dark-gray</inherits-from>
         <object-name>stick_R_glossy_gr_0</object-name>
         <parameters>        
               <metallic-factor type="float">0.6</metallic-factor>
