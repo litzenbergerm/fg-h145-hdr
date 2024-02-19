@@ -51,4 +51,15 @@
     <intensity>2</intensity>
   </light>
 
+  <animation>
+    <type>select</type>
+    <object-name>ScreenLight</object-name>
+    <condition>
+     <greater-than>
+        <property>/systems/electrical/outputs/avio[1]</property>
+        <value>10.0</value>
+     </greater-than>
+    </condition>
+  </animation>
+  
 </PropertyList>
